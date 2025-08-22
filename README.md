@@ -5,8 +5,10 @@ A comprehensive health monitoring application for iOS that integrates with Healt
 ## Features
 
 - **HealthKit Integration**: Seamless integration with Apple Health for comprehensive health data
-- **Real-time Monitoring**: Track vital signs including heart rate, ECG, blood oxygen, and more
-- **Machine Learning**: Advanced on-device ML for pattern detection and health predictions
+- **Real-time Monitoring**: Track vital signs including heart rate, ECG, blood oxygen, troponin levels, and more
+- **Advanced AI/ML Platform Integration**: Cloud-based AI/ML platform for advanced analytics and predictive modeling
+- **Cardiac Biomarker Monitoring**: Specialized troponin level tracking for cardiac health assessment
+- **Machine Learning**: Both on-device Core ML and cloud-based ML for comprehensive health predictions
 - **Wearable Integration**: Bluetooth connectivity with health monitoring devices
 - **Interactive Visualizations**: Beautiful charts and dashboards for health metrics
 - **Privacy-First**: All sensitive data processed on-device with end-to-end encryption
@@ -19,9 +21,10 @@ A comprehensive health monitoring application for iOS that integrates with Healt
 - **Architecture**: MVVM with Combine
 - **Data Persistence**: Core Data + Keychain
 - **Networking**: URLSession + Alamofire
-- **Machine Learning**: Core ML + Create ML
+- **Machine Learning**: Core ML (on-device) + Cloud AI/ML Platform
 - **Health Integration**: HealthKit Framework
 - **Charts**: Swift Charts
+- **Cloud AI/ML**: Advanced AI/ML platform for deep analytics and personalized recommendations
 
 ## Requirements
 
@@ -90,19 +93,28 @@ LifeLens/
 
 ## Key Features
 
-### Health Monitoring
-- ECG monitoring with real-time waveform display
+### Comprehensive Health Monitoring
+- **ECG Monitoring**: Real-time waveform display with arrhythmia detection
+- **Cardiac Biomarkers**: Troponin, BNP, and other cardiac marker tracking
+- **Diabetes Management**: Blood glucose monitoring, HbA1c tracking, insulin management
+- **Blood Pressure Monitoring**: Systolic/diastolic tracking with hypertension alerts
 - Heart rate and HRV tracking
 - Blood oxygen saturation monitoring
 - Body temperature tracking
 - Sleep analysis
 - Activity and workout tracking
 
-### Machine Learning Capabilities
+### Advanced AI/ML Platform & Personalized Recommendations
+- **Cloud-based AI/ML platform integration** for advanced analytics
+- **Personalized Health Recommendations**: AI-driven insights tailored to individual health profiles
+- **Predictive Analytics**: Risk assessment for cardiac events, diabetes complications, and hypertension
+- **Chronic Disease Management**: Specialized algorithms for diabetes and hypertension management
 - Anomaly detection in health metrics
-- Predictive health insights
 - Pattern recognition for early warning signs
-- On-device processing for privacy
+- Multi-parameter correlation analysis
+- Medication adherence tracking and reminders
+- Lifestyle modification suggestions based on health data
+- On-device processing for privacy with cloud-enhanced insights
 
 ### Security & Privacy
 - HealthKit authorization management
@@ -123,14 +135,19 @@ The app requires the following permissions:
 ## HealthKit Data Types
 
 The app can read and write the following HealthKit data:
-- Heart Rate
+- Heart Rate & Heart Rate Variability
 - Blood Oxygen
 - Body Temperature
 - ECG
+- **Blood Glucose Levels**
+- **Blood Pressure (Systolic/Diastolic)**
+- **HbA1c (Glycated Hemoglobin)**
 - Sleep Analysis
 - Workout Data
 - Activity Rings
 - Respiratory Rate
+- Body Mass Index (BMI)
+- Weight and Body Composition
 
 ## Contributing
 
