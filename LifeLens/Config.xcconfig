@@ -1,0 +1,23 @@
+// Force iOS 18.2 Configuration
+IPHONEOS_DEPLOYMENT_TARGET = 18.2
+SDKROOT = iphoneos
+SUPPORTED_PLATFORMS = iphonesimulator iphoneos
+TARGETED_DEVICE_FAMILY = 1,2
+
+// Disable code signing for development
+CODE_SIGN_IDENTITY = 
+CODE_SIGNING_REQUIRED = NO
+CODE_SIGNING_ALLOWED = NO
+DEVELOPMENT_TEAM = 
+
+// Architecture settings
+ONLY_ACTIVE_ARCH = NO
+VALID_ARCHS = arm64 x86_64
+ARCHS = $(ARCHS_STANDARD)
+
+// Swift settings
+SWIFT_VERSION = 5.0
+
+// Other settings
+ENABLE_BITCODE = NO
+PRODUCT_BUNDLE_IDENTIFIER = com.Prevenza.LifeLens

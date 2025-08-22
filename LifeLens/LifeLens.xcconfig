@@ -1,0 +1,36 @@
+// Build Configuration for LifeLens
+// This file ensures compatibility with available SDK
+
+// Deployment Target
+IPHONEOS_DEPLOYMENT_TARGET = 18.2
+TARGETED_DEVICE_FAMILY = 1,2
+
+// SDK Settings
+SDKROOT = iphoneos
+SUPPORTED_PLATFORMS = iphonesimulator iphoneos
+
+// Swift Settings
+SWIFT_VERSION = 5.0
+SWIFT_OPTIMIZATION_LEVEL = -Onone
+
+// Code Signing (for development)
+CODE_SIGN_IDENTITY = 
+CODE_SIGNING_REQUIRED = NO
+CODE_SIGNING_ALLOWED = NO
+CODE_SIGN_ENTITLEMENTS = 
+DEVELOPMENT_TEAM = 
+
+// Architecture Settings
+ONLY_ACTIVE_ARCH = NO
+VALID_ARCHS = arm64 x86_64
+ARCHS = $(ARCHS_STANDARD)
+
+// Other Settings
+PRODUCT_BUNDLE_IDENTIFIER = com.lifelens.LifeLens
+PRODUCT_NAME = LifeLens
+ENABLE_BITCODE = NO
+ENABLE_TESTABILITY = YES
+
+// Fix for iOS 18.5 compatibility
+SUPPORTS_MACCATALYST = NO
+SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO

@@ -1,0 +1,309 @@
+//
+//  ModernAdditionalViews.swift
+//  LifeLens
+//
+//  Additional production-ready views
+//
+
+import SwiftUI
+
+// Duplicate structs removed - they exist in other files
+
+// Modern Profile View
+struct ModernProfileView: View {
+    @EnvironmentObject var authService: AuthenticationService
+    @State private var showingSettings = false
+    @State private var showingLogoutConfirmation = false
+    
+    var body: some View {
+        ZStack {
+            // Background
+            LinearGradient(
+                gradient: Gradient(colors: [
+                    Color(red: 0.02, green: 0.02, blue: 0.05),
+                    Color(red: 0.05, green: 0.05, blue: 0.08)
+                ]),
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+            .ignoresSafeArea(.all)
+            
+            ScrollView {
+                VStack(spacing: 24) {
+                    // Profile Header
+                    ProfileHeaderCard()
+                        .padding(.horizontal)
+                        .padding(.top)
+                    
+                    // Health Stats
+                    HealthStatsGrid()
+                        .padding(.horizontal)
+                    
+                    // Menu Items
+                    VStack(spacing: 12) {
+                        ProfileMenuItem(
+                            icon: "person.fill",
+                            title: "Personal Information",
+                            color: .blue
+                        )
+                        
+                        ProfileMenuItem(
+                            icon: "heart.text.square.fill",
+                            title: "Medical History",
+                            color: .red
+                        )
+                        
+                        ProfileMenuItem(
+                            icon: "bell.fill",
+                            title: "Notifications",
+                            color: .orange
+                        )
+                        
+                        ProfileMenuItem(
+                            icon: "lock.fill",
+                            title: "Privacy & Security",
+                            color: .green
+                        )
+                        
+                        ProfileMenuItem(
+                            icon: "questionmark.circle.fill",
+                            title: "Help & Support",
+                            color: .purple
+                        )
+                    }
+                    .padding(.horizontal)
+                    
+                    // Sign Out Button
+                    Button(action: {
+                        showingLogoutConfirmation = true
+                    }) {
+                        HStack {
+                            Image(systemName: "arrow.right.square.fill")
+                            Text("Sign Out")
+                        }
+                        .font(.system(size: 16, weight: .medium))
+                        .foregroundColor(.red)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 16)
+                        .background(
+                            RoundedRectangle(cornerRadius: 16)
+                                .fill(Color.red.opacity(0.1))
+                        )
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                    .padding(.horizontal)
+                    .padding(.bottom, 40)
+                }
+            }
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .alert("Sign Out", isPresented: $showingLogoutConfirmation) {
+            Button("Cancel", role: .cancel) {}
+            Button("Sign Out", role: .destructive) {
+                authService.logout()
+            }
+        } message: {
+            Text("Are you sure you want to sign out?")
+        }
+    }
+}
+
+struct ProfileHeaderCard: View {
+    var body: some View {
+        VStack(spacing: 16) {
+            // Avatar
+            ZStack {
+                Circle()
+                    .fill(
+                        LinearGradient(
+                            gradient: Gradient(colors: [.blue, .purple]),
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
+                    )
+                    .frame(width: 80, height: 80)
+                
+                Text("JD")
+                    .font(.system(size: 28, weight: .bold))
+                    .foregroundColor(.white)
+            }
+            
+            VStack(spacing: 4) {
+                Text("John Doe")
+                    .font(.system(size: 24, weight: .bold))
+                    .foregroundColor(.white)
+                
+                Text("john.doe@example.com")
+                    .font(.system(size: 14))
+                    .foregroundColor(.gray)
+            }
+            
+            HStack(spacing: 8) {
+                StatusPill(text: "Premium", color: .yellow)
+                StatusPill(text: "Verified", color: .green)
+            }
+        }
+        .frame(maxWidth: .infinity)
+        .padding(24)
+        .background(
+            RoundedRectangle(cornerRadius: 20)
+                .fill(Color.white.opacity(0.03))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(Color.white.opacity(0.05), lineWidth: 1)
+                )
+        )
+    }
+}
+
+struct HealthStatsGrid: View {
+    var body: some View {
+        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
+            StatCard(value: "45", label: "Age", icon: "calendar", color: .blue)
+            StatCard(value: "O+", label: "Blood Type", icon: "drop.fill", color: .red)
+            StatCard(value: "175", label: "Height (cm)", icon: "ruler", color: .green)
+            StatCard(value: "75", label: "Weight (kg)", icon: "scalemass", color: .purple)
+        }
+    }
+}
+
+struct StatCard: View {
+    let value: String
+    let label: String
+    let icon: String
+    let color: Color
+    
+    var body: some View {
+        VStack(spacing: 8) {
+            Image(systemName: icon)
+                .font(.system(size: 20))
+                .foregroundColor(color)
+            
+            Text(value)
+                .font(.system(size: 20, weight: .bold))
+                .foregroundColor(.white)
+            
+            Text(label)
+                .font(.system(size: 12))
+                .foregroundColor(.gray)
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 16)
+        .background(
+            RoundedRectangle(cornerRadius: 16)
+                .fill(Color.white.opacity(0.03))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 16)
+                        .stroke(Color.white.opacity(0.05), lineWidth: 1)
+                )
+        )
+    }
+}
+
+struct ProfileMenuItem: View {
+    let icon: String
+    let title: String
+    let color: Color
+    
+    var body: some View {
+        Button(action: {}) {
+            HStack(spacing: 16) {
+                Image(systemName: icon)
+                    .font(.system(size: 20))
+                    .foregroundColor(color)
+                    .frame(width: 40, height: 40)
+                    .background(color.opacity(0.1))
+                    .clipShape(Circle())
+                
+                Text(title)
+                    .font(.system(size: 16, weight: .medium))
+                    .foregroundColor(.white)
+                
+                Spacer()
+                
+                Image(systemName: "chevron.right")
+                    .font(.system(size: 14))
+                    .foregroundColor(.gray.opacity(0.5))
+            }
+            .padding(16)
+            .background(
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(Color.white.opacity(0.03))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 16)
+                            .stroke(Color.white.opacity(0.05), lineWidth: 1)
+                    )
+            )
+        }
+        .buttonStyle(PlainButtonStyle())
+    }
+}
+
+// Device Pairing View
+struct DevicePairingView: View {
+    @Environment(\.dismiss) var dismiss
+    @State private var isScanning = true
+    
+    var body: some View {
+        NavigationView {
+            ZStack {
+                Color(red: 0.05, green: 0.05, blue: 0.08)
+                    .ignoresSafeArea()
+                
+                VStack(spacing: 32) {
+                    // Animation
+                    ZStack {
+                        ForEach(0..<3) { i in
+                            Circle()
+                                .stroke(Color.blue.opacity(0.3), lineWidth: 2)
+                                .frame(width: CGFloat(80 + i * 40), height: CGFloat(80 + i * 40))
+                                .scaleEffect(isScanning ? 1.2 : 1.0)
+                                .opacity(isScanning ? 0.0 : 1.0)
+                                .animation(
+                                    Animation.easeOut(duration: 2.0)
+                                        .repeatForever(autoreverses: false)
+                                        .delay(Double(i) * 0.4),
+                                    value: isScanning
+                                )
+                        }
+                        
+                        Image(systemName: "dot.radiowaves.left.and.right")
+                            .font(.system(size: 40))
+                            .foregroundColor(.blue)
+                    }
+                    
+                    VStack(spacing: 8) {
+                        Text("Scanning for Devices")
+                            .font(.system(size: 24, weight: .bold))
+                            .foregroundColor(.white)
+                        
+                        Text("Make sure your device is powered on and nearby")
+                            .font(.system(size: 14))
+                            .foregroundColor(.gray)
+                            .multilineTextAlignment(.center)
+                    }
+                    
+                    Spacer()
+                }
+                .padding()
+            }
+            .navigationTitle("Add Device")
+            #if os(iOS)
+            .navigationBarTitleDisplayMode(.inline)
+            #endif
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Cancel") {
+                        dismiss()
+                    }
+                    .foregroundColor(.blue)
+                }
+            }
+        }
+        .onAppear {
+            isScanning = true
+        }
+    }
+}
+
+// StatusPill is defined in MainAppView.swift
