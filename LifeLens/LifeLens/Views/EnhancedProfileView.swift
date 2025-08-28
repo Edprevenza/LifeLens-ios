@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct EnhancedProfileView: View {
+typealias EmergencyContactInfo = EmergencyContact
     @EnvironmentObject var authService: AuthenticationService
     @State private var showingSettings = false
     @State private var showingEditProfile = false
@@ -104,7 +105,8 @@ struct EnhancedProfileView: View {
                             Text("Sign Out")
                         }
                         .font(.system(size: 16, weight: .medium))
-                        .foregroundColor(.red)
+                        
+            .foregroundColor(.red)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 16)
                         .background(
@@ -139,7 +141,7 @@ struct EnhancedProfileView: View {
             HelpSupportView()
         }
         .sheet(isPresented: $showingAddEmergencyContact) {
-            AddEmergencyContactView(contacts: $emergencyContacts)
+            EmergencyContactForm(contacts: $emergencyContacts)
         }
         .alert("Sign Out", isPresented: $showingLogoutConfirmation) {
             Button("Cancel", role: .cancel) {}
@@ -153,399 +155,79 @@ struct EnhancedProfileView: View {
 }
 
 // MARK: - Emergency Contacts Section
-struct EmergencyContactsSection: View {
-    @Binding var contacts: [EmergencyContactInfo]
-    @Binding var showingAddContact: Bool
-    @State private var contactToDelete: EmergencyContactInfo?
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            // Header
-            HStack {
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("Emergency Contacts")
-                        .font(.system(size: 18, weight: .semibold))
-                        .foregroundColor(.white)
-                    
-                    Text("\(contacts.count) contact\(contacts.count == 1 ? "" : "s") added")
-                        .font(.system(size: 12))
-                        .foregroundColor(.gray)
-                }
-                
-                Spacer()
-                
-                Button(action: {
-                    showingAddContact = true
-                }) {
-                    Image(systemName: "plus.circle.fill")
-                        .font(.system(size: 24))
-                        .foregroundColor(.blue)
-                }
-            }
-            
-            // Contacts List
-            if contacts.isEmpty {
-                EmptyContactsView()
-            } else {
-                ForEach(contacts) { contact in
-                    EmergencyContactCard(
-                        contact: contact,
-                        onDelete: {
-                            withAnimation {
-                                contacts.removeAll { $0.id == contact.id }
-                            }
-                        }
-                    )
-                }
-            }
-        }
-    }
-}
+// Duplicate removed - use SharedTypes
+// Missing components for EnhancedProfileView
 
-struct EmergencyContactCard: View {
-    let contact: EmergencyContactInfo
-    let onDelete: () -> Void
-    @State private var showingDeleteConfirmation = false
+struct EnhancedProfileHeaderCard: View {
+    @EnvironmentObject var authService: AuthenticationService
     
     var body: some View {
-        HStack(spacing: 16) {
-            // Contact Icon
-            ZStack {
-                Circle()
-                    .fill(
-                        LinearGradient(
-                            colors: [Color.blue.opacity(0.3), Color.purple.opacity(0.2)],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
-                    .frame(width: 50, height: 50)
+        HStack {
+            Image(systemName: "person.circle.fill")
+                .font(.system(size: 60))
                 
-                Text(contact.initials)
-                    .font(.system(size: 18, weight: .semibold))
-                    .foregroundColor(.white)
-            }
+            .foregroundColor(.blue)
             
-            // Contact Info
-            VStack(alignment: .leading, spacing: 4) {
-                Text(contact.name)
-                    .font(.system(size: 16, weight: .semibold))
-                    .foregroundColor(.white)
-                
-                HStack(spacing: 8) {
-                    Text(contact.relationship)
-                        .font(.system(size: 12))
-                        .foregroundColor(.blue)
-                        .padding(.horizontal, 8)
-                        .padding(.vertical, 2)
-                        .background(Color.blue.opacity(0.1))
-                        .clipShape(Capsule())
+            VStack(alignment: .leading) {
+                Text(authService.currentUser?.firstName ?? "User")
+                    .font(.title2)
+                    .fontWeight(.bold)
+                Text(authService.currentUser?.email ?? "")
+                    .font(.caption)
                     
-                    Text(contact.phone)
-                        .font(.system(size: 12))
-                        .foregroundColor(.gray)
-                }
+            .foregroundColor(.secondary)
             }
             
             Spacer()
-            
-            // Actions
-            HStack(spacing: 12) {
-                Button(action: {
-                    // Call contact
-                    #if os(iOS)
-                    if let url = URL(string: "tel://\(contact.phone.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "").replacingOccurrences(of: "-", with: ""))") {
-                        UIApplication.shared.open(url)
-                    }
-                    #endif
-                }) {
-                    Image(systemName: "phone.fill")
-                        .font(.system(size: 16))
-                        .foregroundColor(.green)
-                        .frame(width: 36, height: 36)
-                        .background(Color.green.opacity(0.1))
-                        .clipShape(Circle())
-                }
-                
-                Button(action: {
-                    showingDeleteConfirmation = true
-                }) {
-                    Image(systemName: "trash.fill")
-                        .font(.system(size: 16))
-                        .foregroundColor(.red)
-                        .frame(width: 36, height: 36)
-                        .background(Color.red.opacity(0.1))
-                        .clipShape(Circle())
-                }
-            }
         }
-        .padding(16)
-        .background(
-            RoundedRectangle(cornerRadius: 16)
-                .fill(Color.white.opacity(0.03))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 16)
-                        .stroke(Color.white.opacity(0.05), lineWidth: 1)
-                )
-        )
-        .alert("Remove Contact", isPresented: $showingDeleteConfirmation) {
-            Button("Cancel", role: .cancel) {}
-            Button("Remove", role: .destructive) {
-                onDelete()
-            }
-        } message: {
-            Text("Are you sure you want to remove \(contact.name) from your emergency contacts?")
-        }
+        .padding()
+        .background(Color(.systemGray6))
+        .cornerRadius(12)
     }
 }
 
-struct EmptyContactsView: View {
-    var body: some View {
-        VStack(spacing: 16) {
-            Image(systemName: "person.2.slash")
-                .font(.system(size: 40))
-                .foregroundColor(.gray.opacity(0.5))
-            
-            Text("No emergency contacts added")
-                .font(.system(size: 14))
-                .foregroundColor(.gray)
-            
-            Text("Add contacts who should be notified in case of emergency")
-                .font(.system(size: 12))
-                .foregroundColor(.gray.opacity(0.7))
-                .multilineTextAlignment(.center)
-        }
-        .frame(maxWidth: .infinity)
-        .padding(32)
-        .background(
-            RoundedRectangle(cornerRadius: 16)
-                .fill(Color.white.opacity(0.02))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 16)
-                        .stroke(Color.white.opacity(0.05), lineWidth: 1)
-                )
-        )
-    }
-}
-
-// MARK: - Add Emergency Contact View
-struct AddEmergencyContactView: View {
-    @Environment(\.dismiss) var dismiss
-    @Binding var contacts: [EmergencyContactInfo]
-    
-    @State private var name = ""
-    @State private var relationship = ""
-    @State private var phone = ""
-    @State private var email = ""
-    @State private var selectedRelationship = "Family"
-    
-    let relationships = ["Family", "Friend", "Doctor", "Spouse", "Parent", "Child", "Sibling", "Other"]
+struct EmergencyContactsSection: View {
+    @Binding var contacts: [EmergencyContact]
+    @Binding var showingAddContact: Bool
     
     var body: some View {
-        NavigationView {
-            ZStack {
-                // Background - lighter for better contrast
-                Color(red: 0.1, green: 0.1, blue: 0.12)
-                    .ignoresSafeArea()
-                
-                ScrollView {
-                    VStack(spacing: 24) {
-                        // Icon
-                        ZStack {
-                            Circle()
-                                .fill(
-                                    LinearGradient(
-                                        colors: [.blue.opacity(0.2), .purple.opacity(0.1)],
-                                        startPoint: .topLeading,
-                                        endPoint: .bottomTrailing
-                                    )
-                                )
-                                .frame(width: 100, height: 100)
-                            
-                            Image(systemName: "person.badge.plus")
-                                .font(.system(size: 40))
-                                .foregroundStyle(
-                                    LinearGradient(
-                                        colors: [.blue, .purple],
-                                        startPoint: .topLeading,
-                                        endPoint: .bottomTrailing
-                                    )
-                                )
-                        }
-                        .padding(.top, 20)
+        VStack(alignment: .leading) {
+            HStack {
+                Text("Emergency Contacts")
+                    .font(.headline)
+                Spacer()
+                Button(action: { showingAddContact = true }) {
+                    Image(systemName: "plus.circle.fill")
                         
-                        // Form
-                        VStack(spacing: 20) {
-                            // Name Field
-                            VStack(alignment: .leading, spacing: 8) {
-                                Text("Full Name")
-                                    .font(.system(size: 14, weight: .semibold))
-                                    .foregroundColor(.white)
-                                
-                                TextField("Enter contact's name", text: $name)
-                                    .font(.system(size: 16))
-                                    .foregroundColor(.white)
-                                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                                    .padding(.vertical, 4)
-                            }
+            .foregroundColor(.blue)
+                }
+            }
+            
+            ForEach(contacts, id: \.phone) { contact in
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text(contact.name)
+                            .font(.subheadline)
+                        Text(contact.relationship)
+                            .font(.caption)
                             
-                            // Relationship Picker
-                            VStack(alignment: .leading, spacing: 8) {
-                                Text("Relationship")
-                                    .font(.system(size: 14, weight: .semibold))
-                                    .foregroundColor(.white)
-                                
-                                Picker("Relationship", selection: $selectedRelationship) {
-                                    ForEach(relationships, id: \.self) { relationship in
-                                        Text(relationship).tag(relationship)
-                                    }
-                                }
-                                .pickerStyle(MenuPickerStyle())
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .accentColor(.blue)
-                            }
-                            
-                            // Phone Field
-                            VStack(alignment: .leading, spacing: 8) {
-                                Text("Phone Number")
-                                    .font(.system(size: 14, weight: .semibold))
-                                    .foregroundColor(.white)
-                                
-                                TextField("Enter phone number", text: $phone)
-                                    .font(.system(size: 16))
-                                    .foregroundColor(.white)
-                                    #if os(iOS)
-                                    .keyboardType(.phonePad)
-                                    #endif
-                                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                                    .padding(.vertical, 4)
-                            }
-                            
-                            // Email Field (Optional)
-                            VStack(alignment: .leading, spacing: 8) {
-                                HStack {
-                                    Text("Email")
-                                        .font(.system(size: 14, weight: .semibold))
-                                        .foregroundColor(.white)
-                                    
-                                    Text("(Optional)")
-                                        .font(.system(size: 12))
-                                        .foregroundColor(.gray)
-                                }
-                                
-                                TextField("Enter email address", text: $email)
-                                    .font(.system(size: 16))
-                                    .foregroundColor(.white)
-                                    #if os(iOS)
-                                    .keyboardType(.emailAddress)
-                                    .textInputAutocapitalization(.never)
-                                    #endif
-                                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                                    .padding(.vertical, 4)
-                            }
-                        }
-                        .padding(.horizontal)
+            .foregroundColor(.secondary)
+                    }
+                    Spacer()
+                    Text(contact.phone)
+                        .font(.caption)
                         
-                        // Add Button
-                        Button(action: {
-                            let newContact = EmergencyContactInfo(
-                                name: name,
-                                relationship: selectedRelationship,
-                                phone: phone,
-                                email: email.isEmpty ? nil : email
-                            )
-                            contacts.append(newContact)
-                            dismiss()
-                        }) {
-                            HStack {
-                                Image(systemName: "person.badge.plus")
-                                Text("Add Contact")
-                            }
-                            .font(.system(size: 16, weight: .semibold))
-                            .foregroundColor(.white)
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, 16)
-                            .background(
-                                LinearGradient(
-                                    colors: [.blue, .purple],
-                                    startPoint: .leading,
-                                    endPoint: .trailing
-                                )
-                            )
-                            .cornerRadius(12)
-                        }
-                        .disabled(name.isEmpty || phone.isEmpty)
-                        .padding(.horizontal)
-                        .padding(.bottom, 40)
-                    }
+            .foregroundColor(.secondary)
                 }
-            }
-            .navigationTitle("Add Emergency Contact")
-            #if os(iOS)
-            .navigationBarTitleDisplayMode(.inline)
-            #endif
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") {
-                        dismiss()
-                    }
-                    .foregroundColor(.blue)
-                }
+                .padding(.vertical, 4)
             }
         }
+        .padding()
+        .background(Color(.systemGray6))
+        .cornerRadius(12)
     }
 }
 
-// MARK: - Enhanced Profile Header Card
-struct EnhancedProfileHeaderCard: View {
-    var body: some View {
-        VStack(spacing: 16) {
-            // Avatar
-            ZStack {
-                Circle()
-                    .fill(
-                        LinearGradient(
-                            gradient: Gradient(colors: [.blue, .purple]),
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
-                    .frame(width: 80, height: 80)
-                
-                Text("JD")
-                    .font(.system(size: 28, weight: .bold))
-                    .foregroundColor(.white)
-            }
-            
-            VStack(spacing: 4) {
-                Text("John Doe")
-                    .font(.system(size: 24, weight: .bold))
-                    .foregroundColor(.white)
-                
-                Text("john.doe@example.com")
-                    .font(.system(size: 14))
-                    .foregroundColor(.gray)
-            }
-            
-            HStack(spacing: 8) {
-                StatusPill(text: "Premium", color: .yellow)
-                StatusPill(text: "Verified", color: .green)
-            }
-        }
-        .frame(maxWidth: .infinity)
-        .padding(24)
-        .background(
-            RoundedRectangle(cornerRadius: 20)
-                .fill(Color.white.opacity(0.03))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 20)
-                        .stroke(Color.white.opacity(0.05), lineWidth: 1)
-                )
-        )
-    }
-}
-
-// MARK: - Updated Profile Menu Item
 struct EnhancedProfileMenuItem: View {
     let icon: String
     let title: String
@@ -554,49 +236,68 @@ struct EnhancedProfileMenuItem: View {
     
     var body: some View {
         Button(action: action) {
-            HStack(spacing: 16) {
+            HStack {
                 Image(systemName: icon)
-                    .font(.system(size: 20))
-                    .foregroundColor(color)
-                    .frame(width: 40, height: 40)
-                    .background(color.opacity(0.1))
-                    .clipShape(Circle())
+                    
+            .foregroundColor(color)
+                    .frame(width: 30)
                 
                 Text(title)
-                    .font(.system(size: 16, weight: .medium))
-                    .foregroundColor(.white)
+                    
+            .foregroundColor(.primary)
                 
                 Spacer()
                 
                 Image(systemName: "chevron.right")
-                    .font(.system(size: 14))
-                    .foregroundColor(.gray.opacity(0.5))
+                    
+            .foregroundColor(.secondary)
+                    .font(.caption)
             }
-            .padding(16)
-            .background(
-                RoundedRectangle(cornerRadius: 16)
-                    .fill(Color.white.opacity(0.03))
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 16)
-                            .stroke(Color.white.opacity(0.05), lineWidth: 1)
-                    )
-            )
+            .padding()
+            .background(Color(.systemGray6))
+            .cornerRadius(10)
         }
-        .buttonStyle(PlainButtonStyle())
     }
 }
-
-// MARK: - Emergency Contact Model
-struct EmergencyContactInfo: Identifiable {
-    let id = UUID()
-    let name: String
-    let relationship: String
-    let phone: String
-    var email: String? = nil
+// MARK: - Emergency Contact Form
+struct EmergencyContactForm: View {
+    @Environment(\.dismiss) var dismiss
+    @Binding var contacts: [EmergencyContact]
+    @State private var name = ""
+    @State private var phone = ""
+    @State private var relationship = ""
     
-    var initials: String {
-        let words = name.split(separator: " ")
-        let initials = words.compactMap { $0.first }.prefix(2)
-        return String(initials).uppercased()
+    var body: some View {
+        NavigationView {
+            Form {
+                Section(header: Text("Contact Information")) {
+                    TextField("Name", text: $name)
+                    TextField("Phone", text: $phone)
+                        .keyboardType(.phonePad)
+                    TextField("Relationship", text: $relationship)
+                }
+            }
+            .navigationTitle("Add Emergency Contact")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("Cancel") {
+                        dismiss()
+                    }
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Save") {
+                        let contact = EmergencyContact(
+                            name: name,
+                            relationship: relationship,
+                            phone: phone
+                        )
+                        contacts.append(contact)
+                        dismiss()
+                    }
+                    .disabled(name.isEmpty || phone.isEmpty)
+                }
+            }
+        }
     }
 }

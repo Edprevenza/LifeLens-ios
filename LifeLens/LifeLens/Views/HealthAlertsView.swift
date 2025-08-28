@@ -45,9 +45,9 @@ struct HealthAlertsView: View {
         case .all:
             return alerts
         case .critical:
-            return alerts.filter { $0.severity == .critical || $0.severity == .emergency }
+            return alerts.filter { $0.severity == .critical }
         case .warnings:
-            return alerts.filter { $0.severity == .warning || $0.severity == .urgent }
+            return alerts.filter { $0.severity == .high || $0.severity == .medium }
         case .resolved:
             return [] // Would track resolved alerts
         }
@@ -135,7 +135,7 @@ struct HealthAlertsView: View {
     }
     
     private func hasEmergencyAlert() -> Bool {
-        return filteredAlerts.contains { $0.severity == .emergency }
+        return filteredAlerts.contains { $0.severity == .critical }
     }
     
     private func getCount(for filter: AlertFilter) -> Int {
@@ -143,9 +143,9 @@ struct HealthAlertsView: View {
         case .all:
             return alerts.count
         case .critical:
-            return alerts.filter { $0.severity == .critical || $0.severity == .emergency }.count
+            return alerts.filter { $0.severity == .critical }.count
         case .warnings:
-            return alerts.filter { $0.severity == .warning || $0.severity == .urgent }.count
+            return alerts.filter { $0.severity == .high || $0.severity == .medium }.count
         case .resolved:
             return 0
         }
@@ -161,43 +161,47 @@ struct HealthAlertsView: View {
     private func startMockAlerts() {
         alerts = [
             HealthAlert(
-                id: UUID().uuidString,
+                id: UUID(),
                 title: "Irregular Heart Rhythm Detected",
                 message: "Your heart rhythm shows signs of atrial fibrillation. Consider consulting your healthcare provider.",
+                type: .emergency,
                 severity: .critical,
                 timestamp: Date().addingTimeInterval(-300),
-                metricType: "Heart Rhythm",
-                value: nil,
+                source: "ECG Monitor",
+                isRead: false,
                 actionRequired: true
             ),
             HealthAlert(
-                id: UUID().uuidString,
+                id: UUID(),
                 title: "Low Blood Sugar Warning",
                 message: "Glucose level at 68 mg/dL. Consider having a snack.",
-                severity: .warning,
+                type: .warning,
+                severity: .medium,
                 timestamp: Date().addingTimeInterval(-1800),
-                metricType: "Glucose",
-                value: 68.0,
+                source: "Glucose Monitor",
+                isRead: false,
                 actionRequired: false
             ),
             HealthAlert(
-                id: UUID().uuidString,
+                id: UUID(),
                 title: "Elevated Blood Pressure",
                 message: "Blood pressure reading: 145/92 mmHg. Monitor closely.",
-                severity: .urgent,
+                type: .warning,
+                severity: .high,
                 timestamp: Date().addingTimeInterval(-3600),
-                metricType: "Blood Pressure",
-                value: 145.0,
+                source: "BP Monitor",
+                isRead: false,
                 actionRequired: true
             ),
             HealthAlert(
-                id: UUID().uuidString,
+                id: UUID(),
                 title: "Daily Health Summary Ready",
                 message: "Your health metrics for today have been analyzed.",
+                type: .notification,
                 severity: .info,
                 timestamp: Date().addingTimeInterval(-7200),
-                metricType: "Summary",
-                value: nil,
+                source: "Health Analytics",
+                isRead: false,
                 actionRequired: false
             )
         ]
@@ -214,11 +218,13 @@ struct AlertsHeader: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text("Health Alerts")
                     .font(.system(size: 28, weight: .bold))
-                    .foregroundColor(.white)
+                    
+            .foregroundColor(.white)
                 
                 Text("\(alertCount) active alert\(alertCount == 1 ? "" : "s")")
                     .font(.system(size: 14))
-                    .foregroundColor(.gray)
+                    
+            .foregroundColor(.gray)
             }
             
             Spacer()
@@ -227,7 +233,8 @@ struct AlertsHeader: View {
             Button(action: {}) {
                 Image(systemName: "arrow.clockwise")
                     .font(.system(size: 20))
-                    .foregroundColor(.white)
+                    
+            .foregroundColor(.white)
                     .frame(width: 44, height: 44)
                     .background(Color.white.opacity(0.1))
                     .clipShape(Circle())
@@ -243,16 +250,19 @@ struct EmergencyBanner: View {
         HStack {
             Image(systemName: "exclamationmark.octagon.fill")
                 .font(.system(size: 24))
-                .foregroundColor(.white)
+                
+            .foregroundColor(.white)
             
             VStack(alignment: .leading, spacing: 2) {
                 Text("EMERGENCY ALERT")
                     .font(.system(size: 14, weight: .bold))
-                    .foregroundColor(.white)
+                    
+            .foregroundColor(.white)
                 
                 Text("Immediate attention required")
                     .font(.system(size: 12))
-                    .foregroundColor(.white.opacity(0.8))
+                    
+            .foregroundColor(.white.opacity(0.8))
             }
             
             Spacer()
@@ -260,7 +270,8 @@ struct EmergencyBanner: View {
             Button(action: {}) {
                 Text("Call 911")
                     .font(.system(size: 14, weight: .bold))
-                    .foregroundColor(.white)
+                    
+            .foregroundColor(.white)
                     .padding(.horizontal, 16)
                     .padding(.vertical, 8)
                     .background(Color.white.opacity(0.2))
@@ -313,13 +324,15 @@ struct FilterTab: View {
                 if count > 0 {
                     Text("\(count)")
                         .font(.system(size: 11, weight: .bold))
-                        .foregroundColor(.white)
+                        
+            .foregroundColor(.white)
                         .padding(.horizontal, 6)
                         .padding(.vertical, 2)
                         .background(filter.color)
                         .cornerRadius(10)
                 }
             }
+            
             .foregroundColor(isSelected ? .white : .gray)
             .padding(.horizontal, 16)
             .padding(.vertical, 10)
@@ -342,20 +355,20 @@ struct AlertCard: View {
     
     var severityIcon: String {
         switch alert.severity {
-        case .emergency: return "exclamationmark.octagon.fill"
-        case .critical: return "exclamationmark.3"
-        case .urgent: return "exclamationmark.2"
-        case .warning: return "exclamationmark.triangle.fill"
+        case .critical: return "exclamationmark.octagon.fill"
+        case .high: return "exclamationmark.3"
+        case .medium: return "exclamationmark.triangle.fill"
+        case .low: return "exclamationmark.circle"
         case .info: return "info.circle.fill"
         }
     }
     
     var severityColor: Color {
         switch alert.severity {
-        case .emergency: return .red
         case .critical: return .red
-        case .urgent: return .orange
-        case .warning: return .yellow
+        case .high: return .orange
+        case .medium: return .yellow
+        case .low: return .green
         case .info: return .blue
         }
     }
@@ -372,18 +385,21 @@ struct AlertCard: View {
                     
                     Image(systemName: severityIcon)
                         .font(.system(size: 20))
-                        .foregroundColor(severityColor)
+                        
+            .foregroundColor(severityColor)
                 }
                 
                 // Title and Time
                 VStack(alignment: .leading, spacing: 4) {
                     Text(alert.title)
                         .font(.system(size: 16, weight: .semibold))
-                        .foregroundColor(.white)
+                        
+            .foregroundColor(.white)
                     
                     Text(timeAgo(from: alert.timestamp))
                         .font(.system(size: 12))
-                        .foregroundColor(.gray)
+                        
+            .foregroundColor(.gray)
                 }
                 
                 Spacer()
@@ -392,7 +408,8 @@ struct AlertCard: View {
                 if alert.actionRequired {
                     Text("Action Required")
                         .font(.system(size: 10, weight: .bold))
-                        .foregroundColor(.white)
+                        
+            .foregroundColor(.white)
                         .padding(.horizontal, 8)
                         .padding(.vertical, 4)
                         .background(Color.orange)
@@ -403,7 +420,8 @@ struct AlertCard: View {
             // Message
             Text(alert.message)
                 .font(.system(size: 14))
-                .foregroundColor(.white.opacity(0.8))
+                
+            .foregroundColor(.white.opacity(0.8))
                 .lineLimit(isExpanded ? nil : 2)
             
             // Actions
@@ -416,7 +434,8 @@ struct AlertCard: View {
                             Text("Acknowledge")
                                 .font(.system(size: 14, weight: .medium))
                         }
-                        .foregroundColor(.green)
+                        
+            .foregroundColor(.green)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 10)
                         .background(Color.green.opacity(0.1))
@@ -430,7 +449,8 @@ struct AlertCard: View {
                             Text("Dismiss")
                                 .font(.system(size: 14, weight: .medium))
                         }
-                        .foregroundColor(.gray)
+                        
+            .foregroundColor(.gray)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 10)
                         .background(Color.gray.opacity(0.1))
@@ -444,11 +464,13 @@ struct AlertCard: View {
                 HStack {
                     Text(isExpanded ? "Show Less" : "Show More")
                         .font(.system(size: 12, weight: .medium))
-                        .foregroundColor(.blue)
+                        
+            .foregroundColor(.blue)
                     
                     Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
                         .font(.system(size: 10))
-                        .foregroundColor(.blue)
+                        
+            .foregroundColor(.blue)
                 }
             }
         }
@@ -508,15 +530,18 @@ struct EmptyAlertsView: View {
             
             Image(systemName: "checkmark.seal.fill")
                 .font(.system(size: 60))
-                .foregroundColor(.green.opacity(0.5))
+                
+            .foregroundColor(.green.opacity(0.5))
             
             Text("No \(filter == .all ? "" : filter.rawValue) Alerts")
                 .font(.system(size: 20, weight: .semibold))
-                .foregroundColor(.white)
+                
+            .foregroundColor(.white)
             
             Text("Your health metrics are within normal ranges")
                 .font(.system(size: 14))
-                .foregroundColor(.gray)
+                
+            .foregroundColor(.gray)
                 .multilineTextAlignment(.center)
             
             Spacer()

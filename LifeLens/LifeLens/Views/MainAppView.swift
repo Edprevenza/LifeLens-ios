@@ -20,22 +20,10 @@ struct MainAppView: View {
             if showLaunchScreen {
                 LaunchScreenView()
                     .transition(.opacity)
-            } else if !authService.isAuthenticated {
-                // Show authentication view if not logged in
-                AuthenticationContainerView()
-                    .environmentObject(authService)
-                    .transition(.move(edge: .bottom))
-                    .onAppear {
-                        // Show unauthorized alert when user first tries to access the app
-                        if !hasShownUnauthorizedMessage && !showLaunchScreen {
-                            showUnauthorizedAlert = true
-                            hasShownUnauthorizedMessage = true
-                        }
-                    }
             } else {
-                // Show main app only if authenticated
-                MainTabContainer(selectedTab: $selectedTab)
-                    .environmentObject(authService)
+                // Always show the modern dashboard
+                ModernHealthDashboard()
+                    .ignoresSafeArea()
             }
         }
         .onAppear {
@@ -74,35 +62,9 @@ struct MainTabContainer: View {
     @Namespace private var animation
     
     var body: some View {
-        ZStack(alignment: .bottom) {
-            // Background
-            Color(red: 0.05, green: 0.05, blue: 0.08)
-                .ignoresSafeArea()
-            
-            // Content
-            TabView(selection: $selectedTab) {
-                ResponsiveHealthDashboard()
-                    .tag(0)
-                
-                SensorReadingsView()
-                    .tag(1)
-                
-                HealthAlertsView()
-                    .tag(2)
-                
-                ModernDevicesView()
-                    .tag(3)
-                
-                ModernInsightsView()
-                    .tag(4)
-                
-                ModernProfileView()
-                    .tag(5)
-            }
-            
-            // Custom Tab Bar
-            CustomTabBar(selectedTab: $selectedTab, animation: animation)
-        }
+        // Show ModernHealthDashboard directly with its own navigation
+        ModernHealthDashboard()
+            .ignoresSafeArea()
     }
 }
 
@@ -202,14 +164,16 @@ struct TabBarButton: View {
                     
                     Image(systemName: tab.icon)
                         .font(.system(size: isSelected ? 22 : 20, weight: isSelected ? .semibold : .regular))
-                        .foregroundColor(isSelected ? tab.color : Color.white.opacity(0.5))
+                        
+            .foregroundColor(isSelected ? tab.color : Color.white.opacity(0.5))
                         .scaleEffect(isSelected ? 1.1 : 1.0)
                 }
                 .frame(height: 40)
                 
                 Text(tab.title)
                     .font(.system(size: 10, weight: isSelected ? .semibold : .regular))
-                    .foregroundColor(isSelected ? tab.color : Color.white.opacity(0.5))
+                    
+            .foregroundColor(isSelected ? tab.color : Color.white.opacity(0.5))
                     .lineLimit(1)
             }
             .frame(minWidth: 50, maxWidth: 70)
@@ -329,11 +293,13 @@ struct DashboardHeader: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text("Good \(getTimeOfDay())")
                     .font(.system(size: 14, weight: .medium))
-                    .foregroundColor(.gray)
+                    
+            .foregroundColor(.gray)
                 
                 Text("Your Health Today")
                     .font(.system(size: 28, weight: .bold))
-                    .foregroundColor(.white)
+                    
+            .foregroundColor(.white)
             }
             
             Spacer()
@@ -343,7 +309,8 @@ struct DashboardHeader: View {
                 Button(action: {}) {
                     Image(systemName: "bell.fill")
                         .font(.system(size: 22))
-                        .foregroundColor(.white)
+                        
+            .foregroundColor(.white)
                         .frame(width: 44, height: 44)
                         .background(Color.white.opacity(0.1))
                         .clipShape(Circle())
@@ -379,22 +346,26 @@ struct HealthStatusCard: View {
                 VStack(alignment: .leading, spacing: 8) {
                     Label("Overall Health Score", systemImage: "shield.fill")
                         .font(.system(size: 12, weight: .medium))
-                        .foregroundColor(.gray)
+                        
+            .foregroundColor(.gray)
                     
                     HStack(alignment: .bottom, spacing: 4) {
                         Text("92")
                             .font(.system(size: 48, weight: .bold, design: .rounded))
-                            .foregroundColor(.white)
+                            
+            .foregroundColor(.white)
                         
                         Text("/100")
                             .font(.system(size: 20, weight: .medium))
-                            .foregroundColor(.gray)
+                            
+            .foregroundColor(.gray)
                             .padding(.bottom, 8)
                     }
                     
                     Text("Excellent")
                         .font(.system(size: 16, weight: .semibold))
-                        .foregroundColor(.green)
+                        
+            .foregroundColor(.green)
                 }
                 
                 Spacer()
@@ -421,15 +392,18 @@ struct HealthStatusCard: View {
                     VStack(spacing: 2) {
                         Image(systemName: "heart.fill")
                             .font(.system(size: 24))
-                            .foregroundColor(.red)
+                            
+            .foregroundColor(.red)
                         
                         Text("\(viewModel.currentHeartRate)")
                             .font(.system(size: 20, weight: .bold))
-                            .foregroundColor(.white)
+                            
+            .foregroundColor(.white)
                         
                         Text("BPM")
                             .font(.system(size: 10))
-                            .foregroundColor(.gray)
+                            
+            .foregroundColor(.gray)
                     }
                 }
             }
@@ -476,7 +450,8 @@ struct StatusPill: View {
             
             Text(text)
                 .font(.system(size: 11, weight: .medium))
-                .foregroundColor(.white)
+                
+            .foregroundColor(.white)
         }
         .padding(.horizontal, 10)
         .padding(.vertical, 6)
@@ -505,12 +480,14 @@ struct MetricSelectorCard: View {
                     
                     Image(systemName: metric.icon)
                         .font(.system(size: 24))
-                        .foregroundColor(isSelected ? metric.color : .gray)
+                        
+            .foregroundColor(isSelected ? metric.color : .gray)
                 }
                 
                 Text(metric.rawValue)
                     .font(.system(size: 11, weight: .medium))
-                    .foregroundColor(isSelected ? .white : .gray)
+                    
+            .foregroundColor(isSelected ? .white : .gray)
             }
         }
         .buttonStyle(PlainButtonStyle())

@@ -164,11 +164,13 @@ struct PasswordStrengthIndicator: View {
                 HStack {
                     Text("Password Strength:")
                         .font(.caption)
-                        .foregroundColor(.secondary)
+                        
+            .foregroundColor(.secondary)
                     Text(strength.label)
                         .font(.caption)
                         .fontWeight(.semibold)
-                        .foregroundColor(strength.color)
+                        
+            .foregroundColor(strength.color)
                 }
                 
                 GeometryReader { geometry in
@@ -206,10 +208,12 @@ struct PasswordRequirementsView: View {
                         HStack(spacing: 4) {
                             Image(systemName: "xmark.circle.fill")
                                 .font(.caption)
-                                .foregroundColor(.red)
+                                
+            .foregroundColor(.red)
                             Text(error)
                                 .font(.caption)
-                                .foregroundColor(.red)
+                                
+            .foregroundColor(.red)
                         }
                     }
                     
@@ -217,7 +221,8 @@ struct PasswordRequirementsView: View {
                         Button(action: { showRequirements.toggle() }) {
                             Text("Show all requirements")
                                 .font(.caption)
-                                .foregroundColor(.blue)
+                                
+            .foregroundColor(.blue)
                         }
                     }
                 }
@@ -226,7 +231,8 @@ struct PasswordRequirementsView: View {
             if showRequirements {
                 Text(PasswordValidator.requirementsText)
                     .font(.caption)
-                    .foregroundColor(.secondary)
+                    
+            .foregroundColor(.secondary)
                     .padding(.vertical, 8)
                     .padding(.horizontal, 12)
                     .background(Color.gray.opacity(0.1))

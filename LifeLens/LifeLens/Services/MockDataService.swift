@@ -47,23 +47,20 @@ class MockDataService {
             EmergencyContact(
                 name: "John Doe",
                 relationship: "Spouse",
-                phoneNumber: "+1-555-0100",
-                email: "john.doe@example.com",
-                isPrimary: true
+                phone: "+1-555-0100",
+                email: "john.doe@example.com"
             ),
             EmergencyContact(
                 name: "Jane Smith",
                 relationship: "Doctor",
-                phoneNumber: "+1-555-0101",
-                email: "dr.smith@hospital.com",
-                isPrimary: false
+                phone: "+1-555-0101",
+                email: "dr.smith@hospital.com"
             ),
             EmergencyContact(
                 name: "Emergency Services",
                 relationship: "911",
-                phoneNumber: "911",
-                email: "",
-                isPrimary: false
+                phone: "911",
+                email: ""
             )
         ]
     }
@@ -89,36 +86,28 @@ class MockDataService {
     func generateMockInsights() -> [HealthInsight] {
         return [
             HealthInsight(
-                id: UUID().uuidString,
                 title: "Heart Rate Trend",
                 description: "Your average heart rate has decreased by 5 BPM this week, indicating improved cardiovascular fitness.",
                 category: "Cardiovascular",
-                severity: .positive,
-                date: Date()
+                importance: .high
             ),
             HealthInsight(
-                id: UUID().uuidString,
                 title: "Sleep Quality",
                 description: "You've been getting consistent 7-8 hours of sleep. Keep up the good routine!",
                 category: "Sleep",
-                severity: .positive,
-                date: Date().addingTimeInterval(-86400)
+                importance: .medium
             ),
             HealthInsight(
-                id: UUID().uuidString,
                 title: "Activity Goal",
                 description: "You're 2,000 steps away from your daily goal. A short walk would help you reach it.",
                 category: "Activity",
-                severity: .neutral,
-                date: Date()
+                importance: .medium
             ),
             HealthInsight(
-                id: UUID().uuidString,
                 title: "Hydration Reminder",
                 description: "Remember to stay hydrated. You haven't logged water intake in the last 3 hours.",
                 category: "Nutrition",
-                severity: .warning,
-                date: Date()
+                importance: .low
             )
         ]
     }
@@ -173,27 +162,6 @@ struct MockDevice {
     let lastSyncDate: Date
 }
 
-struct HealthInsight {
-    let id: String
-    let title: String
-    let description: String
-    let category: String
-    let severity: InsightSeverity
-    let date: Date
-    
-    enum InsightSeverity {
-        case positive, neutral, warning, critical
-        
-        var color: String {
-            switch self {
-            case .positive: return "green"
-            case .neutral: return "blue"
-            case .warning: return "orange"
-            case .critical: return "red"
-            }
-        }
-    }
-}
 
 struct Activity {
     let id: String

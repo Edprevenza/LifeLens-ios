@@ -52,20 +52,24 @@ struct ConnectionStatusHeader: View {
                 
                 if bluetoothManager.connectionState.isActive {
                     Image(systemName: "wifi")
-                        .foregroundColor(signalColor)
+                        
+            .foregroundColor(signalColor)
                     Text("\(bluetoothManager.signalStrength) dBm")
                         .font(.caption)
-                        .foregroundColor(.secondary)
+                        
+            .foregroundColor(.secondary)
                 }
             }
             
             if bluetoothManager.dataStreamActive {
                 HStack {
                     Image(systemName: "dot.radiowaves.left.and.right")
-                        .foregroundColor(.green)
+                        
+            .foregroundColor(.green)
                     Text("Live data streaming")
                         .font(.caption)
-                        .foregroundColor(.green)
+                        
+            .foregroundColor(.green)
                     Spacer()
                 }
             }
@@ -112,7 +116,8 @@ struct AvailableDevicesView: View {
                 VStack(spacing: 16) {
                     Image(systemName: "applewatch.radiowaves.left.and.right")
                         .font(.system(size: 60))
-                        .foregroundColor(.blue)
+                        
+            .foregroundColor(.blue)
                     
                     Text("No LifeLens Device Connected")
                         .font(.title2)
@@ -120,7 +125,8 @@ struct AvailableDevicesView: View {
                     
                     Text("Make sure your LifeLens device is nearby and powered on")
                         .font(.body)
-                        .foregroundColor(.secondary)
+                        
+            .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)
                         .padding(.horizontal)
                     
@@ -145,7 +151,8 @@ struct AvailableDevicesView: View {
                         .frame(maxWidth: .infinity)
                         .frame(height: 50)
                         .background(bluetoothManager.isScanning ? Color.gray : Color.blue)
-                        .foregroundColor(.white)
+                        
+            .foregroundColor(.white)
                         .cornerRadius(10)
                     }
                     .disabled(bluetoothManager.connectionState == .connecting)
@@ -183,7 +190,8 @@ struct DeviceRow: View {
             HStack {
                 Image(systemName: "applewatch")
                     .font(.title2)
-                    .foregroundColor(.blue)
+                    
+            .foregroundColor(.blue)
                     .frame(width: 50, height: 50)
                     .background(Color.blue.opacity(0.1))
                     .cornerRadius(10)
@@ -191,11 +199,13 @@ struct DeviceRow: View {
                 VStack(alignment: .leading, spacing: 4) {
                     Text(device.name)
                         .font(.headline)
-                        .foregroundColor(.primary)
+                        
+            .foregroundColor(.primary)
                     
                     Text("SN: \(String(device.serialNumber.prefix(8)))")
                         .font(.caption)
-                        .foregroundColor(.secondary)
+                        
+            .foregroundColor(.secondary)
                 }
                 
                 Spacer()
@@ -207,7 +217,8 @@ struct DeviceRow: View {
                         Text("\(device.signalStrength) dBm")
                             .font(.caption)
                     }
-                    .foregroundColor(.secondary)
+                    
+            .foregroundColor(.secondary)
                     
                     if device.batteryLevel < 100 {
                         HStack {
@@ -216,12 +227,14 @@ struct DeviceRow: View {
                             Text("\(device.batteryLevel)%")
                                 .font(.caption)
                         }
-                        .foregroundColor(batteryColor(for: device.batteryLevel))
+                        
+            .foregroundColor(batteryColor(for: device.batteryLevel))
                     }
                 }
                 
                 Image(systemName: "chevron.right")
-                    .foregroundColor(.secondary)
+                    
+            .foregroundColor(.secondary)
                     .font(.caption)
             }
             .padding()
@@ -258,7 +271,8 @@ struct ConnectedDeviceView: View {
                     VStack(spacing: 16) {
                         Image(systemName: "applewatch.radiowaves.left.and.right")
                             .font(.system(size: 80))
-                            .foregroundColor(.blue)
+                            
+            .foregroundColor(.blue)
                         
                         Text(device.name)
                             .font(.title2)
@@ -268,10 +282,12 @@ struct ConnectedDeviceView: View {
                             VStack {
                                 Text("Battery")
                                     .font(.caption)
-                                    .foregroundColor(.secondary)
+                                    
+            .foregroundColor(.secondary)
                                 Text("\(device.batteryLevel)%")
                                     .font(.headline)
-                                    .foregroundColor(batteryColor(for: device.batteryLevel))
+                                    
+            .foregroundColor(batteryColor(for: device.batteryLevel))
                             }
                             
                             Divider()
@@ -280,7 +296,8 @@ struct ConnectedDeviceView: View {
                             VStack {
                                 Text("Signal")
                                     .font(.caption)
-                                    .foregroundColor(.secondary)
+                                    
+            .foregroundColor(.secondary)
                                 Text("\(bluetoothManager.signalStrength) dBm")
                                     .font(.headline)
                             }
@@ -291,7 +308,8 @@ struct ConnectedDeviceView: View {
                             VStack {
                                 Text("Firmware")
                                     .font(.caption)
-                                    .foregroundColor(.secondary)
+                                    
+            .foregroundColor(.secondary)
                                 Text(device.firmwareVersion)
                                     .font(.headline)
                             }
@@ -300,7 +318,8 @@ struct ConnectedDeviceView: View {
                         if let lastSync = device.lastSyncDate {
                             Text("Last synced \(lastSync, style: .relative) ago")
                                 .font(.caption)
-                                .foregroundColor(.secondary)
+                                
+            .foregroundColor(.secondary)
                         }
                     }
                     .padding()
@@ -331,7 +350,8 @@ struct ConnectedDeviceView: View {
                         .frame(maxWidth: .infinity)
                         .frame(height: 50)
                         .background(bluetoothManager.dataStreamActive ? Color.red : Color.green)
-                        .foregroundColor(.white)
+                        
+            .foregroundColor(.white)
                         .cornerRadius(10)
                     }
                     
@@ -347,7 +367,8 @@ struct ConnectedDeviceView: View {
                         .frame(maxWidth: .infinity)
                         .frame(height: 50)
                         .background(Color.blue)
-                        .foregroundColor(.white)
+                        
+            .foregroundColor(.white)
                         .cornerRadius(10)
                     }
                     
@@ -362,7 +383,8 @@ struct ConnectedDeviceView: View {
                         .frame(maxWidth: .infinity)
                         .frame(height: 50)
                         .background(Color.gray.opacity(0.15))
-                        .foregroundColor(.red)
+                        
+            .foregroundColor(.red)
                         .cornerRadius(10)
                     }
                 }
@@ -461,19 +483,22 @@ struct DataStatusRow: View {
     var body: some View {
         HStack {
             Image(systemName: icon)
-                .foregroundColor(isActive ? color : .gray)
+                
+            .foregroundColor(isActive ? color : .gray)
                 .frame(width: 30)
             
             Text(label)
                 .font(.subheadline)
-                .foregroundColor(.primary)
+                
+            .foregroundColor(.primary)
             
             Spacer()
             
             Text(value)
                 .font(.subheadline)
                 .fontWeight(.semibold)
-                .foregroundColor(isActive ? .primary : .secondary)
+                
+            .foregroundColor(isActive ? .primary : .secondary)
             
             Circle()
                 .fill(isActive ? Color.green : Color.gray)
@@ -506,7 +531,8 @@ struct AlertRow: View {
     var body: some View {
         HStack {
             Image(systemName: alertIcon)
-                .foregroundColor(alertColor)
+                
+            .foregroundColor(alertColor)
                 .font(.title3)
             
             VStack(alignment: .leading, spacing: 4) {
@@ -516,7 +542,8 @@ struct AlertRow: View {
                 
                 Text(alert.message)
                     .font(.caption)
-                    .foregroundColor(.secondary)
+                    
+            .foregroundColor(.secondary)
                     .lineLimit(2)
             }
             
@@ -524,7 +551,8 @@ struct AlertRow: View {
             
             if alert.actionRequired {
                 Image(systemName: "exclamationmark.triangle.fill")
-                    .foregroundColor(.red)
+                    
+            .foregroundColor(.red)
             }
         }
         .padding()
@@ -535,30 +563,30 @@ struct AlertRow: View {
     private var alertIcon: String {
         switch alert.severity {
         case .info: return "info.circle.fill"
-        case .warning: return "exclamationmark.triangle.fill"
-        case .urgent: return "exclamationmark.circle.fill"
+        case .low: return "exclamationmark.circle"
+        case .medium: return "exclamationmark.triangle.fill"
+        case .high: return "exclamationmark.circle.fill"
         case .critical: return "exclamationmark.octagon.fill"
-        case .emergency: return "phone.fill"
         }
     }
     
     private var alertColor: Color {
         switch alert.severity {
         case .info: return .blue
-        case .warning: return .yellow
-        case .urgent: return .orange
+        case .low: return .green
+        case .medium: return .yellow
+        case .high: return .orange
         case .critical: return .red
-        case .emergency: return .red
         }
     }
     
     private var alertBackgroundColor: Color {
         switch alert.severity {
         case .info: return Color.blue.opacity(0.1)
-        case .warning: return Color.yellow.opacity(0.1)
-        case .urgent: return Color.orange.opacity(0.1)
-        case .critical: return Color.red.opacity(0.1)
-        case .emergency: return Color.red.opacity(0.2)
+        case .low: return Color.green.opacity(0.1)
+        case .medium: return Color.yellow.opacity(0.1)
+        case .high: return Color.orange.opacity(0.1)
+        case .critical: return Color.red.opacity(0.2)
         }
     }
 }
@@ -586,7 +614,8 @@ struct DeviceDetailsSheet: View {
                     }) {
                         Text("Connect to Device")
                             .frame(maxWidth: .infinity)
-                            .foregroundColor(.white)
+                            
+            .foregroundColor(.white)
                     }
                     .listRowBackground(Color.blue)
                 }
@@ -617,7 +646,8 @@ struct DetailRow: View {
     var body: some View {
         HStack {
             Text(label)
-                .foregroundColor(.secondary)
+                
+            .foregroundColor(.secondary)
             Spacer()
             Text(value)
                 .fontWeight(.medium)

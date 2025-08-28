@@ -1,42 +1,60 @@
 #!/bin/bash
 
-echo "Direct iOS Simulator Installation"
-echo "================================="
+echo "🚀 Direct iOS Simulator Install"
+echo "================================"
+echo ""
 
-cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens || exit 1
 
-# Try to build with minimal settings
-echo "Building app..."
+# 1. Boot the iOS 18.2 simulator
+echo "📱 Booting iOS 18.2 simulator..."
+DEVICE_ID=$(xcrun simctl list devices | grep "iPhone 16 Pro" | grep -o "[A-F0-9-]\{36\}" | head -1)
+
+if [ -z "$DEVICE_ID" ]; then
+    echo "Creating new iPhone 16 Pro simulator..."
+    DEVICE_ID=$(xcrun simctl create "iPhone 16 Pro" "iPhone 16 Pro" "iOS18.2")
+fi
+
+echo "Device ID: $DEVICE_ID"
+xcrun simctl boot "$DEVICE_ID" 2>/dev/null || echo "Simulator already booted"
+
+# 2. Build for that specific device
+echo ""
+echo "🏗️ Building for device $DEVICE_ID..."
 xcodebuild \
-    -target LifeLens \
-    -configuration Debug \
-    -sdk iphonesimulator \
-    CODE_SIGN_IDENTITY="" \
-    CODE_SIGNING_REQUIRED=NO \
-    CODE_SIGNING_ALLOWED=NO \
-    IPHONEOS_DEPLOYMENT_TARGET=17.0 \
-    -derivedDataPath ./DerivedData \
-    build 2>&1 | tail -5
+  -project LifeLens.xcodeproj \
+  -scheme LifeLens \
+  -configuration Debug \
+  -destination "id=$DEVICE_ID" \
+  -derivedDataPath ./DerivedData \
+  CODE_SIGN_IDENTITY="" \
+  CODE_SIGNING_REQUIRED=NO \
+  CODE_SIGNING_ALLOWED=NO \
+  build
 
-# Find the app
-APP=$(find ./DerivedData -name "LifeLens.app" -type d 2>/dev/null | head -1)
-
-if [ -n "$APP" ]; then
-    echo "Found app at: $APP"
+if [ $? -eq 0 ]; then
+    echo ""
+    echo "✅ Build succeeded!"
     
-    # Install on simulator
-    echo "Installing on simulator..."
-    xcrun simctl install booted "$APP"
+    # Find and install the app
+    APP_PATH=$(find ./DerivedData -name "LifeLens.app" -path "*iphonesimulator*" | head -1)
     
-    # Launch
-    echo "Launching app..."
-    xcrun simctl launch booted com.prevenza.LifeLens || xcrun simctl launch booted com.Prevenza.LifeLens || xcrun simctl launch booted com.yourcompany.LifeLens
-    
-    echo "✅ Done!"
+    if [ -n "$APP_PATH" ]; then
+        echo "📱 Installing app to simulator..."
+        xcrun simctl install "$DEVICE_ID" "$APP_PATH"
+        
+        # Launch the app
+        BUNDLE_ID=$(defaults read "$APP_PATH/Info.plist" CFBundleIdentifier 2>/dev/null || echo "com.prevenza.LifeLens")
+        echo "🚀 Launching $BUNDLE_ID..."
+        xcrun simctl launch "$DEVICE_ID" "$BUNDLE_ID"
+        
+        # Open the simulator app
+        open -a Simulator
+        
+        echo ""
+        echo "✅ App is running in the simulator!"
+    fi
 else
-    echo "❌ Could not find built app"
-    
-    # Try alternative locations
-    echo "Searching for app in other locations..."
-    find ~/Library/Developer/Xcode -name "LifeLens.app" -type d 2>/dev/null | head -3
+    echo ""
+    echo "❌ Build failed. Check the error messages above."
 fi

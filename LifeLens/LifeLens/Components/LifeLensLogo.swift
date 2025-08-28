@@ -82,13 +82,15 @@ struct LifeLensLogo: View {
                         Text("LifeLens")
                             .font(titleFont)
                             .fontWeight(.bold)
-                            .foregroundColor(.primary)
+                            
+            .foregroundColor(.primary)
                     }
                     
                     if style == .withSubtitle, let subtitle = subtitle {
                         Text(subtitle)
                             .font(subtitleFont)
-                            .foregroundColor(.secondary)
+                            
+            .foregroundColor(.secondary)
                             .multilineTextAlignment(.center)
                     }
                 }

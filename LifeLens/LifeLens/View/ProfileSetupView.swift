@@ -72,7 +72,8 @@ struct ProfileSetupView: View {
                                 .frame(maxWidth: .infinity)
                                 .frame(height: 44)
                                 .background(Color.gray.opacity(0.2))
-                                .foregroundColor(.primary)
+                                
+            .foregroundColor(.primary)
                                 .cornerRadius(10)
                         }
                     }
@@ -91,7 +92,8 @@ struct ProfileSetupView: View {
                             .frame(maxWidth: .infinity)
                             .frame(height: 44)
                             .background(Color.blue)
-                            .foregroundColor(.white)
+                            
+            .foregroundColor(.white)
                             .cornerRadius(10)
                     }
                 }
@@ -182,7 +184,8 @@ struct BasicInfoStep: View {
                 
                 Text("Help us personalize your health monitoring experience")
                     .font(.body)
-                    .foregroundColor(.secondary)
+                    
+            .foregroundColor(.secondary)
                 
                 VStack(alignment: .leading, spacing: 12) {
                     Text("Date of Birth")
@@ -210,9 +213,11 @@ struct BasicInfoStep: View {
                         }) {
                             HStack {
                                 Image(systemName: gender == option ? "checkmark.circle.fill" : "circle")
-                                    .foregroundColor(gender == option ? .blue : .gray)
+                                    
+            .foregroundColor(gender == option ? .blue : .gray)
                                 Text(option)
-                                    .foregroundColor(.primary)
+                                    
+            .foregroundColor(.primary)
                                 Spacer()
                             }
                             .padding()
@@ -244,7 +249,8 @@ struct PhysicalInfoStep: View {
                 
                 Text("This helps us calculate accurate health metrics")
                     .font(.body)
-                    .foregroundColor(.secondary)
+                    
+            .foregroundColor(.secondary)
                 
                 VStack(alignment: .leading, spacing: 8) {
                     Text("Height (cm)")
@@ -276,9 +282,11 @@ struct PhysicalInfoStep: View {
                         }) {
                             HStack {
                                 Image(systemName: activityLevel == level ? "checkmark.circle.fill" : "circle")
-                                    .foregroundColor(activityLevel == level ? .blue : .gray)
+                                    
+            .foregroundColor(activityLevel == level ? .blue : .gray)
                                 Text(level)
-                                    .foregroundColor(.primary)
+                                    
+            .foregroundColor(.primary)
                                 Spacer()
                             }
                             .padding()
@@ -314,7 +322,8 @@ struct HealthGoalsStep: View {
                         .font(.headline)
                     Text("Select all that apply")
                         .font(.caption)
-                        .foregroundColor(.secondary)
+                        
+            .foregroundColor(.secondary)
                     
                     ForEach(healthGoalOptions, id: \.self) { goal in
                         Button(action: {
@@ -326,9 +335,11 @@ struct HealthGoalsStep: View {
                         }) {
                             HStack {
                                 Image(systemName: healthGoals.contains(goal) ? "checkmark.square.fill" : "square")
-                                    .foregroundColor(healthGoals.contains(goal) ? .blue : .gray)
+                                    
+            .foregroundColor(healthGoals.contains(goal) ? .blue : .gray)
                                 Text(goal)
-                                    .foregroundColor(.primary)
+                                    
+            .foregroundColor(.primary)
                                 Spacer()
                             }
                             .padding()
@@ -343,7 +354,8 @@ struct HealthGoalsStep: View {
                         .font(.headline)
                     Text("Select all that apply")
                         .font(.caption)
-                        .foregroundColor(.secondary)
+                        
+            .foregroundColor(.secondary)
                     
                     ForEach(medicalConditionOptions, id: \.self) { condition in
                         Button(action: {
@@ -355,9 +367,11 @@ struct HealthGoalsStep: View {
                         }) {
                             HStack {
                                 Image(systemName: medicalConditions.contains(condition) ? "checkmark.square.fill" : "square")
-                                    .foregroundColor(medicalConditions.contains(condition) ? .blue : .gray)
+                                    
+            .foregroundColor(medicalConditions.contains(condition) ? .blue : .gray)
                                 Text(condition)
-                                    .foregroundColor(.primary)
+                                    
+            .foregroundColor(.primary)
                                 Spacer()
                             }
                             .padding()
@@ -381,57 +395,45 @@ struct HealthGoalsStep: View {
     }
 }
 
+// MARK: - Emergency Contact Step
 struct EmergencyContactStep: View {
     @Binding var emergencyContactName: String
     @Binding var emergencyContactPhone: String
     
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 24) {
-                Text("Emergency Contact")
-                    .font(.title2)
-                    .fontWeight(.bold)
+        VStack(spacing: 20) {
+            Text("Emergency Contact")
+                .font(.largeTitle)
+                .fontWeight(.bold)
+            
+            Text("Who should we contact in case of emergency?")
+                .font(.subheadline)
                 
-                Text("In case of emergency, who should we contact?")
-                    .font(.body)
-                    .foregroundColor(.secondary)
-                
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("Contact Name")
-                        .font(.headline)
-                    TextField("Full name", text: $emergencyContactName)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                }
-                
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("Phone Number")
-                        .font(.headline)
-                    TextField("Phone number", text: $emergencyContactPhone)
-                        #if os(iOS)
-                        .keyboardType(.phonePad)
-                        #endif
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                }
-                
-                VStack(alignment: .leading, spacing: 12) {
-                    HStack {
-                        Image(systemName: "info.circle.fill")
-                            .foregroundColor(.blue)
-                        Text("Why we need this")
-                            .font(.headline)
-                    }
+            .foregroundColor(.secondary)
+                .multilineTextAlignment(.center)
+                .padding(.bottom)
+            
+            VStack(alignment: .leading, spacing: 8) {
+                Text("Contact Name")
+                    .font(.caption)
                     
-                    Text("Your emergency contact information will only be used in critical situations when your health data indicates a potential emergency.")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                }
-                .padding()
-                .background(Color.blue.opacity(0.1))
-                .cornerRadius(8)
-                
-                Spacer()
+            .foregroundColor(.secondary)
+                TextField("Full Name", text: $emergencyContactName)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
             }
-            .padding()
+            
+            VStack(alignment: .leading, spacing: 8) {
+                Text("Phone Number")
+                    .font(.caption)
+                    
+            .foregroundColor(.secondary)
+                TextField("Phone Number", text: $emergencyContactPhone)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .keyboardType(.phonePad)
+            }
+            
+            Spacer()
         }
+        .padding()
     }
 }

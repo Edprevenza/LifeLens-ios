@@ -99,30 +99,6 @@ class MLHealthService: ObservableObject {
         let confidence: Double
     }
     
-    struct HealthAlert: Identifiable {
-        let id = UUID()
-        let type: AlertType
-        let severity: Severity
-        let title: String
-        let message: String
-        let timestamp: Date
-        let actionRequired: Bool
-        
-        enum AlertType {
-            case cardiac
-            case glucose
-            case oxygen
-            case bloodPressure
-            case pattern
-        }
-        
-        enum Severity {
-            case critical
-            case high
-            case moderate
-            case low
-        }
-    }
     
     // MARK: - Initialization
     
@@ -265,7 +241,7 @@ class MLHealthService: ObservableObject {
             
             if afibResult.detected {
                 createAlert(
-                    type: .cardiac,
+                    type: .warning,
                     severity: .high,
                     title: "Atrial Fibrillation Detected",
                     message: afibResult.message,
@@ -283,7 +259,7 @@ class MLHealthService: ObservableObject {
                 
                 if vtachResult.detected {
                     createAlert(
-                        type: .cardiac,
+                        type: .warning,
                         severity: .critical,
                         title: "Ventricular Tachycardia",
                         message: vtachResult.message,
@@ -298,7 +274,7 @@ class MLHealthService: ObservableObject {
             
             if stemiResult.detected {
                 createAlert(
-                    type: .cardiac,
+                    type: .warning,
                     severity: .critical,
                     title: "STEMI Detected",
                     message: stemiResult.message,
@@ -321,7 +297,7 @@ class MLHealthService: ObservableObject {
             switch hypoglycemiaRisk {
             case .critical:
                 createAlert(
-                    type: .glucose,
+                    type: .warning,
                     severity: .critical,
                     title: "Critical Hypoglycemia",
                     message: "Blood glucose critically low. Immediate action required!",
@@ -329,7 +305,7 @@ class MLHealthService: ObservableObject {
                 )
             case .high:
                 createAlert(
-                    type: .glucose,
+                    type: .warning,
                     severity: .high,
                     title: "Hypoglycemia Risk",
                     message: "Blood glucose dropping rapidly. Monitor closely.",
@@ -346,7 +322,7 @@ class MLHealthService: ObservableObject {
                 switch spo2Alert.severity {
                 case .critical:
                     createAlert(
-                        type: .oxygen,
+                        type: .warning,
                         severity: .critical,
                         title: "Critical SpO2 Level",
                         message: spo2Alert.message,
@@ -354,8 +330,8 @@ class MLHealthService: ObservableObject {
                     )
                 case .warning:
                     createAlert(
-                        type: .oxygen,
-                        severity: .moderate,
+                        type: .warning,
+                        severity: .medium,
                         title: "Low SpO2 Warning",
                         message: spo2Alert.message,
                         actionRequired: false
@@ -389,7 +365,7 @@ class MLHealthService: ObservableObject {
         
         if riskAssessment.level.priority >= LocalPatternDetection.RiskLevel.high.priority {
             createAlert(
-                type: .pattern,
+                type: .insight,
                 severity: mapRiskLevelToSeverity(riskAssessment.level),
                 title: "Health Pattern Alert",
                 message: riskAssessment.recommendation,
@@ -406,7 +382,7 @@ class MLHealthService: ObservableObject {
             let desaturationAnalysis = patternDetection.detectSpO2Drops(readings: spo2Readings)
             if desaturationAnalysis.severity == "Severe" {
                 createAlert(
-                    type: .oxygen,
+                    type: .warning,
                     severity: .high,
                     title: "Frequent Desaturations",
                     message: "Multiple oxygen desaturation events detected. \(desaturationAnalysis.pattern)",
@@ -420,7 +396,7 @@ class MLHealthService: ObservableObject {
             let coherenceAnalysis = patternDetection.detectCardiacCoherence(heartRates: heartRateBuffer)
             if coherenceAnalysis.stressLevel == "High stress" {
                 createAlert(
-                    type: .cardiac,
+                    type: .warning,
                     severity: .low,
                     title: "High Stress Detected",
                     message: "Heart rate patterns indicate high stress. Consider stress reduction techniques.",
@@ -473,17 +449,17 @@ class MLHealthService: ObservableObject {
     
     private func createAlert(
         type: HealthAlert.AlertType,
-        severity: HealthAlert.Severity,
+        severity: HealthAlert.AlertSeverity,
         title: String,
         message: String,
         actionRequired: Bool
     ) {
         let alert = HealthAlert(
-            type: type,
-            severity: severity,
             title: title,
             message: message,
-            timestamp: Date(),
+            type: type,
+            severity: severity,
+            source: "ML Health Service",
             actionRequired: actionRequired
         )
         
@@ -555,14 +531,14 @@ class MLHealthService: ObservableObject {
     
     // MARK: - Helper Functions
     
-    private func mapRiskLevelToSeverity(_ level: LocalPatternDetection.RiskLevel) -> HealthAlert.Severity {
+    private func mapRiskLevelToSeverity(_ level: LocalPatternDetection.RiskLevel) -> HealthAlert.AlertSeverity {
         switch level {
         case .critical:
             return .critical
         case .high:
             return .high
         case .moderate:
-            return .moderate
+            return .medium
         case .low, .normal:
             return .low
         }

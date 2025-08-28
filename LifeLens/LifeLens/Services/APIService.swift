@@ -6,10 +6,16 @@ class APIService {
     static let shared = APIService()
     
     private let baseURL = Configuration.shared.fullAPIURL
-    private let session = URLSession.shared
+    private var session = URLSession.shared
     private let logger = AppLogger.shared
     
     private init() {}
+    
+    // MARK: - Configuration
+    
+    func updateConfiguration(_ config: URLSessionConfiguration) {
+        self.session = URLSession(configuration: config)
+    }
     
     // MARK: - Authentication Methods
     
@@ -279,24 +285,6 @@ class APIService {
 
 // MARK: - Health Models
 
-struct HealthAlert: Codable, Identifiable {
-    let id: String
-    let title: String
-    let message: String
-    let severity: AlertSeverity
-    let timestamp: Date
-    let metricType: String?
-    let value: Double?
-    let actionRequired: Bool
-    
-    enum AlertSeverity: String, Codable {
-        case info
-        case warning
-        case urgent
-        case critical
-        case emergency
-    }
-}
 
 struct HealthMetricsResponse: Codable {
     let metrics: [HealthMetric]
@@ -305,22 +293,6 @@ struct HealthMetricsResponse: Codable {
     let hasMore: Bool
 }
 
-struct ChartDataPoint: Codable, Identifiable {
-    let id = UUID()
-    let timestamp: Date
-    let value: Double
-    var label: String?
-    
-    init(timestamp: Date, value: Double, label: String? = nil) {
-        self.timestamp = timestamp
-        self.value = value
-        self.label = label
-    }
-    
-    enum CodingKeys: String, CodingKey {
-        case timestamp, value, label
-    }
-}
 
 // MARK: - API Errors
 

@@ -1,0 +1,43 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project LifeLens.xcodeproj -scheme LifeLens -configuration Debug -sdk iphonesimulator18.5 -destination id=58AF19BD-3CFA-4ED9-B9F3-10A1A30133F2 -derivedDataPath ./DerivedData CODE_SIGN_IDENTITY= CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO IPHONEOS_DEPLOYMENT_TARGET=17.5 build
+
+Build settings from command line:
+    CODE_SIGN_IDENTITY = 
+    CODE_SIGNING_ALLOWED = NO
+    CODE_SIGNING_REQUIRED = NO
+    IPHONEOS_DEPLOYMENT_TARGET = 17.5
+    SDKROOT = iphonesimulator18.5
+
+Resolve Package Graph
+
+Fetching from https://github.com/apple/swift-numerics.git (cached)
+
+Fetching from https://github.com/apple/swift-algorithms.git (cached)
+
+Fetching from https://github.com/Alamofire/Alamofire.git (cached)
+
+Creating working copy of package ‘Alamofire’
+
+Checking out 5.10.2 of package ‘Alamofire’
+
+Creating working copy of package ‘swift-numerics’
+
+Checking out 1.0.3 of package ‘swift-numerics’
+
+Creating working copy of package ‘swift-algorithms’
+
+Checking out 1.2.1 of package ‘swift-algorithms’
+
+
+Resolved source packages:
+  Alamofire: https://github.com/Alamofire/Alamofire.git @ 5.10.2
+  swift-algorithms: https://github.com/apple/swift-algorithms.git @ 1.2.1
+  swift-numerics: https://github.com/apple/swift-numerics.git @ 1.0.3
+
+2025-08-24 23:27:19.820 xcodebuild[61683:829926] Writing error result bundle to /var/folders/wh/8ctq3sbd2dsf2tnj8v52bj3h0000gn/T/ResultBundle_2025-24-08_23-27-0019.xcresult
+xcodebuild: error: Unable to find a destination matching the provided destination specifier:
+		{ id:58AF19BD-3CFA-4ED9-B9F3-10A1A30133F2 }
+
+	Ineligible destinations for the "LifeLens" scheme:
+		{ platform:iOS, arch:arm64e, id:00008140-00160DE40463C01C, name:iPhone (213), error:iOS 18.5 is not installed. To use with Xcode, first download and install the platform }
+		{ platform:iOS, id:dvtdevice-DVTiPhonePlaceholder-iphoneos:placeholder, name:Any iOS Device, error:iOS 18.5 is not installed. To use with Xcode, first download and install the platform }

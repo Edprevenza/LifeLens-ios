@@ -199,7 +199,8 @@ struct MetricCard: View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
                 Image(systemName: icon)
-                    .foregroundColor(color)
+                    
+            .foregroundColor(color)
                     .font(.title3)
                 Spacer()
             }
@@ -210,11 +211,13 @@ struct MetricCard: View {
             
             Text(unit)
                 .font(.caption)
-                .foregroundColor(.secondary)
+                
+            .foregroundColor(.secondary)
             
             Text(title)
                 .font(.caption)
-                .foregroundColor(.secondary)
+                
+            .foregroundColor(.secondary)
         }
         .padding()
         .frame(maxWidth: .infinity)
@@ -231,7 +234,8 @@ struct ActivityRow: View {
                 .frame(width: 44, height: 44)
                 .overlay(
                     Image(systemName: "figure.run")
-                        .foregroundColor(.blue)
+                        
+            .foregroundColor(.blue)
                 )
             
             VStack(alignment: .leading, spacing: 4) {
@@ -239,14 +243,16 @@ struct ActivityRow: View {
                     .font(.headline)
                 Text("5.2 km • 32 min")
                     .font(.caption)
-                    .foregroundColor(.secondary)
+                    
+            .foregroundColor(.secondary)
             }
             
             Spacer()
             
             Text("8:30 AM")
                 .font(.caption)
-                .foregroundColor(.secondary)
+                
+            .foregroundColor(.secondary)
         }
         .padding(.vertical, 8)
     }
@@ -327,7 +333,8 @@ struct ProfileView: View {
                                 .font(.headline)
                             Text(authService.currentUser?.email ?? "")
                                 .font(.caption)
-                                .foregroundColor(.secondary)
+                                
+            .foregroundColor(.secondary)
                         }
                     }
                     .padding(.vertical, 8)
@@ -368,7 +375,8 @@ struct ProfileView: View {
                         HStack {
                             Spacer()
                             Text("Sign Out")
-                                .foregroundColor(.red)
+                                
+            .foregroundColor(.red)
                             Spacer()
                         }
                     }

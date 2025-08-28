@@ -1,4 +1,5 @@
 //
+import Foundation
 //  HealthChartView.swift
 //  LifeLens
 //
@@ -72,13 +73,15 @@ struct HealthChartView: View {
                 VStack(alignment: .leading, spacing: 4) {
                     Text(title)
                         .font(.system(size: 16, weight: .semibold))
-                        .foregroundColor(.primary)
+                        
+            .foregroundColor(.primary)
                     
                     if !data.isEmpty {
                         HStack(spacing: 12) {
                             Label("Avg: \(averageValue, specifier: "%.1f")\(unit)", systemImage: "chart.line.uptrend.xyaxis")
                                 .font(.system(size: 11))
-                                .foregroundColor(.secondary)
+                                
+            .foregroundColor(.secondary)
                         }
                     }
                 }
@@ -90,15 +93,18 @@ struct HealthChartView: View {
                         HStack(alignment: .lastTextBaseline, spacing: 4) {
                             Text("\(lastValue.value, specifier: "%.1f")")
                                 .font(.system(size: 24, weight: .bold, design: .rounded))
-                                .foregroundColor(getValueColor(lastValue.value))
+                                
+            .foregroundColor(getValueColor(lastValue.value))
                             Text(unit)
                                 .font(.system(size: 14, weight: .medium))
-                                .foregroundColor(.secondary)
+                                
+            .foregroundColor(.secondary)
                         }
                         
                         Text(lastValue.timestamp, style: .time)
                             .font(.system(size: 11))
-                            .foregroundColor(.secondary)
+                            
+            .foregroundColor(.secondary)
                     }
                 }
             }
@@ -254,10 +260,12 @@ struct HealthChartView: View {
                     VStack(alignment: .leading, spacing: 4) {
                         Text("\(selected.value, specifier: "%.1f") \(unit)")
                             .font(.system(size: 14, weight: .semibold))
-                            .foregroundColor(.white)
+                            
+            .foregroundColor(.white)
                         Text(selected.timestamp, style: .time)
                             .font(.system(size: 11))
-                            .foregroundColor(.white.opacity(0.8))
+                            
+            .foregroundColor(.white.opacity(0.8))
                     }
                     .padding(8)
                     .background(
@@ -276,13 +284,15 @@ struct HealthChartView: View {
                     if range?.normalMin != nil || range?.normalMax != nil {
                         Label("Normal Range", systemImage: "checkmark.circle")
                             .font(.caption)
-                            .foregroundColor(.green)
+                            
+            .foregroundColor(.green)
                     }
                     
                     if range?.criticalMin != nil || range?.criticalMax != nil {
                         Label("Critical", systemImage: "exclamationmark.triangle")
                             .font(.caption)
-                            .foregroundColor(.red)
+                            
+            .foregroundColor(.red)
                     }
                     
                     Spacer()
@@ -350,89 +360,6 @@ struct HealthChartView: View {
 
 // MARK: - ECG Waveform View
 
-struct ECGWaveformView: View {
-    let samples: [Double]
-    let samplingRate: Int
-    let color: Color
-    
-    @State private var currentIndex: Int = 0
-    @State private var timer: Timer?
-    
-    init(samples: [Double], samplingRate: Int = 500, color: Color = .green) {
-        self.samples = samples
-        self.samplingRate = samplingRate
-        self.color = color
-    }
-    
-    var body: some View {
-        GeometryReader { geometry in
-            Path { path in
-                guard !samples.isEmpty else { return }
-                
-                let width = geometry.size.width
-                let height = geometry.size.height
-                let midY = height / 2
-                
-                // Normalize samples to fit in view
-                let maxAmplitude = samples.map { abs($0) }.max() ?? 1.0
-                let scale = (height * 0.4) / maxAmplitude
-                
-                // Calculate x step based on visible samples
-                let visibleSamples = min(samples.count, samplingRate * 3) // Show 3 seconds
-                let xStep = width / CGFloat(visibleSamples)
-                
-                // Draw waveform
-                for (index, sample) in samples.prefix(currentIndex).enumerated() {
-                    let x = CGFloat(index) * xStep
-                    let y = midY - (CGFloat(sample) * scale)
-                    
-                    if index == 0 {
-                        path.move(to: CGPoint(x: x, y: y))
-                    } else {
-                        path.addLine(to: CGPoint(x: x, y: y))
-                    }
-                }
-            }
-            .stroke(color, lineWidth: 2)
-            
-            // Grid overlay
-            Path { path in
-                let gridSpacing: CGFloat = 20
-                
-                // Vertical grid lines
-                stride(from: 0, to: geometry.size.width, by: gridSpacing).forEach { x in
-                    path.move(to: CGPoint(x: x, y: 0))
-                    path.addLine(to: CGPoint(x: x, y: geometry.size.height))
-                }
-                
-                // Horizontal grid lines
-                stride(from: 0, to: geometry.size.height, by: gridSpacing).forEach { y in
-                    path.move(to: CGPoint(x: 0, y: y))
-                    path.addLine(to: CGPoint(x: geometry.size.width, y: y))
-                }
-            }
-            .stroke(Color.gray.opacity(0.2), lineWidth: 0.5)
-        }
-        .frame(height: 150)
-        .background(Color.black)
-        .onAppear {
-            startAnimation()
-        }
-        .onDisappear {
-            timer?.invalidate()
-        }
-    }
-    
-    private func startAnimation() {
-        timer = Timer.scheduledTimer(withTimeInterval: 1.0 / Double(samplingRate), repeats: true) { _ in
-            if currentIndex < samples.count {
-                currentIndex += 1
-            } else {
-                currentIndex = 0 // Loop animation
-            }
-        }
-    }
-}
 
 // MARK: - Using SparklineView from Components folder
 

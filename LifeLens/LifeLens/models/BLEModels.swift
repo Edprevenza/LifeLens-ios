@@ -110,7 +110,7 @@ struct TemperatureData: Codable {
 }
 
 // MARK: - Composite Health Data
-struct HealthSnapshot: Codable {
+struct BLEHealthSnapshot: Codable {  // Renamed to avoid conflict with SharedTypes
     let timestamp: Date
     let deviceId: String
     let troponin: TroponinData?

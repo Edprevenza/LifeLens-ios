@@ -10,6 +10,8 @@ class AuthenticationService: ObservableObject {
     static let shared = AuthenticationService()
     
     @Published var isAuthenticated = false
+    private var _authToken: String?
+    var authToken: String? { _authToken }
     @Published var isLoading = false
     @Published var currentUser: UserInfo?
     @Published var authError: AuthError?
@@ -281,6 +283,7 @@ class AuthenticationService: ObservableObject {
         }
         
         // Store tokens securely
+        _authToken = authData.access_token
         keychainService.store(key: "accessToken", data: authData.access_token.data(using: .utf8)!)
         keychainService.store(key: "refreshToken", data: authData.refresh_token.data(using: .utf8)!)
         

@@ -1,0 +1,850 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		19E768F204A185B3572A5943 /* Pods_LifeLens.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF3FD0492FD2DBD951BC0CEE /* Pods_LifeLens.framework */; };
+		52F8C4E42E4F944E000700FB /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52F8C4E32E4F944E000700FB /* HealthKit.framework */; };
+		52F8C4E62E4F9462000700FB /* HealthKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52F8C4E52E4F9462000700FB /* HealthKitUI.framework */; platformFilters = (ios, xros, ); };
+		52F8C4E92E4F948F000700FB /* BackgroundAssets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52F8C4E72E4F948F000700FB /* BackgroundAssets.framework */; };
+		52F8C4EA2E4F948F000700FB /* BackgroundTasks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52F8C4E82E4F948F000700FB /* BackgroundTasks.framework */; };
+		52F8C4ED2E4F94B0000700FB /* PushKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52F8C4EB2E4F94B0000700FB /* PushKit.framework */; };
+		52F8C4EE2E4F94B0000700FB /* PushToTalk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52F8C4EC2E4F94B0000700FB /* PushToTalk.framework */; platformFilters = (ios, macos, ); };
+		52F8C4F02E4F9562000700FB /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52F8C4EF2E4F9562000700FB /* CoreBluetooth.framework */; };
+		52F8C4F22E4F9581000700FB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52F8C4F12E4F9581000700FB /* CoreLocation.framework */; };
+		52F8C4F42E4F9597000700FB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52F8C4F32E4F9597000700FB /* CoreData.framework */; };
+		BDB4D93C0A0E674B5EDF3441 /* Pods_LifeLensTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 649916A9E2917FEB45B15B57 /* Pods_LifeLensTests.framework */; };
+		D067342ACA63911D02AA4FF0 /* Pods_LifeLensUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8470F7E0437C5FABD44E4355 /* Pods_LifeLensUITests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		52F8C4B32E4F5449000700FB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52F8C4962E4F5443000700FB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 52F8C49D2E4F5444000700FB;
+			remoteInfo = LifeLens;
+		};
+		52F8C4BD2E4F5449000700FB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52F8C4962E4F5443000700FB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 52F8C49D2E4F5444000700FB;
+			remoteInfo = LifeLens;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2A4F10E725BAEF0CDCEAEBC4 /* Pods-LifeLensTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LifeLensTests.debug.xcconfig"; path = "Target Support Files/Pods-LifeLensTests/Pods-LifeLensTests.debug.xcconfig"; sourceTree = "<group>"; };
+		52F8C49E2E4F5444000700FB /* LifeLens.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LifeLens.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		52F8C4B22E4F5449000700FB /* LifeLensTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LifeLensTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		52F8C4BC2E4F5449000700FB /* LifeLensUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LifeLensUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		52F8C4E32E4F944E000700FB /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		52F8C4E52E4F9462000700FB /* HealthKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKitUI.framework; path = System/Library/Frameworks/HealthKitUI.framework; sourceTree = SDKROOT; };
+		52F8C4E72E4F948F000700FB /* BackgroundAssets.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BackgroundAssets.framework; path = System/Library/Frameworks/BackgroundAssets.framework; sourceTree = SDKROOT; };
+		52F8C4E82E4F948F000700FB /* BackgroundTasks.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BackgroundTasks.framework; path = System/Library/Frameworks/BackgroundTasks.framework; sourceTree = SDKROOT; };
+		52F8C4EB2E4F94B0000700FB /* PushKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PushKit.framework; path = System/Library/Frameworks/PushKit.framework; sourceTree = SDKROOT; };
+		52F8C4EC2E4F94B0000700FB /* PushToTalk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PushToTalk.framework; path = System/Library/Frameworks/PushToTalk.framework; sourceTree = SDKROOT; };
+		52F8C4EF2E4F9562000700FB /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		52F8C4F12E4F9581000700FB /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		52F8C4F32E4F9597000700FB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		649916A9E2917FEB45B15B57 /* Pods_LifeLensTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LifeLensTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		76B1C04AC51FD8C670184914 /* Pods-LifeLensUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LifeLensUITests.debug.xcconfig"; path = "Target Support Files/Pods-LifeLensUITests/Pods-LifeLensUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		810942653A732921C840B1FB /* Pods-LifeLensTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LifeLensTests.release.xcconfig"; path = "Target Support Files/Pods-LifeLensTests/Pods-LifeLensTests.release.xcconfig"; sourceTree = "<group>"; };
+		8470F7E0437C5FABD44E4355 /* Pods_LifeLensUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LifeLensUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C12810EAC373E6F6ED0F94F7 /* Pods-LifeLens.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LifeLens.debug.xcconfig"; path = "Target Support Files/Pods-LifeLens/Pods-LifeLens.debug.xcconfig"; sourceTree = "<group>"; };
+		CF3FD0492FD2DBD951BC0CEE /* Pods_LifeLens.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LifeLens.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E0E48B22DF5290513197C94F /* Pods-LifeLensUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LifeLensUITests.release.xcconfig"; path = "Target Support Files/Pods-LifeLensUITests/Pods-LifeLensUITests.release.xcconfig"; sourceTree = "<group>"; };
+		F76F9CE99055EC918F946B0F /* Pods-LifeLens.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LifeLens.release.xcconfig"; path = "Target Support Files/Pods-LifeLens/Pods-LifeLens.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		52F8C4C42E4F5449000700FB /* Exceptions for "LifeLens" folder in "LifeLens" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 52F8C49D2E4F5444000700FB /* LifeLens */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		52F8C4A02E4F5444000700FB /* LifeLens */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				52F8C4C42E4F5449000700FB /* Exceptions for "LifeLens" folder in "LifeLens" target */,
+			);
+			path = LifeLens;
+			sourceTree = "<group>";
+		};
+		52F8C4B52E4F5449000700FB /* LifeLensTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = LifeLensTests;
+			sourceTree = "<group>";
+		};
+		52F8C4BF2E4F5449000700FB /* LifeLensUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = LifeLensUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		52F8C49B2E4F5444000700FB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52F8C4ED2E4F94B0000700FB /* PushKit.framework in Frameworks */,
+				52F8C4F42E4F9597000700FB /* CoreData.framework in Frameworks */,
+				52F8C4EE2E4F94B0000700FB /* PushToTalk.framework in Frameworks */,
+				52F8C4E42E4F944E000700FB /* HealthKit.framework in Frameworks */,
+				52F8C4E92E4F948F000700FB /* BackgroundAssets.framework in Frameworks */,
+				52F8C4F22E4F9581000700FB /* CoreLocation.framework in Frameworks */,
+				52F8C4F02E4F9562000700FB /* CoreBluetooth.framework in Frameworks */,
+				52F8C4E62E4F9462000700FB /* HealthKitUI.framework in Frameworks */,
+				52F8C4EA2E4F948F000700FB /* BackgroundTasks.framework in Frameworks */,
+				19E768F204A185B3572A5943 /* Pods_LifeLens.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52F8C4AF2E4F5449000700FB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BDB4D93C0A0E674B5EDF3441 /* Pods_LifeLensTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52F8C4B92E4F5449000700FB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D067342ACA63911D02AA4FF0 /* Pods_LifeLensUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		52F8C4952E4F5443000700FB = {
+			isa = PBXGroup;
+			children = (
+				52F8C4A02E4F5444000700FB /* LifeLens */,
+				52F8C4B52E4F5449000700FB /* LifeLensTests */,
+				52F8C4BF2E4F5449000700FB /* LifeLensUITests */,
+				52F8C4E22E4F944D000700FB /* Frameworks */,
+				52F8C49F2E4F5444000700FB /* Products */,
+				D4417B6D8E002B1B38A755DE /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		52F8C49F2E4F5444000700FB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				52F8C49E2E4F5444000700FB /* LifeLens.app */,
+				52F8C4B22E4F5449000700FB /* LifeLensTests.xctest */,
+				52F8C4BC2E4F5449000700FB /* LifeLensUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		52F8C4E22E4F944D000700FB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				52F8C4F32E4F9597000700FB /* CoreData.framework */,
+				52F8C4F12E4F9581000700FB /* CoreLocation.framework */,
+				52F8C4EF2E4F9562000700FB /* CoreBluetooth.framework */,
+				52F8C4EB2E4F94B0000700FB /* PushKit.framework */,
+				52F8C4EC2E4F94B0000700FB /* PushToTalk.framework */,
+				52F8C4E72E4F948F000700FB /* BackgroundAssets.framework */,
+				52F8C4E82E4F948F000700FB /* BackgroundTasks.framework */,
+				52F8C4E52E4F9462000700FB /* HealthKitUI.framework */,
+				52F8C4E32E4F944E000700FB /* HealthKit.framework */,
+				CF3FD0492FD2DBD951BC0CEE /* Pods_LifeLens.framework */,
+				649916A9E2917FEB45B15B57 /* Pods_LifeLensTests.framework */,
+				8470F7E0437C5FABD44E4355 /* Pods_LifeLensUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D4417B6D8E002B1B38A755DE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C12810EAC373E6F6ED0F94F7 /* Pods-LifeLens.debug.xcconfig */,
+				F76F9CE99055EC918F946B0F /* Pods-LifeLens.release.xcconfig */,
+				2A4F10E725BAEF0CDCEAEBC4 /* Pods-LifeLensTests.debug.xcconfig */,
+				810942653A732921C840B1FB /* Pods-LifeLensTests.release.xcconfig */,
+				76B1C04AC51FD8C670184914 /* Pods-LifeLensUITests.debug.xcconfig */,
+				E0E48B22DF5290513197C94F /* Pods-LifeLensUITests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		52F8C49D2E4F5444000700FB /* LifeLens */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 52F8C4C52E4F5449000700FB /* Build configuration list for PBXNativeTarget "LifeLens" */;
+			buildPhases = (
+				C99ABC092550DB7A62FE134A /* [CP] Check Pods Manifest.lock */,
+				52F8C49A2E4F5444000700FB /* Sources */,
+				52F8C49B2E4F5444000700FB /* Frameworks */,
+				52F8C49C2E4F5444000700FB /* Resources */,
+				8203915724D57A0008B14E60 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				52F8C4A02E4F5444000700FB /* LifeLens */,
+			);
+			name = LifeLens;
+			productName = LifeLens;
+			productReference = 52F8C49E2E4F5444000700FB /* LifeLens.app */;
+			productType = "com.apple.product-type.application";
+		};
+		52F8C4B12E4F5449000700FB /* LifeLensTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 52F8C4CA2E4F5449000700FB /* Build configuration list for PBXNativeTarget "LifeLensTests" */;
+			buildPhases = (
+				09F70C5E782B2E48E219C1C4 /* [CP] Check Pods Manifest.lock */,
+				52F8C4AE2E4F5449000700FB /* Sources */,
+				52F8C4AF2E4F5449000700FB /* Frameworks */,
+				52F8C4B02E4F5449000700FB /* Resources */,
+				BEB381038DBAE987001577D6 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				52F8C4B42E4F5449000700FB /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				52F8C4B52E4F5449000700FB /* LifeLensTests */,
+			);
+			name = LifeLensTests;
+			productName = LifeLensTests;
+			productReference = 52F8C4B22E4F5449000700FB /* LifeLensTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		52F8C4BB2E4F5449000700FB /* LifeLensUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 52F8C4CD2E4F5449000700FB /* Build configuration list for PBXNativeTarget "LifeLensUITests" */;
+			buildPhases = (
+				A7865D35BE2754DB10C9D6AC /* [CP] Check Pods Manifest.lock */,
+				52F8C4B82E4F5449000700FB /* Sources */,
+				52F8C4B92E4F5449000700FB /* Frameworks */,
+				52F8C4BA2E4F5449000700FB /* Resources */,
+				419E290BBD5E69807883EB64 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				52F8C4BE2E4F5449000700FB /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				52F8C4BF2E4F5449000700FB /* LifeLensUITests */,
+			);
+			name = LifeLensUITests;
+			productName = LifeLensUITests;
+			productReference = 52F8C4BC2E4F5449000700FB /* LifeLensUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		52F8C4962E4F5443000700FB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1640;
+				LastUpgradeCheck = 1640;
+				TargetAttributes = {
+					52F8C49D2E4F5444000700FB = {
+						CreatedOnToolsVersion = 16.4;
+					};
+					52F8C4B12E4F5449000700FB = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = 52F8C49D2E4F5444000700FB;
+					};
+					52F8C4BB2E4F5449000700FB = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = 52F8C49D2E4F5444000700FB;
+					};
+				};
+			};
+			buildConfigurationList = 52F8C4992E4F5443000700FB /* Build configuration list for PBXProject "LifeLens" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 52F8C4952E4F5443000700FB;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 52F8C49F2E4F5444000700FB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				52F8C49D2E4F5444000700FB /* LifeLens */,
+				52F8C4B12E4F5449000700FB /* LifeLensTests */,
+				52F8C4BB2E4F5449000700FB /* LifeLensUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		52F8C49C2E4F5444000700FB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52F8C4B02E4F5449000700FB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52F8C4BA2E4F5449000700FB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		09F70C5E782B2E48E219C1C4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LifeLensTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		419E290BBD5E69807883EB64 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LifeLensUITests/Pods-LifeLensUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LifeLensUITests/Pods-LifeLensUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LifeLensUITests/Pods-LifeLensUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8203915724D57A0008B14E60 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LifeLens/Pods-LifeLens-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LifeLens/Pods-LifeLens-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LifeLens/Pods-LifeLens-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A7865D35BE2754DB10C9D6AC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LifeLensUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BEB381038DBAE987001577D6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LifeLensTests/Pods-LifeLensTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LifeLensTests/Pods-LifeLensTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LifeLensTests/Pods-LifeLensTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C99ABC092550DB7A62FE134A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LifeLens-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		52F8C49A2E4F5444000700FB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52F8C4AE2E4F5449000700FB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52F8C4B82E4F5449000700FB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		52F8C4B42E4F5449000700FB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 52F8C49D2E4F5444000700FB /* LifeLens */;
+			targetProxy = 52F8C4B32E4F5449000700FB /* PBXContainerItemProxy */;
+		};
+		52F8C4BE2E4F5449000700FB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 52F8C49D2E4F5444000700FB /* LifeLens */;
+			targetProxy = 52F8C4BD2E4F5449000700FB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		52F8C4C62E4F5449000700FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C12810EAC373E6F6ED0F94F7 /* Pods-LifeLens.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = LifeLens/LifeLens.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = N43BACNUAY;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LifeLens/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Lifelens;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Connect to LifeLens wearable device for health monitoring";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Take profile photos for your health profile";
+				INFOPLIST_KEY_NSContactsUsageDescription = "Access contacts to set up emergency contacts";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Use Face ID to securely access your health data";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Read health data for comprehensive monitoring";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Location access is required for emergency services";
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Prevenza.LifeLens;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.prevenza.LifeLens;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = iphoneos;
+				SDK_VERSION = 18.0;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				XROS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		52F8C4C72E4F5449000700FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F76F9CE99055EC918F946B0F /* Pods-LifeLens.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = LifeLens/LifeLens.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = N43BACNUAY;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LifeLens/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Lifelens;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Connect to LifeLens wearable device for health monitoring";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Take profile photos for your health profile";
+				INFOPLIST_KEY_NSContactsUsageDescription = "Access contacts to set up emergency contacts";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Use Face ID to securely access your health data";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Read health data for comprehensive monitoring";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Location access is required for emergency services";
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Prevenza.LifeLens;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.prevenza.LifeLens;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = iphoneos;
+				SDK_VERSION = 18.0;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				XROS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		52F8C4C82E4F5449000700FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		52F8C4C92E4F5449000700FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		52F8C4CB2E4F5449000700FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2A4F10E725BAEF0CDCEAEBC4 /* Pods-LifeLensTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Prevenza.ai.LifeLensTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SDK_VERSION = 18.0;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LifeLens.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/LifeLens";
+				XROS_DEPLOYMENT_TARGET = 2.5;
+			};
+			name = Debug;
+		};
+		52F8C4CC2E4F5449000700FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 810942653A732921C840B1FB /* Pods-LifeLensTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Prevenza.ai.LifeLensTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SDK_VERSION = 18.0;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LifeLens.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/LifeLens";
+				XROS_DEPLOYMENT_TARGET = 2.5;
+			};
+			name = Release;
+		};
+		52F8C4CE2E4F5449000700FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 76B1C04AC51FD8C670184914 /* Pods-LifeLensUITests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Prevenza.ai.LifeLensUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SDK_VERSION = 18.0;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_TARGET_NAME = LifeLens;
+				XROS_DEPLOYMENT_TARGET = 2.5;
+			};
+			name = Debug;
+		};
+		52F8C4CF2E4F5449000700FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E0E48B22DF5290513197C94F /* Pods-LifeLensUITests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Prevenza.ai.LifeLensUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SDK_VERSION = 18.0;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_TARGET_NAME = LifeLens;
+				XROS_DEPLOYMENT_TARGET = 2.5;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		52F8C4992E4F5443000700FB /* Build configuration list for PBXProject "LifeLens" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52F8C4C82E4F5449000700FB /* Debug */,
+				52F8C4C92E4F5449000700FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		52F8C4C52E4F5449000700FB /* Build configuration list for PBXNativeTarget "LifeLens" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52F8C4C62E4F5449000700FB /* Debug */,
+				52F8C4C72E4F5449000700FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		52F8C4CA2E4F5449000700FB /* Build configuration list for PBXNativeTarget "LifeLensTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52F8C4CB2E4F5449000700FB /* Debug */,
+				52F8C4CC2E4F5449000700FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		52F8C4CD2E4F5449000700FB /* Build configuration list for PBXNativeTarget "LifeLensUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52F8C4CE2E4F5449000700FB /* Debug */,
+				52F8C4CF2E4F5449000700FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 52F8C4962E4F5443000700FB /* Project object */;
+}

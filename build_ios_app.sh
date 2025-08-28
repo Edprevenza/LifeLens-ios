@@ -1,38 +1,77 @@
 #!/bin/bash
 
-echo "Building LifeLens iOS App with recent changes..."
-echo "=============================================="
+echo "🚀 iOS App Builder"
+echo "=================="
+echo ""
+
+cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens || exit 1
 
 # Clean build folder
-echo "Cleaning build folder..."
-rm -rf ~/Library/Developer/Xcode/DerivedData/LifeLens-*
+echo "🧹 Cleaning build artifacts..."
+rm -rf DerivedData build
 
-# Navigate to project directory
-cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
-
-# Build for generic iOS simulator device
-echo "Building for iOS Simulator..."
+# Build for iOS Simulator using the available SDK
+echo "🏗️ Building iOS app..."
 xcodebuild \
-    -project LifeLens.xcodeproj \
-    -scheme LifeLens \
-    -configuration Debug \
-    -sdk iphonesimulator \
-    -destination generic/platform=iOS\ Simulator \
-    IPHONEOS_DEPLOYMENT_TARGET=17.0 \
-    build
+  -project LifeLens.xcodeproj \
+  -scheme LifeLens \
+  -configuration Debug \
+  -sdk iphonesimulator \
+  -destination 'platform=iOS Simulator,name=iPhone 16 Pro' \
+  -derivedDataPath ./DerivedData \
+  CODE_SIGN_IDENTITY="" \
+  CODE_SIGNING_REQUIRED=NO \
+  CODE_SIGNING_ALLOWED=NO \
+  IPHONEOS_DEPLOYMENT_TARGET=18.2 \
+  build
 
 if [ $? -eq 0 ]; then
     echo ""
-    echo "✅ iOS app built successfully!"
-    echo ""
-    echo "Key changes included in this build:"
-    echo "- ✅ Unauthorized access dialog added"
-    echo "- ✅ 'Registration Required' alert for new users"
-    echo "- ✅ Clear benefits messaging"
-    echo "- ✅ Register Now and Sign In buttons"
-    echo "- ✅ Session expiry handling"
-    echo ""
-    echo "Build location: ~/Library/Developer/Xcode/DerivedData/LifeLens-*/Build/Products/Debug-iphonesimulator/"
+    echo "✅ Build succeeded!"
+    
+    # Find the app
+    APP_PATH=$(find ./DerivedData -name "LifeLens.app" -path "*iphonesimulator*" | head -1)
+    
+    if [ -n "$APP_PATH" ]; then
+        echo "📱 App built at: $APP_PATH"
+        
+        # Get the booted simulator
+        BOOTED_SIM=$(xcrun simctl list devices | grep "Booted" | grep -o "[A-F0-9-]\{36\}" | head -1)
+        
+        if [ -n "$BOOTED_SIM" ]; then
+            echo "📲 Installing to simulator $BOOTED_SIM..."
+            xcrun simctl install "$BOOTED_SIM" "$APP_PATH"
+            
+            # Get bundle ID and launch
+            BUNDLE_ID=$(defaults read "$APP_PATH/Info.plist" CFBundleIdentifier 2>/dev/null || echo "com.prevenza.LifeLens")
+            
+            echo "🚀 Launching $BUNDLE_ID..."
+            xcrun simctl launch "$BOOTED_SIM" "$BUNDLE_ID"
+            
+            echo ""
+            echo "✅ App launched successfully!"
+        else
+            echo "⚠️ No booted simulator found. Boot one with:"
+            echo "   xcrun simctl boot [device-id]"
+        fi
+    else
+        echo "⚠️ App bundle not found"
+    fi
 else
-    echo "❌ Build failed. Please check the error messages above."
+    echo ""
+    echo "❌ Build failed"
+    echo ""
+    echo "Trying without destination specification..."
+    
+    xcodebuild \
+      -project LifeLens.xcodeproj \
+      -scheme LifeLens \
+      -configuration Debug \
+      -sdk iphonesimulator \
+      -derivedDataPath ./DerivedData \
+      CODE_SIGN_IDENTITY="" \
+      CODE_SIGNING_REQUIRED=NO \
+      CODE_SIGNING_ALLOWED=NO \
+      IPHONEOS_DEPLOYMENT_TARGET=18.2 \
+      build
 fi

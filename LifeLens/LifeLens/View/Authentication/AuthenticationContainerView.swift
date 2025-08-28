@@ -3,6 +3,8 @@ import SwiftUI
 import LocalAuthentication
 struct AuthenticationContainerView: View {
     @StateObject private var authService = AuthenticationService.shared
+    @State private var showUnauthorizedDialog = false
+    @State private var hasShownUnauthorizedMessage = false
     
     var body: some View {
         Group {
@@ -13,15 +15,44 @@ struct AuthenticationContainerView: View {
                     ProfileSetupView()
                 }
             } else {
-                AuthenticationFlow()
+                AuthenticationFlow(showUnauthorizedDialog: $showUnauthorizedDialog)
+                    .onAppear {
+                        // Show unauthorized dialog when user is not authenticated
+                        if !hasShownUnauthorizedMessage {
+                            showUnauthorizedDialog = true
+                            hasShownUnauthorizedMessage = true
+                        }
+                    }
             }
         }
         .environmentObject(authService)
+        .alert("Registration Required", isPresented: $showUnauthorizedDialog) {
+            Button("Sign In") {
+                // User stays on login screen
+            }
+            Button("Register Now") {
+                // Will be handled by AuthenticationFlow
+            }
+        } message: {
+            Text("""
+                Welcome to LifeLens! You must register or sign in to access your personalized health monitoring dashboard.
+                
+                Create a free account to:
+                • Track vital health metrics
+                • Receive real-time health alerts
+                • Connect wearable devices  
+                • Get AI-powered health insights
+                • Access your health history
+                
+                Your health data is encrypted and securely stored.
+                """)
+        }
     }
 }
 
 struct AuthenticationFlow: View {
     @State private var showingLogin = true
+    @Binding var showUnauthorizedDialog: Bool
     
     var body: some View {
         NavigationView {
@@ -29,6 +60,12 @@ struct AuthenticationFlow: View {
                 LoginView(showingLogin: $showingLogin)
             } else {
                 RegistrationView(showingLogin: $showingLogin)
+            }
+        }
+        .onChange(of: showUnauthorizedDialog) { newValue in
+            // If user chose "Register Now" in the dialog, switch to registration
+            if !newValue && !showingLogin {
+                showingLogin = false
             }
         }
     }
@@ -60,7 +97,8 @@ struct LoginView: View {
                     
                     Text("Sign in to continue monitoring your health")
                         .font(.body)
-                        .foregroundColor(.secondary)
+                        
+            .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)
                 }
                 .padding(.top, 40)
@@ -92,7 +130,8 @@ struct LoginView: View {
                         Button(action: { rememberMe.toggle() }) {
                             HStack {
                                 Image(systemName: rememberMe ? "checkmark.square.fill" : "square")
-                                    .foregroundColor(rememberMe ? .blue : .gray)
+                                    
+            .foregroundColor(rememberMe ? .blue : .gray)
                                 Text("Remember me")
                                     .font(.caption)
                             }
@@ -104,7 +143,8 @@ struct LoginView: View {
                             showingPasswordReset = true
                         }
                         .font(.caption)
-                        .foregroundColor(.blue)
+                        
+            .foregroundColor(.blue)
                     }
                 }
                 .padding(.horizontal)
@@ -127,7 +167,8 @@ struct LoginView: View {
                         .frame(maxWidth: .infinity)
                         .frame(height: 50)
                         .background(Color.blue)
-                        .foregroundColor(.white)
+                        
+            .foregroundColor(.white)
                         .cornerRadius(10)
                     }
                     .disabled(email.isEmpty || password.isEmpty || authService.isLoading)
@@ -145,7 +186,8 @@ struct LoginView: View {
                             .frame(maxWidth: .infinity)
                             .frame(height: 50)
                             .background(Color.gray.opacity(0.1))
-                            .foregroundColor(.primary)
+                            
+            .foregroundColor(.primary)
                             .cornerRadius(10)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 10)
@@ -159,7 +201,8 @@ struct LoginView: View {
                 // Error Message
                 if let error = authService.authError {
                     Text(error.localizedDescription)
-                        .foregroundColor(.red)
+                        
+            .foregroundColor(.red)
                         .font(.caption)
                         .padding(.horizontal)
                 }
@@ -167,11 +210,13 @@ struct LoginView: View {
                 // Sign Up Link
                 HStack {
                     Text("Don't have an account?")
-                        .foregroundColor(.secondary)
+                        
+            .foregroundColor(.secondary)
                     Button("Sign Up") {
                         showingLogin = false
                     }
-                    .foregroundColor(.blue)
+                    
+            .foregroundColor(.blue)
                     .fontWeight(.semibold)
                 }
                 .padding(.bottom, 40)
@@ -214,7 +259,8 @@ struct RegistrationView: View {
                     
                     Text("Start your health monitoring journey")
                         .font(.body)
-                        .foregroundColor(.secondary)
+                        
+            .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)
                 }
                 .padding(.top, 20)
@@ -256,7 +302,8 @@ struct RegistrationView: View {
                         
                         Text("At least 8 characters with uppercase, lowercase, and number")
                             .font(.caption)
-                            .foregroundColor(.secondary)
+                            
+            .foregroundColor(.secondary)
                     }
                     
                     VStack(alignment: .leading, spacing: 8) {
@@ -270,10 +317,12 @@ struct RegistrationView: View {
                     Button(action: { acceptTerms.toggle() }) {
                         HStack {
                             Image(systemName: acceptTerms ? "checkmark.square.fill" : "square")
-                                .foregroundColor(acceptTerms ? .blue : .gray)
+                                
+            .foregroundColor(acceptTerms ? .blue : .gray)
                             Text("I agree to the Terms of Service and Privacy Policy")
                                 .font(.caption)
-                                .foregroundColor(.primary)
+                                
+            .foregroundColor(.primary)
                             Spacer()
                         }
                     }
@@ -302,7 +351,8 @@ struct RegistrationView: View {
                     .frame(maxWidth: .infinity)
                     .frame(height: 50)
                     .background(Color.blue)
-                    .foregroundColor(.white)
+                    
+            .foregroundColor(.white)
                     .cornerRadius(10)
                 }
                 .disabled(!isFormValid || authService.isLoading)
@@ -311,7 +361,8 @@ struct RegistrationView: View {
                 // Error Message
                 if let error = authService.authError {
                     Text(error.localizedDescription)
-                        .foregroundColor(.red)
+                        
+            .foregroundColor(.red)
                         .font(.caption)
                         .padding(.horizontal)
                 }
@@ -319,11 +370,13 @@ struct RegistrationView: View {
                 // Sign In Link
                 HStack {
                     Text("Already have an account?")
-                        .foregroundColor(.secondary)
+                        
+            .foregroundColor(.secondary)
                     Button("Sign In") {
                         showingLogin = true
                     }
-                    .foregroundColor(.blue)
+                    
+            .foregroundColor(.blue)
                     .fontWeight(.semibold)
                 }
                 .padding(.bottom, 40)
@@ -359,7 +412,8 @@ struct PasswordResetView: View {
                 VStack(spacing: 16) {
                     Image(systemName: "lock.rotation")
                         .font(.system(size: 60))
-                        .foregroundColor(.blue)
+                        
+            .foregroundColor(.blue)
                     
                     Text("Reset Password")
                         .font(.title)
@@ -367,7 +421,8 @@ struct PasswordResetView: View {
                     
                     Text("Enter your email address and we'll send you instructions to reset your password")
                         .font(.body)
-                        .foregroundColor(.secondary)
+                        
+            .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)
                 }
                 .padding(.top, 40)
@@ -405,7 +460,8 @@ struct PasswordResetView: View {
                     .frame(maxWidth: .infinity)
                     .frame(height: 50)
                     .background(Color.blue)
-                    .foregroundColor(.white)
+                    
+            .foregroundColor(.white)
                     .cornerRadius(10)
                 }
                 .disabled(email.isEmpty || isLoading)

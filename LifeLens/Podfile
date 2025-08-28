@@ -1,0 +1,40 @@
+platform :ios, '16.0'
+use_frameworks!
+
+target 'LifeLens' do
+  # Core Dependencies Only
+  
+  # Networking
+  pod 'Alamofire', '~> 5.8.0'
+  
+  # UI Components
+  pod 'SnapKit', '~> 5.6.0'
+  pod 'Charts', '~> 4.1.0'
+  
+  # Data Storage
+  pod 'KeychainAccess', '~> 4.2.2'
+  
+  # Note: Combine is built-in to iOS 13+, no pod needed
+  
+  # Testing
+  target 'LifeLensTests' do
+    inherit! :search_paths
+  end
+  
+  target 'LifeLensUITests' do
+    inherit! :search_paths
+  end
+  
+  # Post install script
+  post_install do |installer|
+    installer.pods_project.targets.each do |target|
+      target.build_configurations.each do |config|
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '16.0'
+        config.build_settings['ENABLE_BITCODE'] = 'NO'
+        config.build_settings['BUILD_LIBRARY_FOR_DISTRIBUTION'] = 'YES'
+        config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
+        config.build_settings['ONLY_ACTIVE_ARCH'] = 'YES'
+      end
+    end
+  end
+end

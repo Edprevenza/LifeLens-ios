@@ -1,0 +1,771 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project LifeLens.xcodeproj -scheme LifeLens -destination "platform=iOS Simulator,OS=18.6,name=iPhone 16 Pro" build
+
+ComputePackagePrebuildTargetDependencyGraph
+
+Prepare packages
+
+CreateBuildRequest
+
+SendProjectDescription
+
+CreateBuildOperation
+
+ComputeTargetDependencyGraph
+note: Building targets in dependency order
+note: Target dependency graph (1 target)
+    Target 'LifeLens' in project 'LifeLens' (no dependencies)
+
+GatherProvisioningInputs
+
+CreateBuildDescription
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk -x c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/usr/bin/momc --dry-run --action generate --swift-version 5.0 --sdkroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk --iphonesimulator-deployment-target 18.5 --module LifeLens /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/LifeLens.xcdatamodeld /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/DerivedSources/CoreDataGenerated/LifeLens
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/usr/bin/actool --print-asset-tag-combinations --output-format xml1 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Assets.xcassets
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/usr/bin/actool --version --output-format xml1
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc --version
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld -version_details
+
+Build description signature: e7f612699d34e145c3d1efec0d3fbd50
+Build description path: /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/XCBuildData/e7f612699d34e145c3d1efec0d3fbd50.xcbuilddata
+ClangStatCache /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk /Users/basorge/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator18.5-22F76-d5fc8ad4295d2ef488fb7d0f804ce0c4.sdkstatcache
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens.xcodeproj
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk -o /Users/basorge/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator18.5-22F76-d5fc8ad4295d2ef488fb7d0f804ce0c4.sdkstatcache
+
+CreateBuildDirectory /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Products
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens.xcodeproj
+    builtin-create-build-directory /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Products
+
+CreateBuildDirectory /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens.xcodeproj
+    builtin-create-build-directory /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex
+
+CreateBuildDirectory /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Products/Debug-iphonesimulator
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens.xcodeproj
+    builtin-create-build-directory /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Products/Debug-iphonesimulator
+
+CreateBuildDirectory /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens.xcodeproj
+    builtin-create-build-directory /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator
+
+WriteAuxiliaryFile /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens-453f71592b13b349ec42fd930537b3d4-VFS-iphonesimulator/all-product-headers.yaml
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens.xcodeproj
+    write-file /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens-453f71592b13b349ec42fd930537b3d4-VFS-iphonesimulator/all-product-headers.yaml
+
+WriteAuxiliaryFile /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/LifeLens.DependencyStaticMetadataFileList (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    write-file /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/LifeLens.DependencyStaticMetadataFileList
+
+WriteAuxiliaryFile /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/LifeLens-project-headers.hmap (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    write-file /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/LifeLens-project-headers.hmap
+
+WriteAuxiliaryFile /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/LifeLens-all-target-headers.hmap (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    write-file /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/LifeLens-all-target-headers.hmap
+
+WriteAuxiliaryFile /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/LifeLens-generated-files.hmap (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    write-file /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/LifeLens-generated-files.hmap
+
+WriteAuxiliaryFile /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/LifeLens-own-target-headers.hmap (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    write-file /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/LifeLens-own-target-headers.hmap
+
+WriteAuxiliaryFile /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/LifeLens.hmap (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    write-file /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/LifeLens.hmap
+
+WriteAuxiliaryFile /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/Objects-normal/x86_64/LifeLens-OutputFileMap.json (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    write-file /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/Objects-normal/x86_64/LifeLens-OutputFileMap.json
+
+WriteAuxiliaryFile /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/Objects-normal/x86_64/LifeLens.LinkFileList (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    write-file /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/Objects-normal/x86_64/LifeLens.LinkFileList
+
+WriteAuxiliaryFile /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/Objects-normal/x86_64/LifeLens_const_extract_protocols.json (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    write-file /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/Objects-normal/x86_64/LifeLens_const_extract_protocols.json
+
+WriteAuxiliaryFile /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/Objects-normal/x86_64/LifeLens.SwiftConstValuesFileList (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    write-file /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/Objects-normal/x86_64/LifeLens.SwiftConstValuesFileList
+
+WriteAuxiliaryFile /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/Objects-normal/x86_64/LifeLens.SwiftFileList (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    write-file /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/Objects-normal/x86_64/LifeLens.SwiftFileList
+
+WriteAuxiliaryFile /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/LifeLens.DependencyMetadataFileList (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    write-file /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/LifeLens.DependencyMetadataFileList
+
+WriteAuxiliaryFile /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/LifeLens-all-non-framework-target-headers.hmap (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    write-file /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/LifeLens-all-non-framework-target-headers.hmap
+
+WriteAuxiliaryFile /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/LifeLens-DebugDylibPath-normal-x86_64.txt (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    write-file /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/LifeLens-DebugDylibPath-normal-x86_64.txt
+
+WriteAuxiliaryFile /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/LifeLens-DebugDylibInstallName-normal-x86_64.txt (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    write-file /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/LifeLens-DebugDylibInstallName-normal-x86_64.txt
+
+MkDir /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Products/Debug-iphonesimulator/LifeLens.app (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    /bin/mkdir -p /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Products/Debug-iphonesimulator/LifeLens.app
+
+WriteAuxiliaryFile /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/DerivedSources/Entitlements-Simulated.plist (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    write-file /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/DerivedSources/Entitlements-Simulated.plist
+
+ProcessProductPackaging /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/LifeLens.entitlements /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/LifeLens.app.xcent (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+    Entitlements:
+    
+    {
+}
+    
+    builtin-productPackagingUtility /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/LifeLens.entitlements -entitlements -format xml -o /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/LifeLens.app.xcent
+
+ProcessProductPackaging /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/LifeLens.entitlements /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/LifeLens.app-Simulated.xcent (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+    Entitlements:
+    
+    {
+    "application-identifier" = "N43BACNUAY.com.Prevenza.LifeLens";
+}
+    
+    builtin-productPackagingUtility /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/LifeLens.entitlements -entitlements -format xml -o /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/LifeLens.app-Simulated.xcent
+
+ProcessProductPackagingDER /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/LifeLens.app.xcent /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/LifeLens.app.xcent.der (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    /usr/bin/derq query -f xml -i /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/LifeLens.app.xcent -o /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/LifeLens.app.xcent.der --raw
+
+ProcessProductPackagingDER /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/LifeLens.app-Simulated.xcent /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/LifeLens.app-Simulated.xcent.der (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    /usr/bin/derq query -f xml -i /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/LifeLens.app-Simulated.xcent -o /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/LifeLens.app-Simulated.xcent.der --raw
+
+DataModelCompile /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Products/Debug-iphonesimulator/LifeLens.app/ /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/LifeLens.xcdatamodeld (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    /Applications/Xcode.app/Contents/Developer/usr/bin/momc --sdkroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk --iphonesimulator-deployment-target 18.5 --module LifeLens /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/LifeLens.xcdatamodeld /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Products/Debug-iphonesimulator/LifeLens.app/
+LifeLens.xcdatamodel: note: Model LifeLens version checksum: VNIRJOjhqmU35OF02buOyYQnU/0ToUzUMpGW5jvR3Ic=
+
+Ld /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Products/Debug-iphonesimulator/LifeLens.app/__preview.dylib normal (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target x86_64-apple-ios18.5-simulator -dynamiclib -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk -O0 -L/Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Products/Debug-iphonesimulator -F/Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Products/Debug-iphonesimulator -install_name @rpath/LifeLens.debug.dylib -dead_strip -rdynamic -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -Xlinker -dependency_info -Xlinker /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/Objects-normal/x86_64/LifeLens_dependency_info.dat -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __entitlements -Xlinker /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/LifeLens.app-Simulated.xcent -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __ents_der -Xlinker /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/LifeLens.app-Simulated.xcent.der -Xlinker -no_adhoc_codesign -o /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Products/Debug-iphonesimulator/LifeLens.app/__preview.dylib
+
+MkDir /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/assetcatalog_output/thinned (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    /bin/mkdir -p /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/assetcatalog_output/thinned
+
+MkDir /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/assetcatalog_output/unthinned (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    /bin/mkdir -p /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/assetcatalog_output/unthinned
+
+GenerateAssetSymbols /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Assets.xcassets (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    /Applications/Xcode.app/Contents/Developer/usr/bin/actool /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Assets.xcassets --compile /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Products/Debug-iphonesimulator/LifeLens.app --output-format human-readable-text --notices --warnings --export-dependency-info /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/assetcatalog_dependencies --output-partial-info-plist /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/assetcatalog_generated_info.plist --app-icon AppIcon --accent-color AccentColor --compress-pngs --enable-on-demand-resources YES --development-region en --target-device iphone --target-device ipad --minimum-deployment-target 18.5 --platform iphonesimulator --bundle-identifier com.Prevenza.LifeLens --generate-swift-asset-symbols /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/DerivedSources/GeneratedAssetSymbols.swift --generate-objc-asset-symbols /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/DerivedSources/GeneratedAssetSymbols.h --generate-asset-symbol-index /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/DerivedSources/GeneratedAssetSymbols-Index.plist
+/* com.apple.actool.compilation-results */
+/Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/DerivedSources/GeneratedAssetSymbols-Index.plist
+/Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/DerivedSources/GeneratedAssetSymbols.h
+/Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/DerivedSources/GeneratedAssetSymbols.swift
+
+
+CpResource /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Products/Debug-iphonesimulator/LifeLens.app/create_coreml_models.py /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/Models/create_coreml_models.py (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/Models/create_coreml_models.py /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Products/Debug-iphonesimulator/LifeLens.app
+
+CpResource /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Products/Debug-iphonesimulator/LifeLens.app/OfflineHealthStorage.swift.backup /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/OfflineHealthStorage.swift.backup (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/OfflineHealthStorage.swift.backup /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Products/Debug-iphonesimulator/LifeLens.app
+
+DataModelCodegen /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/LifeLens.xcdatamodeld (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    /Applications/Xcode.app/Contents/Developer/usr/bin/momc --action generate --swift-version 5.0 --sdkroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk --iphonesimulator-deployment-target 18.5 --module LifeLens /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/LifeLens.xcdatamodeld /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/DerivedSources/CoreDataGenerated/LifeLens
+
+CompileAssetCatalogVariant thinned /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Products/Debug-iphonesimulator/LifeLens.app /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Assets.xcassets (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    /Applications/Xcode.app/Contents/Developer/usr/bin/actool /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Assets.xcassets --compile /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/assetcatalog_output/thinned --output-format human-readable-text --notices --warnings --export-dependency-info /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/assetcatalog_dependencies_thinned --output-partial-info-plist /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/assetcatalog_generated_info.plist_thinned --app-icon AppIcon --accent-color AccentColor --compress-pngs --enable-on-demand-resources YES --filter-for-thinning-device-configuration iPhone17,1 --filter-for-device-os-version 18.6 --development-region en --target-device iphone --target-device ipad --minimum-deployment-target 18.5 --platform iphonesimulator
+/* com.apple.actool.compilation-results */
+/Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/assetcatalog_generated_info.plist_thinned
+
+
+SwiftDriver LifeLens normal x86_64 com.apple.xcode.tools.swift.compiler (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    builtin-SwiftDriver -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name LifeLens -Onone -enforce-exclusivity\=checked @/Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/Objects-normal/x86_64/LifeLens.SwiftFileList -DDEBUG -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk -target x86_64-apple-ios18.5-simulator -g -module-cache-path /Users/basorge/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Index.noindex/DataStore -swift-version 5 -I /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Products/Debug-iphonesimulator -F /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Products/Debug-iphonesimulator -emit-localized-strings -emit-localized-strings-path /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/Objects-normal/x86_64 -c -j12 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/basorge/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator18.5-22F76-d5fc8ad4295d2ef488fb7d0f804ce0c4.sdkstatcache -output-file-map /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/Objects-normal/x86_64/LifeLens-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/Objects-normal/x86_64/LifeLens.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/basorge/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/Objects-normal/x86_64/LifeLens_const_extract_protocols.json -Xcc -iquote -Xcc /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/LifeLens-generated-files.hmap -Xcc -I/Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/LifeLens-own-target-headers.hmap -Xcc -I/Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/LifeLens-all-target-headers.hmap -Xcc -iquote -Xcc /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/LifeLens-project-headers.hmap -Xcc -I/Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/DerivedSources-normal/x86_64 -Xcc -I/Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/DerivedSources/x86_64 -Xcc -I/Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/Objects-normal/x86_64/LifeLens-Swift.h -working-directory /Users/basorge/Desktop/LifeLens/Ios/LifeLens -experimental-emit-module-separately -disable-cmo
+
+SwiftCompile normal x86_64 Compiling\ ModernUIComponents.swift,\ EdgeAIOptimization.swift,\ EnhancedProfileView.swift,\ PrivacyManager.swift,\ ModernAuthenticationViews.swift,\ FHIRIntegration.swift,\ Persistence.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/ModernUIComponents.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/EdgeAIOptimization.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/EnhancedProfileView.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Utilities/PrivacyManager.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/ModernAuthenticationViews.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Integration/FHIRIntegration.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Persistence.swift (in target 'LifeLens' from project 'LifeLens')
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/ModernUIComponents.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/EdgeAIOptimization.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/EnhancedProfileView.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Utilities/PrivacyManager.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/ModernAuthenticationViews.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Integration/FHIRIntegration.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Persistence.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 Compiling\ LocalPatternDetection.swift,\ SharedTypes.swift,\ MLHealthCoordinator.swift,\ BluetoothManager.swift,\ ClinicalValidation.swift,\ ECGMonitorView.swift,\ LaunchScreenView.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/LocalPatternDetection.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/models/SharedTypes.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/MLHealthCoordinator.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Managers/BluetoothManager.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Validation/ClinicalValidation.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/ECGMonitorView.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/LaunchScreenView.swift (in target 'LifeLens' from project 'LifeLens')
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/LocalPatternDetection.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/models/SharedTypes.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+/Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/models/SharedTypes.swift:271:16: warning: immutable property will not be decoded because it is declared with an initial value which cannot be overwritten
+    public let id = UUID()
+               ^
+/Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/models/SharedTypes.swift:271:16: note: set the initial value via the initializer or explicitly define a CodingKeys enum including a 'id' case to silence this warning
+    public let id = UUID()
+               ^
+/Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/models/SharedTypes.swift:271:16: note: make the property mutable instead
+    public let id = UUID()
+           ~~~ ^
+           var
+/Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/models/SharedTypes.swift:293:16: warning: immutable property will not be decoded because it is declared with an initial value which cannot be overwritten
+    public let id = UUID()
+               ^
+/Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/models/SharedTypes.swift:293:16: note: set the initial value via the initializer or explicitly define a CodingKeys enum including a 'id' case to silence this warning
+    public let id = UUID()
+               ^
+/Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/models/SharedTypes.swift:293:16: note: make the property mutable instead
+    public let id = UUID()
+           ~~~ ^
+           var
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/MLHealthCoordinator.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Managers/BluetoothManager.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Validation/ClinicalValidation.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/ECGMonitorView.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/LaunchScreenView.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 Compiling\ ContentView.swift,\ HealthDashboardView.swift,\ HealthKitManager.swift,\ MLHealthService.swift,\ LifeLensLogo.swift,\ AuthenticationContainerView.swift,\ EmergencyResponseSystem.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ContentView.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/HealthDashboardView.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Services/HealthKitManager.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/MLHealthService.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Components/LifeLensLogo.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/View/Authentication/AuthenticationContainerView.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Emergency/EmergencyResponseSystem.swift (in target 'LifeLens' from project 'LifeLens')
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ContentView.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/HealthDashboardView.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Services/HealthKitManager.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+/Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Services/HealthKitManager.swift:284:9: warning: switch must be exhaustive
+        switch classification {
+        ^
+/Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Services/HealthKitManager.swift:284:9: note: add missing case: '.inconclusivePoorReading'
+        switch classification {
+        ^
+/Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Services/HealthKitManager.swift:284:9: note: add missing case: '.unrecognized'
+        switch classification {
+        ^
+/Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Services/HealthKitManager.swift:284:9: note: add missing cases
+        switch classification {
+        ^
+/Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Services/HealthKitManager.swift:328:9: warning: switch must be exhaustive
+        switch classification {
+        ^
+/Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Services/HealthKitManager.swift:328:9: note: add missing case: '.unrecognized'
+        switch classification {
+        ^
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/MLHealthService.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+/Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/MLHealthService.swift:339:17: warning: default will never be executed
+                default:
+                ^
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Components/LifeLensLogo.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/View/Authentication/AuthenticationContainerView.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Emergency/EmergencyResponseSystem.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+/Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Emergency/EmergencyResponseSystem.swift:333:15: warning: 'catch' block is unreachable because no errors are thrown in 'do' block
+            } catch {
+              ^
+/Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Emergency/EmergencyResponseSystem.swift:450:45: warning: 'regionCode' was deprecated in iOS 16: renamed to 'region.identifier'
+        if let countryCode = Locale.current.regionCode {
+                                            ^
+/Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Emergency/EmergencyResponseSystem.swift:450:45: note: use 'region.identifier' instead
+        if let countryCode = Locale.current.regionCode {
+                                            ^~~~~~~~~~
+                                            region.identifier
+/Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Emergency/EmergencyResponseSystem.swift:463:38: warning: 'serviceSubscriberCellularProviders' was deprecated in iOS 16.0: Deprecated with no replacement
+        if let carrier = networkInfo.serviceSubscriberCellularProviders?.values.first {
+                                     ^
+/Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Emergency/EmergencyResponseSystem.swift:464:28: warning: 'isoCountryCode' was deprecated in iOS 16.0: Deprecated; returns '--' at some point in the future
+            return carrier.isoCountryCode?.uppercased()
+                           ^
+/Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Emergency/EmergencyResponseSystem.swift:543:30: warning: capture of 'self' with non-sendable type 'EmergencyResponseSystem?' in a '@Sendable' closure
+            guard let self = self else { return }
+                             ^
+/Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Emergency/EmergencyResponseSystem.swift:22:7: note: class 'EmergencyResponseSystem' does not conform to the 'Sendable' protocol
+class EmergencyResponseSystem: NSObject, ObservableObject {
+      ^
+/Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Emergency/EmergencyResponseSystem.swift:637:24: warning: consider using asynchronous alternative function
+        callController.request(transaction) { error in
+                       ^
+CallKit.CXCallController.request:2:11: note: 'request' declared here
+open func request(_ transaction: CXTransaction) async throws}
+          ^
+
+SwiftCompile normal x86_64 Compiling\ ProductionConfig.swift,\ AuthenticationModels.swift,\ EdgeMLModels.swift,\ BiometricAuthenticationManager.swift,\ ErrorHandler.swift,\ OfflineHealthStorage.swift,\ DevicesView.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ProductionConfig.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/models/AuthenticationModels.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/EdgeMLModels.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Utilities/BiometricAuthenticationManager.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Utilities/ErrorHandler.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/OfflineHealthStorage.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/View/DevicesView.swift (in target 'LifeLens' from project 'LifeLens')
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ProductionConfig.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/models/AuthenticationModels.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/EdgeMLModels.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Utilities/BiometricAuthenticationManager.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Utilities/ErrorHandler.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/OfflineHealthStorage.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+/Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/OfflineHealthStorage.swift:30:13: warning: capture of 'self' with non-sendable type 'OfflineHealthStorage' in a '@Sendable' closure
+            self.pendingSyncData.append(data)
+            ^
+/Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/OfflineHealthStorage.swift:8:7: note: class 'OfflineHealthStorage' does not conform to the 'Sendable' protocol
+class OfflineHealthStorage {
+      ^
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/View/DevicesView.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 Compiling\ PredictiveHealthAnalytics_iOS.swift,\ ModernAdditionalViews.swift,\ CloudStreamingService.swift,\ MainTabView.swift,\ KeychainService.swift,\ AppLogger.swift,\ MockLifeLensDevice.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/PredictiveHealthAnalytics_iOS.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/ModernAdditionalViews.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Cloud/CloudStreamingService.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/View/MainTabView.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Services/KeychainService.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Utilities/AppLogger.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Simulator/MockLifeLensDevice.swift (in target 'LifeLens' from project 'LifeLens')
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/PredictiveHealthAnalytics_iOS.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/ModernAdditionalViews.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Cloud/CloudStreamingService.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+/Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Cloud/CloudStreamingService.swift:476:35: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+                        queueLock.lock()
+                                  ^
+Foundation.NSLock.lock:2:11: note: 'lock()' declared here
+open func lock()}
+          ^
+/Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Cloud/CloudStreamingService.swift:479:35: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+                        queueLock.unlock()
+                                  ^
+Foundation.NSLock.unlock:2:11: note: 'unlock()' declared here
+open func unlock()}
+          ^
+/Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Cloud/CloudStreamingService.swift:561:13: warning: 'SecTrustEvaluate' was deprecated in iOS 13.0: renamed to 'SecTrustEvaluateWithError(_:_:)'
+            SecTrustEvaluate(serverTrust, &secResult)
+            ^
+/Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Cloud/CloudStreamingService.swift:561:13: note: use 'SecTrustEvaluateWithError(_:_:)' instead
+            SecTrustEvaluate(serverTrust, &secResult)
+            ^~~~~~~~~~~~~~~~
+            SecTrustEvaluateWithError
+/Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Cloud/CloudStreamingService.swift:569:37: warning: 'SecTrustGetCertificateAtIndex' was deprecated in iOS 15.0: renamed to 'SecTrustCopyCertificateChain(_:)'
+            guard let certificate = SecTrustGetCertificateAtIndex(serverTrust, 0) else {
+                                    ^
+/Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Cloud/CloudStreamingService.swift:569:37: note: use 'SecTrustCopyCertificateChain(_:)' instead
+            guard let certificate = SecTrustGetCertificateAtIndex(serverTrust, 0) else {
+                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                    SecTrustCopyCertificateChain
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/View/MainTabView.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Services/KeychainService.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Utilities/AppLogger.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Simulator/MockLifeLensDevice.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 Compiling\ APIService.swift,\ Configuration.swift,\ HealthDataManager.swift,\ ProgressiveDataService.swift,\ NLPHealthAssistant.swift,\ PerformanceMonitor.swift,\ HealthAlertsView.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Services/APIService.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Configuration.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Managers/HealthDataManager.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Services/ProgressiveDataService.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/NLPHealthAssistant.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Utilities/PerformanceMonitor.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/HealthAlertsView.swift (in target 'LifeLens' from project 'LifeLens')
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Services/APIService.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Configuration.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Managers/HealthDataManager.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Services/ProgressiveDataService.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+/Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Services/ProgressiveDataService.swift:121:9: warning: result of call to 'loadCachedData()' is unused
+        loadCachedData()
+        ^             ~~
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/NLPHealthAssistant.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Utilities/PerformanceMonitor.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/HealthAlertsView.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 Compiling\ LifeLensApp.swift,\ ContinuousMonitoringEngine.swift,\ ProfileMenuViews.swift,\ ECGWaveformView_Refactored.swift,\ ModernDevicesView.swift,\ ProfileSetupView.swift,\ BLEModels.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/LifeLensApp.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/ContinuousMonitoringEngine.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/ProfileMenuViews.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/ECGWaveformView_Refactored.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/ModernDevicesView.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/View/ProfileSetupView.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/models/BLEModels.swift (in target 'LifeLens' from project 'LifeLens')
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/LifeLensApp.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/ContinuousMonitoringEngine.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+/Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/ContinuousMonitoringEngine.swift:228:21: warning: capture of 'self' with non-sendable type 'ContinuousMonitoringEngine' in a '@Sendable' closure
+                    self.processingLatency = latency
+                    ^
+/Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/ContinuousMonitoringEngine.swift:16:7: note: class 'ContinuousMonitoringEngine' does not conform to the 'Sendable' protocol
+class ContinuousMonitoringEngine: ObservableObject {
+      ^
+/Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/ContinuousMonitoringEngine.swift:435:19: warning: value 'decompressed' was defined but never used; consider replacing with boolean test
+        guard let decompressed = compressedData.decompressed(using: .zlib) else {
+              ~~~~^~~~~~~~~~~~~~~
+                                                                           != nil
+/Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/ContinuousMonitoringEngine.swift:454:13: warning: initialization of immutable value 'payload' was never used; consider replacing with assignment to '_' or removing it
+        let payload = ContinuousStreamPayload(
+        ~~~~^~~~~~~
+        _
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/ProfileMenuViews.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/ECGWaveformView_Refactored.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/ModernDevicesView.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/View/ProfileSetupView.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/models/BLEModels.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 Compiling\ ECGViewModel.swift,\ MainAppView.swift,\ BLEDeviceManager.swift,\ PersonalInformationView.swift,\ LocationManager.swift,\ APIConfiguration.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ViewModels/ECGViewModel.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/MainAppView.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Bluetooth/BLEDeviceManager.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/View/PersonalInformationView.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Managers/LocationManager.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Utilities/APIConfiguration.swift (in target 'LifeLens' from project 'LifeLens')
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ViewModels/ECGViewModel.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/MainAppView.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+/Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/MainAppView.swift:48:10: warning: 'onChange(of:perform:)' was deprecated in iOS 17.0: Use `onChange` with a two or zero parameter action closure instead.
+        .onChange(of: authService.isAuthenticated) { isAuthenticated in
+         ^
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Bluetooth/BLEDeviceManager.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/View/PersonalInformationView.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Managers/LocationManager.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Utilities/APIConfiguration.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 Compiling\ UserProfile.swift,\ PasswordValidator.swift,\ ComputerVisionHealth.swift,\ DataSyncManager.swift,\ GlobalCompliance.swift,\ SensorReadingsView.swift,\ RealTimeAnomalyDetection.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/models/UserProfile.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Utilities/PasswordValidator.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/ComputerVisionHealth.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Sync/DataSyncManager.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Validation/GlobalCompliance.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/SensorReadingsView.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/RealTimeAnomalyDetection.swift (in target 'LifeLens' from project 'LifeLens')
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/models/UserProfile.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Utilities/PasswordValidator.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/ComputerVisionHealth.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Sync/DataSyncManager.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Validation/GlobalCompliance.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/SensorReadingsView.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/RealTimeAnomalyDetection.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 Compiling\ HealthDataSyncService.swift,\ HealthChartView.swift,\ Item+CoreDataClass.swift,\ Item+CoreDataProperties.swift,\ LifeLens+CoreDataModel.swift,\ GeneratedAssetSymbols.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Services/HealthDataSyncService.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/Charts/HealthChartView.swift /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/DerivedSources/CoreDataGenerated/LifeLens/Item+CoreDataClass.swift /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/DerivedSources/CoreDataGenerated/LifeLens/Item+CoreDataProperties.swift /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/DerivedSources/CoreDataGenerated/LifeLens/LifeLens+CoreDataModel.swift /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/DerivedSources/GeneratedAssetSymbols.swift (in target 'LifeLens' from project 'LifeLens')
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Services/HealthDataSyncService.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/Charts/HealthChartView.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/DerivedSources/CoreDataGenerated/LifeLens/Item+CoreDataClass.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/DerivedSources/CoreDataGenerated/LifeLens/Item+CoreDataProperties.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/DerivedSources/CoreDataGenerated/LifeLens/LifeLens+CoreDataModel.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/DerivedSources/GeneratedAssetSymbols.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 Compiling\ MockDataService.swift,\ ResponsiveLayout.swift,\ CoreMLEdgeModels.swift,\ ProfileView.swift,\ AuthenticationService.swift,\ ModernInsightsView.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Services/MockDataService.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Utilities/ResponsiveLayout.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/CoreMLEdgeModels.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/ProfileView.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Services/AuthenticationService.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/ModernInsightsView.swift (in target 'LifeLens' from project 'LifeLens')
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Services/MockDataService.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Utilities/ResponsiveLayout.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/CoreMLEdgeModels.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+/Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/CoreMLEdgeModels.swift:217:30: warning: no 'async' operations occur within 'await' expression
+            let output = try await processingQueue.sync {
+                             ^
+/Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/CoreMLEdgeModels.swift:293:30: warning: no 'async' operations occur within 'await' expression
+            let output = try await processingQueue.sync {
+                             ^
+/Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/CoreMLEdgeModels.swift:354:30: warning: no 'async' operations occur within 'await' expression
+            let output = try await processingQueue.sync {
+                             ^
+/Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/CoreMLEdgeModels.swift:421:30: warning: no 'async' operations occur within 'await' expression
+            let output = try await processingQueue.sync {
+                             ^
+/Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/CoreMLEdgeModels.swift:479:30: warning: no 'async' operations occur within 'await' expression
+            let output = try await processingQueue.sync {
+                             ^
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/ProfileView.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Services/AuthenticationService.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/ModernInsightsView.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftEmitModule normal x86_64 Emitting\ module\ for\ LifeLens (in target 'LifeLens' from project 'LifeLens')
+
+EmitSwiftModule normal x86_64 (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+LinkAssetCatalog /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Assets.xcassets (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    builtin-linkAssetCatalog --thinned /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/assetcatalog_output/thinned --thinned-dependencies /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/assetcatalog_dependencies_thinned --thinned-info-plist-content /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/assetcatalog_generated_info.plist_thinned --unthinned /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/assetcatalog_output/unthinned --unthinned-dependencies /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/assetcatalog_dependencies_unthinned --unthinned-info-plist-content /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/assetcatalog_generated_info.plist_unthinned --output /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Products/Debug-iphonesimulator/LifeLens.app --plist-output /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/assetcatalog_generated_info.plist
+
+SwiftDriverJobDiscovery normal x86_64 Compiling HealthDataSyncService.swift, HealthChartView.swift, Item+CoreDataClass.swift, Item+CoreDataProperties.swift, LifeLens+CoreDataModel.swift, GeneratedAssetSymbols.swift (in target 'LifeLens' from project 'LifeLens')
+
+SwiftCompile normal x86_64 Compiling\ SparklineView.swift,\ AccessibilityEnhancements.swift,\ SessionManager.swift,\ ResponsiveHealthDashboard.swift,\ SensorDataProcessor.swift,\ CloudMLResponseHandler.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/Components/SparklineView.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/AccessibilityEnhancements.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Utilities/SessionManager.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/ResponsiveHealthDashboard.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/SensorDataProcessor.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/CloudMLResponseHandler.swift (in target 'LifeLens' from project 'LifeLens')
+Failed frontend command:
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swift-frontend -frontend -c /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Services/APIService.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Configuration.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Managers/HealthDataManager.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Services/ProgressiveDataService.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/NLPHealthAssistant.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Utilities/PerformanceMonitor.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/HealthAlertsView.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/LifeLensApp.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/ContinuousMonitoringEngine.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/ProfileMenuViews.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/ECGWaveformView_Refactored.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/ModernDevicesView.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/View/ProfileSetupView.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/models/BLEModels.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/LocalPatternDetection.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/models/SharedTypes.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/MLHealthCoordinator.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Managers/BluetoothManager.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Validation/ClinicalValidation.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/ECGMonitorView.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/LaunchScreenView.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/ModernUIComponents.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/EdgeAIOptimization.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/EnhancedProfileView.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Utilities/PrivacyManager.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/ModernAuthenticationViews.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Integration/FHIRIntegration.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Persistence.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ContentView.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/HealthDashboardView.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Services/HealthKitManager.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/MLHealthService.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Components/LifeLensLogo.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/View/Authentication/AuthenticationContainerView.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Emergency/EmergencyResponseSystem.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ProductionConfig.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/models/AuthenticationModels.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/EdgeMLModels.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Utilities/BiometricAuthenticationManager.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Utilities/ErrorHandler.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/OfflineHealthStorage.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/View/DevicesView.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/PredictiveHealthAnalytics_iOS.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/ModernAdditionalViews.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Cloud/CloudStreamingService.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/View/MainTabView.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Services/KeychainService.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Utilities/AppLogger.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Simulator/MockLifeLensDevice.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/models/UserProfile.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Utilities/PasswordValidator.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/ComputerVisionHealth.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Sync/DataSyncManager.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Validation/GlobalCompliance.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/SensorReadingsView.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/RealTimeAnomalyDetection.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ViewModels/ECGViewModel.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/MainAppView.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Bluetooth/BLEDeviceManager.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/View/PersonalInformationView.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Managers/LocationManager.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Utilities/APIConfiguration.swift -primary-file /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/Components/SparklineView.swift -primary-file /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/AccessibilityEnhancements.swift -primary-file /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Utilities/SessionManager.swift -primary-file /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/ResponsiveHealthDashboard.swift -primary-file /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/SensorDataProcessor.swift -primary-file /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/CloudMLResponseHandler.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Services/MockDataService.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Utilities/ResponsiveLayout.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/CoreMLEdgeModels.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/ProfileView.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Services/AuthenticationService.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/ModernInsightsView.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Services/HealthDataSyncService.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/Charts/HealthChartView.swift /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/DerivedSources/CoreDataGenerated/LifeLens/Item+CoreDataClass.swift /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/DerivedSources/CoreDataGenerated/LifeLens/Item+CoreDataProperties.swift /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/DerivedSources/CoreDataGenerated/LifeLens/LifeLens+CoreDataModel.swift /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/DerivedSources/GeneratedAssetSymbols.swift -supplementary-output-file-map /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/Objects-normal/x86_64/supplementaryOutputs-10 -emit-localized-strings -emit-localized-strings-path /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/Objects-normal/x86_64 -target x86_64-apple-ios18.5-simulator -enable-objc-interop -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk -I /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Products/Debug-iphonesimulator -F /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Products/Debug-iphonesimulator -no-color-diagnostics -enable-testing -g -debug-info-format\=dwarf -dwarf-version\=5 -module-cache-path /Users/basorge/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -swift-version 5 -enforce-exclusivity\=checked -Onone -D DEBUG -serialize-debugging-options -const-gather-protocols-file /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/Objects-normal/x86_64/LifeLens_const_extract_protocols.json -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -empty-abi-descriptor -validate-clang-modules-once -clang-build-session-file /Users/basorge/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -working-directory -Xcc /Users/basorge/Desktop/LifeLens/Ios/LifeLens -resource-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift -enable-anonymous-context-mangled-names -file-compilation-dir /Users/basorge/Desktop/LifeLens/Ios/LifeLens -Xcc -ivfsstatcache -Xcc /Users/basorge/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator18.5-22F76-d5fc8ad4295d2ef488fb7d0f804ce0c4.sdkstatcache -Xcc -I/Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/swift-overrides.hmap -Xcc -iquote -Xcc /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/LifeLens-generated-files.hmap -Xcc -I/Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/LifeLens-own-target-headers.hmap -Xcc -I/Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/LifeLens-all-target-headers.hmap -Xcc -iquote -Xcc /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/LifeLens-project-headers.hmap -Xcc -I/Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/DerivedSources-normal/x86_64 -Xcc -I/Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/DerivedSources/x86_64 -Xcc -I/Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/DerivedSources -Xcc -DDEBUG\=1 -module-name LifeLens -frontend-parseable-output -disable-clang-spi -target-sdk-version 18.5 -target-sdk-name iphonesimulator18.5 -external-plugin-path /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/swift/host/plugins\#/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/swift-plugin-server -external-plugin-path /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/local/lib/swift/host/plugins\#/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/swift-plugin-server -in-process-plugin-server-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/libSwiftInProcPluginServer.dylib -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/local/lib/swift/host/plugins -o /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/Objects-normal/x86_64/SparklineView.o -o /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/Objects-normal/x86_64/AccessibilityEnhancements.o -o /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/Objects-normal/x86_64/SessionManager.o -o /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/Objects-normal/x86_64/ResponsiveHealthDashboard.o -o /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/Objects-normal/x86_64/SensorDataProcessor.o -o /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/Objects-normal/x86_64/CloudMLResponseHandler.o -index-unit-output-path /LifeLens.build/Debug-iphonesimulator/LifeLens.build/Objects-normal/x86_64/SparklineView.o -index-unit-output-path /LifeLens.build/Debug-iphonesimulator/LifeLens.build/Objects-normal/x86_64/AccessibilityEnhancements.o -index-unit-output-path /LifeLens.build/Debug-iphonesimulator/LifeLens.build/Objects-normal/x86_64/SessionManager.o -index-unit-output-path /LifeLens.build/Debug-iphonesimulator/LifeLens.build/Objects-normal/x86_64/ResponsiveHealthDashboard.o -index-unit-output-path /LifeLens.build/Debug-iphonesimulator/LifeLens.build/Objects-normal/x86_64/SensorDataProcessor.o -index-unit-output-path /LifeLens.build/Debug-iphonesimulator/LifeLens.build/Objects-normal/x86_64/CloudMLResponseHandler.o -index-store-path /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Index.noindex/DataStore -index-system-modules
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/Components/SparklineView.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/AccessibilityEnhancements.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Utilities/SessionManager.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+/Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Utilities/SessionManager.swift:118:9: warning: result of call to 'checkSessionValidity()' is unused
+        checkSessionValidity()
+        ^                   ~~
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/ResponsiveHealthDashboard.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+/Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/ResponsiveHealthDashboard.swift:223:9: error: the compiler is unable to type-check this expression in reasonable time; try breaking up the expression into distinct sub-expressions
+        Button(action: { showingAlerts = true }) {
+        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/SensorDataProcessor.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+
+SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/CloudMLResponseHandler.swift (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    
+/Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/CloudMLResponseHandler.swift:229:34: warning: capture of 'self' with non-sendable type 'CloudMLResponseHandler?' in a '@Sendable' closure
+                guard let self = self else {
+                                 ^
+/Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/CloudMLResponseHandler.swift:14:7: note: class 'CloudMLResponseHandler' does not conform to the 'Sendable' protocol
+class CloudMLResponseHandler: ObservableObject {
+      ^
+/Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/CloudMLResponseHandler.swift:268:19: warning: 'catch' block is unreachable because no errors are thrown in 'do' block
+                } catch {
+                  ^
+
+ProcessInfoPlistFile /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Products/Debug-iphonesimulator/LifeLens.app/Info.plist /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Info.plist (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    builtin-infoPlistUtility /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Info.plist -producttype com.apple.product-type.application -genpkginfo /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Products/Debug-iphonesimulator/LifeLens.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -additionalcontentfile /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/assetcatalog_generated_info.plist -o /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Products/Debug-iphonesimulator/LifeLens.app/Info.plist
+warning: MinimumOSVersion of '18.2' is less than the value of IPHONEOS_DEPLOYMENT_TARGET '18.5' - setting to '18.5'. (in target 'LifeLens' from project 'LifeLens')
+
+SwiftDriverJobDiscovery normal x86_64 Emitting module for LifeLens (in target 'LifeLens' from project 'LifeLens')
+
+SwiftDriver\ Compilation\ Requirements LifeLens normal x86_64 com.apple.xcode.tools.swift.compiler (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    builtin-Swift-Compilation-Requirements -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name LifeLens -Onone -enforce-exclusivity\=checked @/Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/Objects-normal/x86_64/LifeLens.SwiftFileList -DDEBUG -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk -target x86_64-apple-ios18.5-simulator -g -module-cache-path /Users/basorge/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Index.noindex/DataStore -swift-version 5 -I /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Products/Debug-iphonesimulator -F /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Products/Debug-iphonesimulator -emit-localized-strings -emit-localized-strings-path /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/Objects-normal/x86_64 -c -j12 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/basorge/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator18.5-22F76-d5fc8ad4295d2ef488fb7d0f804ce0c4.sdkstatcache -output-file-map /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/Objects-normal/x86_64/LifeLens-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/Objects-normal/x86_64/LifeLens.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/basorge/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/Objects-normal/x86_64/LifeLens_const_extract_protocols.json -Xcc -iquote -Xcc /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/LifeLens-generated-files.hmap -Xcc -I/Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/LifeLens-own-target-headers.hmap -Xcc -I/Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/LifeLens-all-target-headers.hmap -Xcc -iquote -Xcc /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/LifeLens-project-headers.hmap -Xcc -I/Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/DerivedSources-normal/x86_64 -Xcc -I/Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/DerivedSources/x86_64 -Xcc -I/Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/Objects-normal/x86_64/LifeLens-Swift.h -working-directory /Users/basorge/Desktop/LifeLens/Ios/LifeLens -experimental-emit-module-separately -disable-cmo
+
+SwiftMergeGeneratedHeaders /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/DerivedSources/LifeLens-Swift.h /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/Objects-normal/x86_64/LifeLens-Swift.h (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    builtin-swiftHeaderTool -arch x86_64 /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/Objects-normal/x86_64/LifeLens-Swift.h -o /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/DerivedSources/LifeLens-Swift.h
+
+Copy /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Products/Debug-iphonesimulator/LifeLens.swiftmodule/x86_64-apple-ios-simulator.swiftmodule /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/Objects-normal/x86_64/LifeLens.swiftmodule (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/Objects-normal/x86_64/LifeLens.swiftmodule /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Products/Debug-iphonesimulator/LifeLens.swiftmodule/x86_64-apple-ios-simulator.swiftmodule
+
+Copy /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Products/Debug-iphonesimulator/LifeLens.swiftmodule/x86_64-apple-ios-simulator.swiftdoc /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/Objects-normal/x86_64/LifeLens.swiftdoc (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/Objects-normal/x86_64/LifeLens.swiftdoc /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Products/Debug-iphonesimulator/LifeLens.swiftmodule/x86_64-apple-ios-simulator.swiftdoc
+
+Copy /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Products/Debug-iphonesimulator/LifeLens.swiftmodule/x86_64-apple-ios-simulator.abi.json /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/Objects-normal/x86_64/LifeLens.abi.json (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/Objects-normal/x86_64/LifeLens.abi.json /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Products/Debug-iphonesimulator/LifeLens.swiftmodule/x86_64-apple-ios-simulator.abi.json
+
+Copy /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Products/Debug-iphonesimulator/LifeLens.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/Objects-normal/x86_64/LifeLens.swiftsourceinfo (in target 'LifeLens' from project 'LifeLens')
+    cd /Users/basorge/Desktop/LifeLens/Ios/LifeLens
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Intermediates.noindex/LifeLens.build/Debug-iphonesimulator/LifeLens.build/Objects-normal/x86_64/LifeLens.swiftsourceinfo /Users/basorge/Library/Developer/Xcode/DerivedData/LifeLens-evdcwpkzofvdrqgalspnmengxnfm/Build/Products/Debug-iphonesimulator/LifeLens.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo
+
+SwiftDriverJobDiscovery normal x86_64 Compiling LocalPatternDetection.swift, SharedTypes.swift, MLHealthCoordinator.swift, BluetoothManager.swift, ClinicalValidation.swift, ECGMonitorView.swift, LaunchScreenView.swift (in target 'LifeLens' from project 'LifeLens')
+
+SwiftDriverJobDiscovery normal x86_64 Compiling MockDataService.swift, ResponsiveLayout.swift, CoreMLEdgeModels.swift, ProfileView.swift, AuthenticationService.swift, ModernInsightsView.swift (in target 'LifeLens' from project 'LifeLens')
+
+SwiftDriverJobDiscovery normal x86_64 Compiling ProductionConfig.swift, AuthenticationModels.swift, EdgeMLModels.swift, BiometricAuthenticationManager.swift, ErrorHandler.swift, OfflineHealthStorage.swift, DevicesView.swift (in target 'LifeLens' from project 'LifeLens')
+
+SwiftDriverJobDiscovery normal x86_64 Compiling APIService.swift, Configuration.swift, HealthDataManager.swift, ProgressiveDataService.swift, NLPHealthAssistant.swift, PerformanceMonitor.swift, HealthAlertsView.swift (in target 'LifeLens' from project 'LifeLens')
+
+SwiftDriverJobDiscovery normal x86_64 Compiling ECGViewModel.swift, MainAppView.swift, BLEDeviceManager.swift, PersonalInformationView.swift, LocationManager.swift, APIConfiguration.swift (in target 'LifeLens' from project 'LifeLens')
+
+SwiftDriverJobDiscovery normal x86_64 Compiling UserProfile.swift, PasswordValidator.swift, ComputerVisionHealth.swift, DataSyncManager.swift, GlobalCompliance.swift, SensorReadingsView.swift, RealTimeAnomalyDetection.swift (in target 'LifeLens' from project 'LifeLens')
+
+SwiftDriverJobDiscovery normal x86_64 Compiling LifeLensApp.swift, ContinuousMonitoringEngine.swift, ProfileMenuViews.swift, ECGWaveformView_Refactored.swift, ModernDevicesView.swift, ProfileSetupView.swift, BLEModels.swift (in target 'LifeLens' from project 'LifeLens')
+
+SwiftDriverJobDiscovery normal x86_64 Compiling PredictiveHealthAnalytics_iOS.swift, ModernAdditionalViews.swift, CloudStreamingService.swift, MainTabView.swift, KeychainService.swift, AppLogger.swift, MockLifeLensDevice.swift (in target 'LifeLens' from project 'LifeLens')
+
+SwiftDriverJobDiscovery normal x86_64 Compiling ContentView.swift, HealthDashboardView.swift, HealthKitManager.swift, MLHealthService.swift, LifeLensLogo.swift, AuthenticationContainerView.swift, EmergencyResponseSystem.swift (in target 'LifeLens' from project 'LifeLens')
+
+** BUILD FAILED **
+
+
+The following build commands failed:
+	SwiftCompile normal x86_64 Compiling\ SparklineView.swift,\ AccessibilityEnhancements.swift,\ SessionManager.swift,\ ResponsiveHealthDashboard.swift,\ SensorDataProcessor.swift,\ CloudMLResponseHandler.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/Components/SparklineView.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/AccessibilityEnhancements.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Utilities/SessionManager.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/ResponsiveHealthDashboard.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/SensorDataProcessor.swift /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/ML/CloudMLResponseHandler.swift (in target 'LifeLens' from project 'LifeLens')
+	SwiftCompile normal x86_64 /Users/basorge/Desktop/LifeLens/Ios/LifeLens/LifeLens/Views/ResponsiveHealthDashboard.swift (in target 'LifeLens' from project 'LifeLens')
+	Building project LifeLens with scheme LifeLens
+(3 failures)

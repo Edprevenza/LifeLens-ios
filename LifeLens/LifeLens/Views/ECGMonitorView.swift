@@ -22,11 +22,7 @@ struct ECGMonitorView: View {
             )
             
             // Main ECG Display
-            ECGWaveformView(
-                dataPoints: viewModel.ecgData,
-                isLive: viewModel.isLive,
-                gridEnabled: viewModel.showGrid
-            )
+            ECGWaveformView()
             .frame(height: isExpanded ? 300 : 200)
             .background(Color.black)
             .cornerRadius(12)
@@ -65,7 +61,8 @@ struct ECGHeader: View {
             // Heart Icon
             Image(systemName: "heart.fill")
                 .font(.system(size: 20))
-                .foregroundColor(.red)
+                
+            .foregroundColor(.red)
                 .scaleEffect(isLive ? 1.2 : 1.0)
                 .animation(
                     isLive ? Animation.easeInOut(duration: 0.5).repeatForever(autoreverses: true) : .default,
@@ -74,7 +71,8 @@ struct ECGHeader: View {
             
             Text("ECG Monitor")
                 .font(.system(size: 18, weight: .semibold))
-                .foregroundColor(.primary)
+                
+            .foregroundColor(.primary)
             
             Spacer()
             
@@ -83,21 +81,34 @@ struct ECGHeader: View {
                 HStack(spacing: 4) {
                     Text("\(heartRate)")
                         .font(.system(size: 24, weight: .bold, design: .monospaced))
-                        .foregroundColor(.green)
+                        
+            .foregroundColor(.green)
                     Text("BPM")
                         .font(.system(size: 12, weight: .medium))
-                        .foregroundColor(.gray)
+                        
+            .foregroundColor(.gray)
                 }
             }
             
             // Live Indicator
-            LiveIndicator(isLive: isLive)
+            if isLive {
+                HStack(spacing: 4) {
+                    Circle()
+                        .fill(Color.red)
+                        .frame(width: 8, height: 8)
+                    Text("LIVE")
+                        .font(.system(size: 12, weight: .bold))
+                        
+            .foregroundColor(.red)
+                }
+            }
             
             // Expand Button
             Button(action: { isExpanded.toggle() }) {
                 Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
                     .font(.system(size: 14, weight: .medium))
-                    .foregroundColor(.gray)
+                    
+            .foregroundColor(.gray)
                     .frame(width: 30, height: 30)
                     .background(Color.gray.opacity(0.1))
                     .clipShape(Circle())
@@ -109,40 +120,9 @@ struct ECGHeader: View {
 }
 
 // MARK: - Live Indicator
-struct LiveIndicator: View {
-    let isLive: Bool
-    @State private var isAnimating = false
-    
-    var body: some View {
-        HStack(spacing: 4) {
-            Circle()
-                .fill(isLive ? Color.green : Color.gray)
-                .frame(width: 8, height: 8)
-                .scaleEffect(isAnimating ? 1.2 : 1.0)
-                .animation(
-                    isLive ? Animation.easeInOut(duration: 1.0).repeatForever(autoreverses: true) : .default,
-                    value: isAnimating
-                )
-            
-            Text(isLive ? "Live" : "Paused")
-                .font(.system(size: 12, weight: .semibold))
-                .foregroundColor(isLive ? .green : .gray)
-        }
-        .padding(.horizontal, 12)
-        .padding(.vertical, 6)
-        .background(
-            Capsule()
-                .fill(isLive ? Color.green.opacity(0.15) : Color.gray.opacity(0.15))
-        )
-        .overlay(
-            Capsule()
-                .stroke(isLive ? Color.green : Color.gray, lineWidth: 1)
-        )
-        .onAppear { isAnimating = true }
-    }
-}
 
-// MARK: - ECG Waveform View
+// MARK: - ECG Waveform View - Removed (Using consolidated version)
+/* Duplicate removed - using shared components
 struct ECGWaveformView: View {
     let dataPoints: [CGFloat]
     let isLive: Bool
@@ -231,7 +211,10 @@ struct ECGWaveformView: View {
     }
 }
 
-// MARK: - ECG Grid
+*/ // End duplicate ECGWaveformView
+
+// MARK: - ECG Grid - Also removed
+/* Duplicate removed - using shared components
 struct ECGGridView: View {
     var body: some View {
         GeometryReader { geometry in
@@ -275,8 +258,10 @@ struct ECGGridView: View {
         }
     }
 }
+*/ // End duplicate ECGGridView
 
 // MARK: - ECG Waveform Path
+/* Duplicate removed
 struct ECGWaveformPath: Shape {
     let dataPoints: [CGFloat]
     let size: CGSize
@@ -321,6 +306,7 @@ struct ECGWaveformPath: Shape {
         return path
     }
 }
+*/ // End duplicate ECGWaveformPath
 
 // MARK: - ECG Controls
 struct ECGControls: View {
@@ -335,7 +321,8 @@ struct ECGControls: View {
                     systemImage: viewModel.isLive ? "pause.fill" : "play.fill"
                 )
                 .font(.system(size: 14, weight: .medium))
-                .foregroundColor(.white)
+                
+            .foregroundColor(.white)
                 .padding(.horizontal, 16)
                 .padding(.vertical, 8)
                 .background(viewModel.isLive ? Color.orange : Color.green)
@@ -357,7 +344,8 @@ struct ECGControls: View {
             } label: {
                 Label("Speed: \(viewModel.currentSpeed.label)", systemImage: "speedometer")
                     .font(.system(size: 14, weight: .medium))
-                    .foregroundColor(.primary)
+                    
+            .foregroundColor(.primary)
                     .padding(.horizontal, 12)
                     .padding(.vertical, 8)
                     .background(Color.gray.opacity(0.1))
@@ -368,7 +356,8 @@ struct ECGControls: View {
             Button(action: { viewModel.toggleGrid() }) {
                 Image(systemName: viewModel.showGrid ? "grid" : "grid.slash")
                     .font(.system(size: 14, weight: .medium))
-                    .foregroundColor(.primary)
+                    
+            .foregroundColor(.primary)
                     .frame(width: 36, height: 36)
                     .background(viewModel.showGrid ? Color.blue.opacity(0.1) : Color.gray.opacity(0.1))
                     .cornerRadius(8)
@@ -378,7 +367,8 @@ struct ECGControls: View {
             Button(action: { viewModel.exportData() }) {
                 Image(systemName: "square.and.arrow.up")
                     .font(.system(size: 14, weight: .medium))
-                    .foregroundColor(.primary)
+                    
+            .foregroundColor(.primary)
                     .frame(width: 36, height: 36)
                     .background(Color.gray.opacity(0.1))
                     .cornerRadius(8)
@@ -453,22 +443,27 @@ struct MetricItem: View {
         VStack(spacing: 4) {
             Text(label)
                 .font(.system(size: 10, weight: .medium))
-                .foregroundColor(.gray)
+                
+            .foregroundColor(.gray)
             
             HStack(spacing: 2) {
                 Text(value)
                     .font(.system(size: 18, weight: .bold, design: .monospaced))
-                    .foregroundColor(color)
+                    
+            .foregroundColor(color)
                 Text(unit)
                     .font(.system(size: 10, weight: .medium))
-                    .foregroundColor(.gray)
+                    
+            .foregroundColor(.gray)
             }
         }
     }
 }
 
-// MARK: - ECG View Model
-class ECGViewModel: ObservableObject {
+// MARK: - ECG View Model - Removed (Using consolidated ECGViewModel from ViewModels folder)
+/* Duplicate removed - using shared ECGViewModel
+// Duplicate removed
+// class ECGViewModel: ObservableObject {
     @Published var ecgData: [CGFloat] = []
     @Published var isLive = true
     @Published var showGrid = true
@@ -599,26 +594,8 @@ class ECGViewModel: ObservableObject {
     }
 }
 
-// MARK: - ECG Speed
-enum ECGSpeed: CaseIterable {
-    case slow, normal, fast
-    
-    var label: String {
-        switch self {
-        case .slow: return "0.5x"
-        case .normal: return "1x"
-        case .fast: return "2x"
-        }
-    }
-    
-    var multiplier: Double {
-        switch self {
-        case .slow: return 2.0
-        case .normal: return 1.0
-        case .fast: return 0.5
-        }
-    }
-}
+// ECGSpeed enum moved to ECGViewModel.swift
+*/ // End of duplicate ECGViewModel
 
 // MARK: - Preview
 struct ECGMonitorView_Previews: PreviewProvider {

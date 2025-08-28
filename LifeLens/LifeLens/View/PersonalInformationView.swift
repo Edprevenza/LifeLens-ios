@@ -33,24 +33,28 @@ struct PersonalInformationView: View {
                 } else {
                     HStack {
                         Text("Name")
-                            .foregroundColor(.secondary)
+                            
+            .foregroundColor(.secondary)
                         Spacer()
                         Text("\(firstName) \(lastName)")
                     }
                     
                     HStack {
                         Text("Email")
-                            .foregroundColor(.secondary)
+                            
+            .foregroundColor(.secondary)
                         Spacer()
                         Text(email)
                     }
                     
                     HStack {
                         Text("Phone")
-                            .foregroundColor(.secondary)
+                            
+            .foregroundColor(.secondary)
                         Spacer()
                         Text(phoneNumber.isEmpty ? "Not provided" : phoneNumber)
-                            .foregroundColor(phoneNumber.isEmpty ? .secondary : .primary)
+                            
+            .foregroundColor(phoneNumber.isEmpty ? .secondary : .primary)
                     }
                 }
             }
@@ -75,7 +79,8 @@ struct PersonalInformationView: View {
                             .multilineTextAlignment(.trailing)
                             .frame(width: 80)
                         Text("cm")
-                            .foregroundColor(.secondary)
+                            
+            .foregroundColor(.secondary)
                     }
                     
                     HStack {
@@ -88,38 +93,46 @@ struct PersonalInformationView: View {
                             .multilineTextAlignment(.trailing)
                             .frame(width: 80)
                         Text("kg")
-                            .foregroundColor(.secondary)
+                            
+            .foregroundColor(.secondary)
                     }
                 } else {
                     HStack {
                         Text("Date of Birth")
-                            .foregroundColor(.secondary)
+                            
+            .foregroundColor(.secondary)
                         Spacer()
                         Text(dateOfBirth, style: .date)
                     }
                     
                     HStack {
                         Text("Gender")
-                            .foregroundColor(.secondary)
+                            
+            .foregroundColor(.secondary)
                         Spacer()
                         Text(gender.isEmpty ? "Not specified" : gender)
-                            .foregroundColor(gender.isEmpty ? .secondary : .primary)
+                            
+            .foregroundColor(gender.isEmpty ? .secondary : .primary)
                     }
                     
                     HStack {
                         Text("Height")
-                            .foregroundColor(.secondary)
+                            
+            .foregroundColor(.secondary)
                         Spacer()
                         Text(height.isEmpty ? "Not provided" : "\(height) cm")
-                            .foregroundColor(height.isEmpty ? .secondary : .primary)
+                            
+            .foregroundColor(height.isEmpty ? .secondary : .primary)
                     }
                     
                     HStack {
                         Text("Weight")
-                            .foregroundColor(.secondary)
+                            
+            .foregroundColor(.secondary)
                         Spacer()
                         Text(weight.isEmpty ? "Not provided" : "\(weight) kg")
-                            .foregroundColor(weight.isEmpty ? .secondary : .primary)
+                            
+            .foregroundColor(weight.isEmpty ? .secondary : .primary)
                     }
                 }
             }
@@ -128,12 +141,14 @@ struct PersonalInformationView: View {
                 Section("Health Metrics") {
                     HStack {
                         Text("BMI")
-                            .foregroundColor(.secondary)
+                            
+            .foregroundColor(.secondary)
                         Spacer()
                         Text(String(format: "%.1f", calculateBMI()))
                         Text(bmiCategory())
                             .font(.caption)
-                            .foregroundColor(bmiColor())
+                            
+            .foregroundColor(bmiColor())
                     }
                 }
             }
@@ -141,30 +156,35 @@ struct PersonalInformationView: View {
             Section("Account Information") {
                 HStack {
                     Text("Member Since")
-                        .foregroundColor(.secondary)
+                        
+            .foregroundColor(.secondary)
                     Spacer()
                     Text("January 2025")
                 }
                 
                 HStack {
                     Text("Account Status")
-                        .foregroundColor(.secondary)
+                        
+            .foregroundColor(.secondary)
                     Spacer()
                     HStack(spacing: 4) {
                         Circle()
                             .fill(Color.green)
                             .frame(width: 8, height: 8)
                         Text("Active")
-                            .foregroundColor(.green)
+                            
+            .foregroundColor(.green)
                     }
                 }
                 
                 HStack {
                     Text("Email Verified")
-                        .foregroundColor(.secondary)
+                        
+            .foregroundColor(.secondary)
                     Spacer()
                     Image(systemName: authService.currentUser?.isEmailVerified == true ? "checkmark.circle.fill" : "xmark.circle.fill")
-                        .foregroundColor(authService.currentUser?.isEmailVerified == true ? .green : .red)
+                        
+            .foregroundColor(authService.currentUser?.isEmailVerified == true ? .green : .red)
                 }
             }
         }

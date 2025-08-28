@@ -6,7 +6,9 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     
     var body: some View {
-        MainAppView()
+        // Directly show the Modern Health Dashboard
+        ModernHealthDashboard()
+            .ignoresSafeArea()
     }
 }
 

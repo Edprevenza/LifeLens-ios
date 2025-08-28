@@ -1,0 +1,48 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project LifeLens.xcodeproj -scheme LifeLens -configuration Debug -xcconfig override.xcconfig -destination id=F10CE7AB-1129-4B78-91B1-1A7E1F9C68A3 -derivedDataPath ./DerivedData -UseModernBuildSystem=YES build
+
+Build settings from configuration file 'override.xcconfig':
+    CODE_SIGN_IDENTITY = 
+    CODE_SIGNING_ALLOWED = NO
+    CODE_SIGNING_REQUIRED = NO
+    ENABLE_BITCODE = NO
+    EXCLUDED_ARCHS = 
+    IPHONEOS_DEPLOYMENT_TARGET = 17.5
+    SDKROOT = iphonesimulator
+    SUPPORTED_PLATFORMS = iphonesimulator
+    TARGETED_DEVICE_FAMILY = 1,2
+    VALID_ARCHS = x86_64 arm64
+
+Resolve Package Graph
+
+Fetching from https://github.com/apple/swift-numerics.git (cached)
+
+Fetching from https://github.com/apple/swift-algorithms.git (cached)
+
+Fetching from https://github.com/Alamofire/Alamofire.git (cached)
+
+Creating working copy of package ‘Alamofire’
+
+Checking out 5.10.2 of package ‘Alamofire’
+
+Creating working copy of package ‘swift-numerics’
+
+Checking out 1.0.3 of package ‘swift-numerics’
+
+Creating working copy of package ‘swift-algorithms’
+
+Checking out 1.2.1 of package ‘swift-algorithms’
+
+
+Resolved source packages:
+  swift-numerics: https://github.com/apple/swift-numerics.git @ 1.0.3
+  swift-algorithms: https://github.com/apple/swift-algorithms.git @ 1.2.1
+  Alamofire: https://github.com/Alamofire/Alamofire.git @ 5.10.2
+
+2025-08-24 23:50:05.141 xcodebuild[67246:873668] Writing error result bundle to /var/folders/wh/8ctq3sbd2dsf2tnj8v52bj3h0000gn/T/ResultBundle_2025-24-08_23-50-0005.xcresult
+xcodebuild: error: Unable to find a destination matching the provided destination specifier:
+		{ id:F10CE7AB-1129-4B78-91B1-1A7E1F9C68A3 }
+
+	Ineligible destinations for the "LifeLens" scheme:
+		{ platform:iOS, arch:arm64e, id:00008140-00160DE40463C01C, name:iPhone (213), error:iOS 18.5 is not installed. To use with Xcode, first download and install the platform }
+		{ platform:iOS, id:dvtdevice-DVTiPhonePlaceholder-iphoneos:placeholder, name:Any iOS Device, error:iOS 18.5 is not installed. To use with Xcode, first download and install the platform }

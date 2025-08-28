@@ -1,0 +1,45 @@
+# AWS SDK
+github "aws-amplify/aws-sdk-ios" ~> 2.33.0
+
+# Networking
+github "Alamofire/Alamofire" ~> 5.8.0
+github "Moya/Moya" ~> 15.0.0
+
+# WebSocket
+github "daltoniam/Starscream" ~> 4.0.6
+
+# Security
+github "krzyzanowskim/CryptoSwift" ~> 1.8.0
+github "kishikawakatsumi/KeychainAccess" ~> 4.2.2
+github "datatheorem/TrustKit" ~> 3.0.0
+
+# Database
+github "realm/realm-swift" ~> 10.45.0
+github "stephencelis/SQLite.swift" ~> 0.14.1
+
+# Charts
+github "danielgindi/Charts" ~> 4.1.0
+
+# Reactive
+github "ReactiveX/RxSwift" ~> 6.6.0
+github "CombineCommunity/CombineExt" ~> 1.8.0
+
+# UI
+github "SnapKit/SnapKit" ~> 5.6.0
+github "airbnb/lottie-ios" ~> 4.3.0
+github "onevcat/Kingfisher" ~> 7.10.0
+github "Juanpe/SkeletonView" ~> 1.30.0
+github "SwiftKickMobile/SwiftMessages" ~> 9.0.0
+
+# Logging
+github "CocoaLumberjack/CocoaLumberjack" ~> 3.8.0
+github "SwiftyBeaver/SwiftyBeaver" ~> 2.0.0
+
+# Dependency Injection
+github "Swinject/Swinject" ~> 2.8.0
+github "Swinject/SwinjectAutoregistration" ~> 2.8.0
+
+# Testing (for Cartfile.private)
+github "Quick/Quick" ~> 7.3.0
+github "Quick/Nimble" ~> 13.0.0
+github "AliSoftware/OHHTTPStubs" ~> 9.1.0

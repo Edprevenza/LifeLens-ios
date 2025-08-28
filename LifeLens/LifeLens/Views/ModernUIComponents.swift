@@ -1,4 +1,5 @@
 //
+import Foundation
 //  ModernUIComponents.swift
 //  LifeLens
 //
@@ -31,13 +32,15 @@ struct MainHealthChart: View {
             HStack {
                 Text(metric.rawValue)
                     .font(.system(size: 18, weight: .semibold))
-                    .foregroundColor(.white)
+                    
+            .foregroundColor(.white)
                 
                 Spacer()
                 
                 Text("Last 24 Hours")
                     .font(.system(size: 12, weight: .medium))
-                    .foregroundColor(.gray)
+                    
+            .foregroundColor(.gray)
             }
             
             // Chart Container
@@ -71,10 +74,12 @@ struct MainHealthChart: View {
                     VStack {
                         Image(systemName: "chart.line.uptrend.xyaxis")
                             .font(.system(size: 40))
-                            .foregroundColor(.gray.opacity(0.3))
+                            
+            .foregroundColor(.gray.opacity(0.3))
                         Text("No data available")
                             .font(.system(size: 14))
-                            .foregroundColor(.gray.opacity(0.5))
+                            
+            .foregroundColor(.gray.opacity(0.5))
                     }
                     .frame(height: 220)
                 } else {
@@ -135,14 +140,16 @@ struct RecentReadingsSection: View {
             HStack {
                 Text("Recent Readings")
                     .font(.system(size: 18, weight: .semibold))
-                    .foregroundColor(.white)
+                    
+            .foregroundColor(.white)
                 
                 Spacer()
                 
                 Button(action: {}) {
                     Text("View All")
                         .font(.system(size: 12, weight: .medium))
-                        .foregroundColor(.blue)
+                        
+            .foregroundColor(.blue)
                 }
             }
             
@@ -216,23 +223,27 @@ struct RecentReadingCard: View {
                 
                 Image(systemName: icon)
                     .font(.system(size: 20))
-                    .foregroundColor(color)
+                    
+            .foregroundColor(color)
             }
             
             // Content
             VStack(alignment: .leading, spacing: 4) {
                 Text(title)
                     .font(.system(size: 12, weight: .medium))
-                    .foregroundColor(.gray)
+                    
+            .foregroundColor(.gray)
                 
                 HStack(spacing: 8) {
                     Text(value)
                         .font(.system(size: 16, weight: .semibold))
-                        .foregroundColor(.white)
+                        
+            .foregroundColor(.white)
                     
                     Image(systemName: trend.icon)
                         .font(.system(size: 12, weight: .medium))
-                        .foregroundColor(trend.color)
+                        
+            .foregroundColor(trend.color)
                 }
             }
             
@@ -240,7 +251,8 @@ struct RecentReadingCard: View {
             
             Text(time)
                 .font(.system(size: 11))
-                .foregroundColor(.gray.opacity(0.7))
+                
+            .foregroundColor(.gray.opacity(0.7))
         }
         .padding(16)
         .background(
@@ -267,7 +279,8 @@ struct QuickActionsGrid: View {
         VStack(alignment: .leading, spacing: 16) {
             Text("Quick Actions")
                 .font(.system(size: 18, weight: .semibold))
-                .foregroundColor(.white)
+                
+            .foregroundColor(.white)
             
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
                 ForEach(actions, id: \.title) { action in
@@ -292,11 +305,13 @@ struct QuickActionCard: View {
             VStack(spacing: 12) {
                 Image(systemName: action.icon)
                     .font(.system(size: 28))
-                    .foregroundColor(action.color)
+                    
+            .foregroundColor(action.color)
                 
                 Text(action.title)
                     .font(.system(size: 14, weight: .medium))
-                    .foregroundColor(.white)
+                    
+            .foregroundColor(.white)
             }
             .frame(maxWidth: .infinity)
             .frame(height: 100)

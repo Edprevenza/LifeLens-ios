@@ -9,7 +9,7 @@ class HealthDataManager: ObservableObject {
     @Published var riskLevel: RiskLevel = .normal
     @Published var isConnectedToDevice = false
     @Published var predictions: HealthPredictions?
-    @Published var mlAlerts: [MLHealthService.HealthAlert] = []
+    @Published var mlAlerts: [HealthAlert] = []
     @Published var mlRiskLevel: LocalPatternDetection.RiskLevel = .normal
     
     private var cancellables = Set<AnyCancellable>()
@@ -206,7 +206,7 @@ class HealthDataManager: ObservableObject {
         }
     }
     
-    private func handleMLAlerts(_ alerts: [MLHealthService.HealthAlert]) {
+    private func handleMLAlerts(_ alerts: [HealthAlert]) {
         // Process critical ML alerts
         for alert in alerts where alert.severity == .critical && alert.actionRequired {
             triggerEmergencyAlert(message: alert.message)

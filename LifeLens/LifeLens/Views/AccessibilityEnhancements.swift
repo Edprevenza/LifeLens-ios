@@ -1,4 +1,5 @@
 // AccessibilityEnhancements.swift
+import Foundation
 import SwiftUI
 
 // MARK: - Accessibility Extensions
@@ -160,19 +161,22 @@ struct AccessibleHealthCard: View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
                 Image(systemName: icon)
-                    .foregroundColor(color)
+                    
+            .foregroundColor(color)
                     .accessibilityHidden(true)
                 
                 Text(title)
                     .font(.headline)
-                    .foregroundColor(.primary)
+                    
+            .foregroundColor(.primary)
                 
                 Spacer()
                 
                 if let status = status {
                     Text(status)
                         .font(.caption)
-                        .foregroundColor(color)
+                        
+            .foregroundColor(color)
                         .accessibilityHidden(true)
                 }
             }
@@ -181,17 +185,20 @@ struct AccessibleHealthCard: View {
                 Text(value)
                     .font(.title2)
                     .fontWeight(.bold)
-                    .foregroundColor(.primary)
+                    
+            .foregroundColor(.primary)
                 
                 Text(unit)
                     .font(.caption)
-                    .foregroundColor(.secondary)
+                    
+            .foregroundColor(.secondary)
                     .accessibilityHidden(true)
                 
                 if let trend = trend {
                     Text(trend)
                         .font(.caption)
-                        .foregroundColor(color)
+                        
+            .foregroundColor(color)
                         .accessibilityHidden(true)
                 }
             }
@@ -220,7 +227,8 @@ struct AccessibleChartView: View {
         VStack(alignment: .leading, spacing: 12) {
             Text(title)
                 .font(.headline)
-                .foregroundColor(.primary)
+                
+            .foregroundColor(.primary)
             
             // Chart placeholder - in real implementation, this would be your actual chart
             RoundedRectangle(cornerRadius: 8)
@@ -228,7 +236,8 @@ struct AccessibleChartView: View {
                 .frame(height: 200)
                 .overlay(
                     Text("Chart visualization")
-                        .foregroundColor(.secondary)
+                        
+            .foregroundColor(.secondary)
                 )
                 .chartAccessibility(
                     title: title,
@@ -256,11 +265,13 @@ struct AccessibleTabBar: View {
                     VStack(spacing: 4) {
                         Image(systemName: tabs[index].icon)
                             .font(.system(size: 24))
-                            .foregroundColor(selectedTab == index ? tabs[index].color : .gray)
+                            
+            .foregroundColor(selectedTab == index ? tabs[index].color : .gray)
                         
                         Text(tabs[index].title)
                             .font(.caption)
-                            .foregroundColor(selectedTab == index ? .primary : .secondary)
+                            
+            .foregroundColor(selectedTab == index ? .primary : .secondary)
                     }
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 8)
@@ -276,7 +287,8 @@ struct AccessibleTabBar: View {
         .overlay(
             Rectangle()
                 .frame(height: 0.5)
-                .foregroundColor(Color(.separator)),
+                
+            .foregroundColor(Color(.separator)),
             alignment: .top
         )
     }

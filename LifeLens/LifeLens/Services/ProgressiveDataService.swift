@@ -220,7 +220,7 @@ class ProgressiveDataService: ObservableObject {
         for change in pendingChanges {
             do {
                 try await apiService.uploadHealthMetric(change)
-                removePendingChange(change.id)
+                removePendingChange(change)
             } catch {
                 print("Failed to upload change: \(error)")
             }
@@ -246,9 +246,9 @@ class ProgressiveDataService: ObservableObject {
         cacheManager.cache(pending, forKey: "pending_changes")
     }
     
-    private func removePendingChange(_ id: String) {
+    private func removePendingChange(_ metric: HealthMetric) {
         var pending = loadPendingChanges()
-        pending.removeAll { $0.id == id }
+        pending.removeAll { $0.name == metric.name && $0.timestamp == metric.timestamp }
         cacheManager.cache(pending, forKey: "pending_changes")
     }
     
@@ -269,76 +269,6 @@ class ProgressiveDataService: ObservableObject {
 }
 
 // MARK: - Health Metric Model
-struct HealthMetric: Codable, Identifiable {
-    let id: String
-    let type: MetricType
-    let value: Double
-    let unit: String
-    let timestamp: Date
-    let deviceId: String?
-    let notes: String?
-    
-    enum MetricType: String, Codable, CaseIterable {
-        case heartRate = "heart_rate"
-        case bloodPressureSystolic = "bp_systolic"
-        case bloodPressureDiastolic = "bp_diastolic"
-        case glucose = "glucose"
-        case spo2 = "spo2"
-        case temperature = "temperature"
-        case weight = "weight"
-        case steps = "steps"
-        
-        var displayName: String {
-            switch self {
-            case .heartRate: return "Heart Rate"
-            case .bloodPressureSystolic: return "Systolic BP"
-            case .bloodPressureDiastolic: return "Diastolic BP"
-            case .glucose: return "Glucose"
-            case .spo2: return "SpO2"
-            case .temperature: return "Temperature"
-            case .weight: return "Weight"
-            case .steps: return "Steps"
-            }
-        }
-        
-        var icon: String {
-            switch self {
-            case .heartRate: return "heart.fill"
-            case .bloodPressureSystolic, .bloodPressureDiastolic: return "waveform.path.ecg"
-            case .glucose: return "drop.fill"
-            case .spo2: return "lungs.fill"
-            case .temperature: return "thermometer"
-            case .weight: return "scalemass.fill"
-            case .steps: return "figure.walk"
-            }
-        }
-        
-        var color: Color {
-            switch self {
-            case .heartRate: return .red
-            case .bloodPressureSystolic, .bloodPressureDiastolic: return .pink
-            case .glucose: return .purple
-            case .spo2: return .blue
-            case .temperature: return .orange
-            case .weight: return .green
-            case .steps: return .cyan
-            }
-        }
-        
-        var normalRange: ClosedRange<Double> {
-            switch self {
-            case .heartRate: return 60...100
-            case .bloodPressureSystolic: return 90...120
-            case .bloodPressureDiastolic: return 60...80
-            case .glucose: return 70...140
-            case .spo2: return 95...100
-            case .temperature: return 97...99
-            case .weight: return 0...500
-            case .steps: return 0...50000
-            }
-        }
-    }
-}
 
 // MARK: - Image Cache Service
 class ImageCacheService {
@@ -456,7 +386,8 @@ struct ProgressiveListView<Item: Identifiable, Content: View>: View {
                 if !hasMoreData && !items.isEmpty {
                     Text("No more data")
                         .font(.caption)
-                        .foregroundColor(.secondary)
+                        
+            .foregroundColor(.secondary)
                         .padding()
                 }
             }
@@ -477,7 +408,8 @@ struct SyncStatusView: View {
             
             Text(dataService.syncStatus.statusText)
                 .font(.caption)
-                .foregroundColor(.secondary)
+                
+            .foregroundColor(.secondary)
             
             if case .syncing = dataService.syncStatus {
                 ProgressView()

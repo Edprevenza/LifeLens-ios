@@ -1,0 +1,14 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -workspace LifeLens.xcworkspace -scheme LifeLens -configuration Debug -destination id=8348CE98-95C1-4A0D-ACEA-7756FECAD571 -derivedDataPath ./build CODE_SIGN_IDENTITY= CODE_SIGNING_REQUIRED=NO IPHONEOS_DEPLOYMENT_TARGET=18.0 build
+
+Build settings from command line:
+    CODE_SIGN_IDENTITY = 
+    CODE_SIGNING_REQUIRED = NO
+    IPHONEOS_DEPLOYMENT_TARGET = 18.0
+
+2025-08-26 08:37:00.700 xcodebuild[36439:256562] Writing error result bundle to /var/folders/wh/8ctq3sbd2dsf2tnj8v52bj3h0000gn/T/ResultBundle_2025-26-08_08-37-0000.xcresult
+xcodebuild: error: Unable to find a destination matching the provided destination specifier:
+		{ id:8348CE98-95C1-4A0D-ACEA-7756FECAD571 }
+
+	Ineligible destinations for the "LifeLens" scheme:
+		{ platform:iOS, id:dvtdevice-DVTiPhonePlaceholder-iphoneos:placeholder, name:Any iOS Device, error:iOS 18.5 is not installed. To use with Xcode, first download and install the platform }

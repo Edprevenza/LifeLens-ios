@@ -93,15 +93,13 @@ class HealthKitManager: ObservableObject {
         
         // ECG
         if #available(iOS 14.0, *) {
-            if let ecg = HKObjectType.electrocardiogramType() {
-                types.insert(ecg)
-            }
+            let ecg = HKObjectType.electrocardiogramType()
+            types.insert(ecg)
         }
         
         // Workout
-        if let workout = HKObjectType.workoutType() {
-            types.insert(workout)
-        }
+        let workout = HKObjectType.workoutType()
+        types.insert(workout)
         
         return types
     }
@@ -267,10 +265,10 @@ class HealthKitManager: ObservableObject {
             DispatchQueue.main.async {
                 self?.ecgReadings = ecgSamples.map { ecg in
                     ECGReading(
-                        date: ecg.startDate,
-                        classification: self?.classificationString(for: ecg.classification) ?? "Unknown",
-                        averageHeartRate: ecg.averageHeartRate?.doubleValue(for: HKUnit(from: "count/min")) ?? 0,
-                        samplingFrequency: ecg.samplingFrequency?.doubleValue(for: HKUnit.hertz()) ?? 0
+                        timestamp: ecg.startDate,
+                        samples: [], // TODO: Extract actual ECG samples
+                        sampleRate: ecg.samplingFrequency?.doubleValue(for: HKUnit.hertz()) ?? 500,
+                        classification: self?.mapClassification(ecg.classification) ?? .inconclusive
                     )
                 }
             }
@@ -280,6 +278,26 @@ class HealthKitManager: ObservableObject {
     }
     
     // MARK: - Helper Methods
+    
+    @available(iOS 14.0, *)
+    private func mapClassification(_ classification: HKElectrocardiogram.Classification) -> ECGReading.ECGClassification {
+        switch classification {
+        case .notSet:
+            return .inconclusive
+        case .atrialFibrillation:
+            return .afib
+        case .sinusRhythm:
+            return .normal
+        case .inconclusiveLowHeartRate:
+            return .bradycardia
+        case .inconclusiveHighHeartRate:
+            return .tachycardia
+        case .inconclusiveOther:
+            return .inconclusive
+        @unknown default:
+            return .inconclusive
+        }
+    }
     
     private func fetchMostRecentSample(for identifier: HKQuantityTypeIdentifier, unit: HKUnit, completion: @escaping (Double?) -> Void) {
         guard let sampleType = HKObjectType.quantityType(forIdentifier: identifier) else {
@@ -418,9 +436,3 @@ class HealthKitManager: ObservableObject {
 }
 
 // MARK: - ECG Reading Model
-struct ECGReading {
-    let date: Date
-    let classification: String
-    let averageHeartRate: Double
-    let samplingFrequency: Double
-}

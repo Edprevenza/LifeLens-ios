@@ -293,7 +293,7 @@ class PrivacyManager: ObservableObject {
     }
     
     private func clearUserDefaults() {
-        if let bundleIdentifier = Bundle.main.bundleIdentifier {
+        if let bundleIdentifier = Bundle(for: type(of: self)).bundleIdentifier {
             UserDefaults.standard.removePersistentDomain(forName: bundleIdentifier)
         }
     }

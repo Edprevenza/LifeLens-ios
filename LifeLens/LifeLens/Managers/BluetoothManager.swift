@@ -234,13 +234,11 @@ class BluetoothManager: NSObject, ObservableObject {
         // Check for critical levels (MI detection)
         if troponinI > 0.04 || troponinT > 0.01 {
             let alert = HealthAlert(
-                id: UUID().uuidString,
                 title: "Elevated Troponin Detected",
                 message: "Troponin levels indicate possible myocardial injury. Seek immediate medical attention.",
+                type: .emergency,
                 severity: .critical,
-                timestamp: Date(),
-                metricType: "Troponin",
-                value: max(troponinI, troponinT),
+                source: "Troponin Monitor",
                 actionRequired: true
             )
             activeAlerts.append(alert)
@@ -320,13 +318,11 @@ class BluetoothManager: NSObject, ObservableObject {
         // Check for hypertensive crisis
         if systolic > 180 || diastolic > 120 {
             let alert = HealthAlert(
-                id: UUID().uuidString,
                 title: "Hypertensive Crisis",
                 message: "Blood pressure is dangerously high. Seek emergency medical care immediately.",
+                type: .emergency,
                 severity: .critical,
-                timestamp: Date(),
-                metricType: "Blood Pressure",
-                value: Double(systolic),
+                source: "Blood Pressure Monitor",
                 actionRequired: true
             )
             activeAlerts.append(alert)
@@ -364,13 +360,11 @@ class BluetoothManager: NSObject, ObservableObject {
         // Check for hypoglycemia
         if glucose < 70 {
             let alert = HealthAlert(
-                id: UUID().uuidString,
                 title: "Low Blood Sugar",
                 message: "Blood glucose is \(Int(glucose)) mg/dL. Consider consuming fast-acting carbohydrates.",
-                severity: .urgent,
-                timestamp: Date(),
-                metricType: "Glucose",
-                value: Double(glucose),
+                type: .warning,
+                severity: .high,
+                source: "Glucose Monitor",
                 actionRequired: true
             )
             activeAlerts.append(alert)
@@ -398,13 +392,11 @@ class BluetoothManager: NSObject, ObservableObject {
         // Check for hypoxia
         if spo2 < 90 {
             let alert = HealthAlert(
-                id: UUID().uuidString,
                 title: "Low Oxygen Saturation",
                 message: "SpO2 is \(spo2)%. Seek medical attention if symptoms persist.",
+                type: .emergency,
                 severity: .critical,
-                timestamp: Date(),
-                metricType: "SpO2",
-                value: Double(spo2),
+                source: "SpO2 Monitor",
                 actionRequired: true
             )
             activeAlerts.append(alert)
@@ -419,13 +411,14 @@ class BluetoothManager: NSObject, ObservableObject {
         
         if batteryLevel < 20 {
             let alert = HealthAlert(
-                id: UUID().uuidString,
+                id: UUID(),
                 title: "Low Battery",
                 message: "LifeLens device battery is at \(batteryLevel)%. Please charge soon.",
-                severity: .warning,
+                type: .notification,
+                severity: .medium,
                 timestamp: Date(),
-                metricType: "Battery",
-                value: Double(batteryLevel),
+                source: "Bluetooth Device",
+                isRead: false,
                 actionRequired: false
             )
             activeAlerts.append(alert)
