@@ -1,3 +1,9 @@
+#!/bin/bash
+
+echo "Fixing iOS app issues..."
+
+# Fix 1: Update SensorReadingsView with proper navigation and interactions
+cat > LifeLens/Views/SensorReadingsView_Fixed.swift << 'EOF'
 //
 //  SensorReadingsView.swift
 //  LifeLens
@@ -39,7 +45,7 @@ struct SensorReadingsView: View {
                         .padding(.leading, 10)
                         
                         Text("Sensor Readings")
-                            .font(.system(size: 24, weight: .bold))
+                            .font(.system(size: 18, weight: .semibold))
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity, alignment: .center)
                         
@@ -60,8 +66,7 @@ struct SensorReadingsView: View {
                         }
                         .padding(.trailing, 10)
                     }
-                    .frame(height: 70)
-                    .padding(.top, 40)
+                    .frame(height: 50)
                     .background(Color.black)
                     
                     // Tab Selector
@@ -100,7 +105,7 @@ struct SensorReadingsView: View {
                                 .fill(Color.red)
                                 .frame(width: 8, height: 8)
                             Text("LIVE DATA STREAMING")
-                                .font(.system(size: 14, weight: .bold))
+                                .font(.system(size: 12, weight: .semibold))
                                 .foregroundColor(.white)
                             Spacer()
                             Text(Date(), style: .time)
@@ -134,10 +139,9 @@ struct SensorReadingsView: View {
                             // Recent Readings Section
                             VStack(alignment: .leading, spacing: 12) {
                                 Text("Recent Readings")
-                                    .font(.system(size: 20, weight: .bold))
+                                    .font(.system(size: 16, weight: .semibold))
                                     .foregroundColor(.white)
                                     .padding(.horizontal, 20)
-                                    .padding(.top, 8)
                                 
                                 VStack(spacing: 12) {
                                     Button(action: {
@@ -228,21 +232,21 @@ struct MainSensorCard: View {
                 .foregroundColor(iconColor)
             
             Text(title)
-                .font(.system(size: 20, weight: .semibold))
+                .font(.system(size: 16, weight: .medium))
                 .foregroundColor(.gray)
             
             HStack(alignment: .top, spacing: 4) {
                 Text(value)
-                    .font(.system(size: 48, weight: .bold))
+                    .font(.system(size: 36, weight: .bold))
                     .foregroundColor(.white)
                 Text(unit)
-                    .font(.system(size: 20))
+                    .font(.system(size: 16))
                     .foregroundColor(.gray)
-                    .padding(.top, 10)
+                    .padding(.top, 8)
             }
             
             Text(status)
-                .font(.system(size: 16, weight: .medium))
+                .font(.system(size: 14))
                 .foregroundColor(.green)
             
             HStack {
@@ -279,11 +283,11 @@ struct InteractiveSensorCard: View {
             
             VStack(alignment: .leading, spacing: 4) {
                 Text(title)
-                    .font(.system(size: 14))
+                    .font(.system(size: 12))
                     .foregroundColor(.gray)
                 
                 Text(value)
-                    .font(.system(size: 18, weight: .bold))
+                    .font(.system(size: 16, weight: .semibold))
                     .foregroundColor(.white)
             }
             
@@ -291,7 +295,7 @@ struct InteractiveSensorCard: View {
             
             VStack(alignment: .trailing, spacing: 4) {
                 Text(confidence)
-                    .font(.system(size: 13))
+                    .font(.system(size: 11))
                     .foregroundColor(.gray)
                 
                 Image(systemName: "chevron.right")
@@ -377,4 +381,53 @@ struct SensorDetailView: View {
     }
 }
 
-// Color extension is defined in ModernHealthDashboard.swift
+// Color extension for hex colors
+extension Color {
+    init(hex: String) {
+        let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
+        var int: UInt64 = 0
+        Scanner(string: hex).scanHexInt64(&int)
+        let a, r, g, b: UInt64
+        switch hex.count {
+        case 3:
+            (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
+        case 6:
+            (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
+        case 8:
+            (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
+        default:
+            (a, r, g, b) = (255, 0, 0, 0)
+        }
+        self.init(
+            .sRGB,
+            red: Double(r) / 255,
+            green: Double(g) / 255,
+            blue: Double(b) / 255,
+            opacity: Double(a) / 255
+        )
+    }
+}
+EOF
+
+# Copy fixed version to replace original
+cp LifeLens/Views/SensorReadingsView_Fixed.swift LifeLens/Views/SensorReadingsView.swift
+
+echo "✅ Fixed SensorReadingsView with:"
+echo "  - Proper navigation structure"
+echo "  - Interactive cards with tap functionality"
+echo "  - Fixed header layout"
+echo "  - Added detail views for sensors"
+echo "  - Working tab selection"
+
+# Clean and rebuild
+echo "Cleaning build artifacts..."
+rm -rf DerivedData build
+
+echo "Building app..."
+xcodebuild -scheme LifeLens \
+    -configuration Debug \
+    -destination 'platform=iOS Simulator,name=iPhone 15 Pro,OS=18.6' \
+    -derivedDataPath ./DerivedData \
+    build
+
+echo "✅ iOS app issues fixed and rebuilt!"

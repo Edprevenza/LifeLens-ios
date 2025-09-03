@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct PersonalInformationView: View {
+    @Environment(\.dismiss) var dismiss
     @EnvironmentObject var authService: AuthenticationService
     @State private var firstName = ""
     @State private var lastName = ""
@@ -194,21 +195,25 @@ struct PersonalInformationView: View {
         #endif
         .toolbar {
             #if os(iOS)
+            ToolbarItem(placement: .navigationBarLeading) {
+                if !isEditing {
+                    Button("Done") {
+                        dismiss()
+                    }
+                } else {
+                    Button("Cancel") {
+                        loadUserData()
+                        isEditing = false
+                    }
+                }
+            }
+            
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(isEditing ? "Save" : "Edit") {
                     if isEditing {
                         saveChanges()
                     } else {
                         isEditing = true
-                    }
-                }
-            }
-            
-            if isEditing {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Cancel") {
-                        loadUserData()
-                        isEditing = false
                     }
                 }
             }

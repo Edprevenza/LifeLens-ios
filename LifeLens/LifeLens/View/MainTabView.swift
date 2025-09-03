@@ -283,7 +283,8 @@ struct InsightsView: View {
                         title: "Sleep Quality", 
                         insight: "Your sleep quality has improved by 15% this week",
                         trend: .up,
-                        color: .purple
+                        color: .purple,
+                        isCompact: true
                     )
                     
                     InsightCard(
@@ -291,7 +292,8 @@ struct InsightsView: View {
                         title: "Activity Level",
                         insight: "You've been more active than 80% of similar users", 
                         trend: .up,
-                        color: .green
+                        color: .green,
+                        isCompact: true
                     )
                     
                     InsightCard(
@@ -299,7 +301,8 @@ struct InsightsView: View {
                         title: "Heart Health",
                         insight: "Your resting heart rate is within healthy range",
                         trend: .neutral,
-                        color: .red
+                        color: .red,
+                        isCompact: true
                     )
                 }
                 .padding(.vertical)

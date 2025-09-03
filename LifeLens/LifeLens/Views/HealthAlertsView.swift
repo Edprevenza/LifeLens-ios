@@ -464,13 +464,11 @@ struct AlertCard: View {
                 HStack {
                     Text(isExpanded ? "Show Less" : "Show More")
                         .font(.system(size: 12, weight: .medium))
-                        
-            .foregroundColor(.blue)
+                        .foregroundColor(.blue)
                     
                     Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
                         .font(.system(size: 10))
-                        
-            .foregroundColor(.blue)
+                        .foregroundColor(.blue)
                 }
             }
         }

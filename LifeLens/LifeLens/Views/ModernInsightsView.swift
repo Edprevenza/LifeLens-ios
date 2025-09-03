@@ -1,8 +1,8 @@
 //
-//  ModernInsightsView.swift
+//  ModernInsightsViewFixed.swift
 //  LifeLens
 //
-//  Production-ready Insights view
+//  Responsive and Progressive Insights view with fixed alignment
 //
 
 import SwiftUI
@@ -10,6 +10,14 @@ import SwiftUI
 struct ModernInsightsView: View {
     @StateObject private var viewModel = HealthDashboardViewModel()
     @State private var selectedInsightType: InsightType = .sleep
+    @State private var isLoading = true
+    @State private var loadedSections = Set<String>()
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    @Environment(\.dynamicTypeSize) var dynamicTypeSize
+    
+    var isCompact: Bool {
+        horizontalSizeClass == .compact
+    }
     
     enum InsightType: String, CaseIterable {
         case heartRate = "Heart Rate"
@@ -31,28 +39,63 @@ struct ModernInsightsView: View {
             )
             .ignoresSafeArea(.all)
             
-            ScrollView {
-                VStack(spacing: 24) {
-                    // Header without logo for cleaner look
+            if isLoading {
+                ProgressView("Loading Health Insights...")
+                    .foregroundColor(.white)
+                    .onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            withAnimation(.easeInOut(duration: 0.3)) {
+                                isLoading = false
+                            }
+                        }
+                    }
+            } else {
+                VStack(spacing: 0) {
+                    // Header - Always visible at top
                     InsightsHeader()
-                        .padding(.horizontal, 20)
-                        .padding(.top, 20)
+                        .padding(.horizontal, isCompact ? 16 : 20)
+                        .padding(.top, isCompact ? 50 : 60)
+                        .padding(.bottom, isCompact ? 16 : 20)
                     
-                    // Health Score
-                    HealthScoreSection(viewModel: viewModel)
-                        .padding(.horizontal, 20)
-                    
-                    // Insights Grid
-                    InsightsGrid(selectedType: $selectedInsightType)
-                        .padding(.horizontal, 20)
-                    
-                    // Recommendations
-                    RecommendationsSection(selectedType: selectedInsightType)
-                        .padding(.horizontal, 20)
-                        .padding(.bottom, 100)
+                    ScrollView(.vertical, showsIndicators: false) {
+                        VStack(spacing: isCompact ? 20 : 28) {
+                        
+                        // Health Score
+                        HealthScoreSection(viewModel: viewModel, isCompact: isCompact)
+                            .padding(.horizontal, isCompact ? 16 : 20)
+                            .opacity(loadedSections.contains("score") ? 1 : 0)
+                            .onAppear {
+                                withAnimation(.easeInOut(duration: 0.3).delay(0.1)) {
+                                    _ = loadedSections.insert("score")
+                                }
+                            }
+                        
+                        // Insights Grid
+                        InsightsGrid(selectedType: $selectedInsightType, isCompact: isCompact)
+                            .padding(.horizontal, isCompact ? 16 : 20)
+                            .opacity(loadedSections.contains("grid") ? 1 : 0)
+                            .onAppear {
+                                withAnimation(.easeInOut(duration: 0.3).delay(0.2)) {
+                                    _ = loadedSections.insert("grid")
+                                }
+                            }
+                        
+                        // Recommendations
+                        RecommendationsSection(selectedType: selectedInsightType, isCompact: isCompact)
+                            .padding(.horizontal, isCompact ? 16 : 20)
+                            .padding(.bottom, 100)
+                            .opacity(loadedSections.contains("recommendations") ? 1 : 0)
+                            .onAppear {
+                                withAnimation(.easeInOut(duration: 0.3).delay(0.3)) {
+                                    _ = loadedSections.insert("recommendations")
+                                }
+                            }
+                        }
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
@@ -60,27 +103,27 @@ struct ModernInsightsView: View {
 
 struct InsightsHeader: View {
     @State private var selectedPeriod = "Week"
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    
+    var isCompact: Bool {
+        horizontalSizeClass == .compact
+    }
     
     var body: some View {
-        VStack(spacing: 16) {
-            HStack {
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("Health Insights")
-                        .font(.system(size: 28, weight: .bold))
-                        
-            .foregroundColor(.white)
-                    
-                    Text("AI-powered health analysis")
-                        .font(.system(size: 14))
-                        
-            .foregroundColor(Color.white.opacity(0.6))
-                }
-                
-                Spacer()
-            }
+        VStack(spacing: isCompact ? 10 : 14) {
+            // Title centered with bigger size
+            Text("Health Insights")
+                .font(.system(size: isCompact ? 28 : 32, weight: .bold))
+                .foregroundColor(.white)
+                .frame(maxWidth: .infinity)
+            
+            Text("AI-powered health analysis")
+                .font(.system(size: isCompact ? 13 : 15))
+                .foregroundColor(Color.white.opacity(0.6))
+                .frame(maxWidth: .infinity)
             
             // Time Period Selector
-            HStack(spacing: 4) {
+            HStack(spacing: isCompact ? 2 : 4) {
                 ForEach(["Day", "Week", "Month"], id: \.self) { period in
                     Button(action: {
                         withAnimation(.spring(response: 0.3)) {
@@ -88,11 +131,10 @@ struct InsightsHeader: View {
                         }
                     }) {
                         Text(period)
-                            .font(.system(size: 13, weight: .medium))
-                            
-            .foregroundColor(selectedPeriod == period ? .white : Color.white.opacity(0.5))
-                            .padding(.horizontal, 20)
-                            .padding(.vertical, 10)
+                            .font(.system(size: isCompact ? 12 : 13, weight: .medium))
+                            .foregroundColor(selectedPeriod == period ? .white : Color.white.opacity(0.5))
+                            .padding(.horizontal, isCompact ? 16 : 20)
+                            .padding(.vertical, isCompact ? 8 : 10)
                             .background(
                                 ZStack {
                                     if selectedPeriod == period {
@@ -121,65 +163,116 @@ struct InsightsHeader: View {
 
 struct HealthScoreSection: View {
     @ObservedObject var viewModel: HealthDashboardViewModel
+    let isCompact: Bool
+    @State private var animateScore = false
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
+        VStack(alignment: .leading, spacing: isCompact ? 16 : 20) {
             Text("Overall Health Score")
-                .font(.system(size: 20, weight: .semibold))
-                
-            .foregroundColor(.white)
+                .font(.system(size: isCompact ? 18 : 20, weight: .semibold))
+                .foregroundColor(.white)
+                .fixedSize(horizontal: false, vertical: true)
             
-            HStack(spacing: 40) {
-                // Score Circle
-                ZStack {
-                    Circle()
-                        .stroke(Color.gray.opacity(0.2), lineWidth: 8)
-                        .frame(width: 120, height: 120)
-                    
-                    Circle()
-                        .trim(from: 0, to: 0.92)
-                        .stroke(
-                            LinearGradient(
-                                gradient: Gradient(colors: [Color.green, Color.blue]),
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            ),
-                            style: StrokeStyle(lineWidth: 8, lineCap: .round)
-                        )
-                        .frame(width: 120, height: 120)
-                        .rotationEffect(.degrees(-90))
-                    
-                    VStack {
-                        Text("92")
-                            .font(.system(size: 36, weight: .bold))
-                            
-            .foregroundColor(.white)
-                        Text("Excellent")
-                            .font(.system(size: 12))
-                            
-            .foregroundColor(.green)
+            Group {
+                if isCompact {
+                    // Vertical layout for compact size
+                    VStack(spacing: 20) {
+                        // Score Circle
+                        ZStack {
+                        Circle()
+                            .stroke(Color.gray.opacity(0.2), lineWidth: 6)
+                            .frame(width: 100, height: 100)
+                        
+                        Circle()
+                            .trim(from: 0, to: animateScore ? 0.92 : 0)
+                            .stroke(
+                                LinearGradient(
+                                    gradient: Gradient(colors: [Color.green, Color.blue]),
+                                    startPoint: .topLeading,
+                                    endPoint: .bottomTrailing
+                                ),
+                                style: StrokeStyle(lineWidth: 6, lineCap: .round)
+                            )
+                            .frame(width: 100, height: 100)
+                            .rotationEffect(.degrees(-90))
+                            .animation(.easeInOut(duration: 1.5), value: animateScore)
+                        
+                        VStack(spacing: 2) {
+                            Text("92")
+                                .font(.system(size: 32, weight: .bold))
+                                .foregroundColor(.white)
+                            Text("Excellent")
+                                .font(.system(size: 11))
+                                .foregroundColor(.green)
+                        }
                     }
+                    
+                    // Score Breakdown
+                    VStack(alignment: .leading, spacing: 12) {
+                        HealthMetricRow(label: "Heart Health", score: 95, color: .red, isCompact: isCompact)
+                        HealthMetricRow(label: "Blood Sugar", score: 88, color: .purple, isCompact: isCompact)
+                        HealthMetricRow(label: "Activity Level", score: 94, color: .blue, isCompact: isCompact)
+                        HealthMetricRow(label: "Sleep Quality", score: 91, color: .indigo, isCompact: isCompact)
+                    }
+                    .frame(maxWidth: .infinity)
+                    }
+                } else {
+                // Horizontal layout for regular size
+                HStack(spacing: 40) {
+                    // Score Circle
+                    ZStack {
+                        Circle()
+                            .stroke(Color.gray.opacity(0.2), lineWidth: 8)
+                            .frame(width: 120, height: 120)
+                        
+                        Circle()
+                            .trim(from: 0, to: animateScore ? 0.92 : 0)
+                            .stroke(
+                                LinearGradient(
+                                    gradient: Gradient(colors: [Color.green, Color.blue]),
+                                    startPoint: .topLeading,
+                                    endPoint: .bottomTrailing
+                                ),
+                                style: StrokeStyle(lineWidth: 8, lineCap: .round)
+                            )
+                            .frame(width: 120, height: 120)
+                            .rotationEffect(.degrees(-90))
+                            .animation(.easeInOut(duration: 1.5), value: animateScore)
+                        
+                        VStack {
+                            Text("92")
+                                .font(.system(size: 36, weight: .bold))
+                                .foregroundColor(.white)
+                            Text("Excellent")
+                                .font(.system(size: 12))
+                                .foregroundColor(.green)
+                        }
+                    }
+                    
+                    // Score Breakdown
+                    VStack(alignment: .leading, spacing: 16) {
+                        HealthMetricRow(label: "Heart Health", score: 95, color: .red, isCompact: isCompact)
+                        HealthMetricRow(label: "Blood Sugar", score: 88, color: .purple, isCompact: isCompact)
+                        HealthMetricRow(label: "Activity Level", score: 94, color: .blue, isCompact: isCompact)
+                        HealthMetricRow(label: "Sleep Quality", score: 91, color: .indigo, isCompact: isCompact)
+                    }
+                    
+                    Spacer()
                 }
-                
-                // Score Breakdown
-                VStack(alignment: .leading, spacing: 16) {
-                    HealthMetricRow(label: "Heart Health", score: 95, color: .red)
-                    HealthMetricRow(label: "Blood Sugar", score: 88, color: .purple)
-                    HealthMetricRow(label: "Activity Level", score: 94, color: .blue)
-                    HealthMetricRow(label: "Sleep Quality", score: 91, color: .indigo)
                 }
-                
-                Spacer()
             }
-            .padding(24)
+            .padding(isCompact ? 16 : 24)
             .background(
-                RoundedRectangle(cornerRadius: 24)
+                RoundedRectangle(cornerRadius: isCompact ? 16 : 24)
                     .fill(.ultraThinMaterial.opacity(0.3))
                     .overlay(
-                        RoundedRectangle(cornerRadius: 24)
+                        RoundedRectangle(cornerRadius: isCompact ? 16 : 24)
                             .stroke(Color.white.opacity(0.1), lineWidth: 1)
                     )
             )
+        }
+        .onAppear {
+            animateScore = true
         }
     }
 }
@@ -188,14 +281,15 @@ struct HealthMetricRow: View {
     let label: String
     let score: Int
     let color: Color
+    let isCompact: Bool
     
     var body: some View {
-        HStack {
+        HStack(spacing: isCompact ? 8 : 12) {
             Text(label)
-                .font(.system(size: 14))
-                
-            .foregroundColor(.white)
-                .frame(width: 100, alignment: .leading)
+                .font(.system(size: isCompact ? 13 : 14))
+                .foregroundColor(.white)
+                .frame(width: isCompact ? 90 : 100, alignment: .leading)
+                .fixedSize(horizontal: false, vertical: true)
             
             // Progress Bar
             GeometryReader { geometry in
@@ -212,28 +306,29 @@ struct HealthMetricRow: View {
             .frame(height: 6)
             
             Text("\(score)")
-                .font(.system(size: 14, weight: .medium))
-                
-            .foregroundColor(color)
+                .font(.system(size: isCompact ? 13 : 14, weight: .medium))
+                .foregroundColor(color)
                 .frame(width: 30, alignment: .trailing)
+                .fixedSize()
         }
     }
 }
 
 struct InsightsGrid: View {
     @Binding var selectedType: ModernInsightsView.InsightType
+    let isCompact: Bool
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
+        VStack(alignment: .leading, spacing: isCompact ? 16 : 20) {
             Text("Key Insights")
-                .font(.system(size: 20, weight: .semibold))
-                
-            .foregroundColor(.white)
+                .font(.system(size: isCompact ? 18 : 20, weight: .semibold))
+                .foregroundColor(.white)
+                .fixedSize(horizontal: false, vertical: true)
             
             LazyVGrid(columns: [
-                GridItem(.flexible()),
-                GridItem(.flexible())
-            ], spacing: 20) {
+                GridItem(.flexible(), spacing: isCompact ? 12 : 16),
+                GridItem(.flexible(), spacing: isCompact ? 12 : 16)
+            ], spacing: isCompact ? 12 : 20) {
                 InsightCard(
                     icon: "heart.fill",
                     title: "Heart Rate Trend",
@@ -241,7 +336,8 @@ struct InsightsGrid: View {
                     trend: .up,
                     color: .red,
                     insightType: .heartRate,
-                    selectedType: $selectedType
+                    selectedType: $selectedType,
+                    isCompact: isCompact
                 )
                 
                 InsightCard(
@@ -251,7 +347,8 @@ struct InsightsGrid: View {
                     trend: .neutral,
                     color: .green,
                     insightType: .activity,
-                    selectedType: $selectedType
+                    selectedType: $selectedType,
+                    isCompact: isCompact
                 )
                 
                 InsightCard(
@@ -261,7 +358,8 @@ struct InsightsGrid: View {
                     trend: .up,
                     color: .purple,
                     insightType: .sleep,
-                    selectedType: $selectedType
+                    selectedType: $selectedType,
+                    isCompact: isCompact
                 )
                 
                 InsightCard(
@@ -271,7 +369,8 @@ struct InsightsGrid: View {
                     trend: .neutral,
                     color: .orange,
                     insightType: .glucose,
-                    selectedType: $selectedType
+                    selectedType: $selectedType,
+                    isCompact: isCompact
                 )
             }
         }
@@ -286,6 +385,7 @@ struct InsightCard: View {
     let color: Color
     var insightType: ModernInsightsView.InsightType?
     var selectedType: Binding<ModernInsightsView.InsightType>?
+    let isCompact: Bool
     
     @State private var isPressed = false
     @State private var showDetail = false
@@ -320,7 +420,7 @@ struct InsightCard: View {
                 showDetail.toggle()
             }
         }) {
-            VStack(alignment: .leading, spacing: 16) {
+            VStack(alignment: .leading, spacing: isCompact ? 12 : 16) {
                 HStack {
                     ZStack {
                         Circle()
@@ -331,61 +431,60 @@ struct InsightCard: View {
                                     endPoint: animateGradient ? .bottomTrailing : .topLeading
                                 )
                             )
-                            .frame(width: 40, height: 40)
+                            .frame(width: isCompact ? 32 : 40, height: isCompact ? 32 : 40)
                         
                         Image(systemName: icon)
-                            .font(.system(size: 20))
-                            
-            .foregroundColor(.white)
+                            .font(.system(size: isCompact ? 16 : 20))
+                            .foregroundColor(.white)
                     }
                     
                     Spacer()
                     
                     ZStack {
-                        RoundedRectangle(cornerRadius: 8)
+                        RoundedRectangle(cornerRadius: 6)
                             .fill(trend.color.opacity(0.2))
-                            .frame(width: 30, height: 30)
+                            .frame(width: isCompact ? 24 : 30, height: isCompact ? 24 : 30)
                         
                         Image(systemName: trend.icon)
-                            .font(.system(size: 14, weight: .semibold))
-                            
-            .foregroundColor(trend.color)
+                            .font(.system(size: isCompact ? 12 : 14, weight: .semibold))
+                            .foregroundColor(trend.color)
                     }
                 }
                 
                 Text(title)
-                    .font(.system(size: 18, weight: .semibold))
-                    
-            .foregroundColor(.white)
+                    .font(.system(size: isCompact ? 15 : 18, weight: .semibold))
+                    .foregroundColor(.white)
                     .lineLimit(1)
+                    .minimumScaleFactor(0.7)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .fixedSize(horizontal: false, vertical: true)
                 
                 Text(insight)
-                    .font(.system(size: 14))
-                    
-            .foregroundColor(Color.white.opacity(0.7))
+                    .font(.system(size: isCompact ? 12 : 14))
+                    .foregroundColor(Color.white.opacity(0.7))
                     .lineLimit(showDetail ? nil : 2)
-                    .fixedSize(horizontal: false, vertical: !showDetail)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .multilineTextAlignment(.leading)
+                    .fixedSize(horizontal: false, vertical: false)
                 
                 if showDetail {
-                    HStack {
+                    HStack(spacing: 4) {
                         Image(systemName: "chart.line.uptrend.xyaxis")
-                            .font(.system(size: 12))
-                            
-            .foregroundColor(color)
+                            .font(.system(size: isCompact ? 10 : 12))
+                            .foregroundColor(color)
                         Text("View Details")
-                            .font(.system(size: 12, weight: .medium))
-                            
-            .foregroundColor(color)
+                            .font(.system(size: isCompact ? 10 : 12, weight: .medium))
+                            .foregroundColor(color)
                     }
-                    .padding(.top, 8)
+                    .padding(.top, isCompact ? 4 : 8)
                 }
             }
-            .padding(20)
-            .frame(minHeight: 160)
+            .padding(isCompact ? 14 : 20)
+            .frame(minHeight: isCompact ? 140 : 160)
             .frame(maxWidth: .infinity)
             .background(
                 ZStack {
-                    RoundedRectangle(cornerRadius: 20)
+                    RoundedRectangle(cornerRadius: isCompact ? 16 : 20)
                         .fill(
                             LinearGradient(
                                 gradient: Gradient(colors: [
@@ -397,7 +496,7 @@ struct InsightCard: View {
                             )
                         )
                     
-                    RoundedRectangle(cornerRadius: 20)
+                    RoundedRectangle(cornerRadius: isCompact ? 16 : 20)
                         .stroke(
                             LinearGradient(
                                 gradient: Gradient(colors: [
@@ -411,7 +510,7 @@ struct InsightCard: View {
                         )
                 }
             )
-            .shadow(color: color.opacity(0.2), radius: 10, x: 0, y: 5)
+            .shadow(color: color.opacity(0.2), radius: isCompact ? 6 : 10, x: 0, y: isCompact ? 3 : 5)
             .scaleEffect(isPressed ? 0.95 : 1.0)
         }
         .buttonStyle(PlainButtonStyle())
@@ -430,6 +529,7 @@ struct InsightCard: View {
 
 struct RecommendationsSection: View {
     let selectedType: ModernInsightsView.InsightType
+    let isCompact: Bool
     
     var recommendations: [RecommendationData] {
         switch selectedType {
@@ -440,18 +540,6 @@ struct RecommendationsSection: View {
                     title: "Cardio Health",
                     recommendation: "Your heart rate variability suggests good cardiac fitness. Maintain current exercise routine",
                     priority: .low
-                ),
-                RecommendationData(
-                    icon: "figure.walk.motion",
-                    title: "Zone Training",
-                    recommendation: "Spend 20-30 minutes in Zone 2 (120-140 bpm) for optimal fat burning",
-                    priority: .medium
-                ),
-                RecommendationData(
-                    icon: "waveform.path.ecg",
-                    title: "Recovery Time",
-                    recommendation: "Allow 48 hours between high-intensity workouts for heart recovery",
-                    priority: .high
                 )
             ]
         case .activity:
@@ -461,39 +549,15 @@ struct RecommendationsSection: View {
                     title: "Peak Performance",
                     recommendation: "Your energy peaks at 2-4 PM - schedule important workouts then",
                     priority: .high
-                ),
-                RecommendationData(
-                    icon: "figure.step.training",
-                    title: "Step Goal",
-                    recommendation: "Increase daily steps by 500 to reach optimal 10,000 steps",
-                    priority: .medium
-                ),
-                RecommendationData(
-                    icon: "sportscourt",
-                    title: "Activity Variety",
-                    recommendation: "Add strength training 2x/week to complement cardio",
-                    priority: .low
                 )
             ]
         case .sleep:
             return [
                 RecommendationData(
-                    icon: "clock",
-                    title: "Sleep Schedule",
-                    recommendation: "Try going to bed 30 minutes earlier for better recovery",
-                    priority: .medium
-                ),
-                RecommendationData(
                     icon: "moon.zzz",
                     title: "Sleep Quality",
                     recommendation: "Avoid screens 1 hour before bed to improve deep sleep",
                     priority: .high
-                ),
-                RecommendationData(
-                    icon: "bed.double",
-                    title: "Sleep Environment",
-                    recommendation: "Keep bedroom at 65-68°F for optimal sleep quality",
-                    priority: .low
                 )
             ]
         case .glucose:
@@ -503,65 +567,66 @@ struct RecommendationsSection: View {
                     title: "Blood Sugar Control",
                     recommendation: "Eat protein before carbs to reduce glucose spikes",
                     priority: .high
-                ),
-                RecommendationData(
-                    icon: "fork.knife",
-                    title: "Meal Timing",
-                    recommendation: "Space meals 4-5 hours apart for stable glucose levels",
-                    priority: .medium
-                ),
-                RecommendationData(
-                    icon: "figure.walk.motion",
-                    title: "Post-Meal Activity",
-                    recommendation: "Take a 10-minute walk after meals to lower glucose",
-                    priority: .low
                 )
             ]
         }
     }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
-            HStack {
-                Text("Personalized Recommendations")
-                    .font(.system(size: 20, weight: .semibold))
-                    
-            .foregroundColor(.white)
-                
-                Spacer()
-                
-                Text(selectedType.rawValue)
-                    .font(.system(size: 14, weight: .medium))
-                    
-            .foregroundColor(.blue)
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 6)
-                    .background(Color.blue.opacity(0.2))
-                    .cornerRadius(8)
-            }
+        VStack(alignment: .leading, spacing: isCompact ? 12 : 16) {
+            Text("Recommendations")
+                .font(.system(size: isCompact ? 18 : 20, weight: .semibold))
+                .foregroundColor(.white)
+                .fixedSize(horizontal: false, vertical: true)
             
-            VStack(spacing: 16) {
-                ForEach(recommendations.indices, id: \.self) { index in
-                    RecommendationRow(
-                        icon: recommendations[index].icon,
-                        title: recommendations[index].title,
-                        recommendation: recommendations[index].recommendation,
-                        priority: recommendations[index].priority
-                    )
-                }
+            ForEach(recommendations, id: \.title) { recommendation in
+                RecommendationCard(data: recommendation, isCompact: isCompact)
             }
         }
     }
 }
 
-struct RecommendationData {
-    let icon: String
-    let title: String
-    let recommendation: String
-    let priority: RecommendationRow.Priority
+struct RecommendationCard: View {
+    let data: RecommendationData
+    let isCompact: Bool
+    
+    var body: some View {
+        HStack(spacing: isCompact ? 12 : 16) {
+            Image(systemName: data.icon)
+                .font(.system(size: isCompact ? 20 : 24))
+                .foregroundColor(data.priority.color)
+                .frame(width: isCompact ? 40 : 50, height: isCompact ? 40 : 50)
+                .background(data.priority.color.opacity(0.1))
+                .clipShape(Circle())
+            
+            VStack(alignment: .leading, spacing: 4) {
+                Text(data.title)
+                    .font(.system(size: isCompact ? 14 : 16, weight: .semibold))
+                    .foregroundColor(.white)
+                    .fixedSize(horizontal: false, vertical: true)
+                
+                Text(data.recommendation)
+                    .font(.system(size: isCompact ? 12 : 14))
+                    .foregroundColor(Color.white.opacity(0.7))
+                    .fixedSize(horizontal: false, vertical: false)
+                    .lineLimit(3)
+            }
+            
+            Spacer()
+        }
+        .padding(isCompact ? 12 : 16)
+        .background(
+            RoundedRectangle(cornerRadius: isCompact ? 12 : 16)
+                .fill(Color.white.opacity(0.03))
+                .overlay(
+                    RoundedRectangle(cornerRadius: isCompact ? 12 : 16)
+                        .stroke(Color.white.opacity(0.05), lineWidth: 1)
+                )
+        )
+    }
 }
 
-struct RecommendationRow: View {
+struct RecommendationData {
     let icon: String
     let title: String
     let recommendation: String
@@ -577,60 +642,5 @@ struct RecommendationRow: View {
             case .low: return .green
             }
         }
-        
-        var text: String {
-            switch self {
-            case .high: return "High"
-            case .medium: return "Medium"
-            case .low: return "Low"
-            }
-        }
-    }
-    
-    var body: some View {
-        HStack(spacing: 16) {
-            Image(systemName: icon)
-                .font(.system(size: 18))
-                
-            .foregroundColor(.blue)
-                .frame(width: 40, height: 40)
-                .background(Color.blue.opacity(0.1))
-                .cornerRadius(10)
-            
-            VStack(alignment: .leading, spacing: 4) {
-                Text(title)
-                    .font(.system(size: 16, weight: .medium))
-                    
-            .foregroundColor(.white)
-                
-                Text(recommendation)
-                    .font(.system(size: 14))
-                    
-            .foregroundColor(.gray)
-                    .lineLimit(2)
-            }
-            
-            Spacer()
-            
-            Text(priority.text)
-                .font(.system(size: 12, weight: .medium))
-                
-            .foregroundColor(priority.color)
-                .padding(.horizontal, 12)
-                .padding(.vertical, 6)
-                .background(priority.color.opacity(0.1))
-                .cornerRadius(8)
-        }
-        .padding(16)
-        .background(
-            RoundedRectangle(cornerRadius: 16)
-                .fill(.ultraThinMaterial.opacity(0.2))
-        )
-    }
-}
-
-struct ModernInsightsView_Previews: PreviewProvider {
-    static var previews: some View {
-        ModernInsightsView()
     }
 }

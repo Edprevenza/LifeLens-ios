@@ -1,19 +1,29 @@
 //
-//  ModernAdditionalViews.swift
+//  ModernProfileViewFixed.swift
 //  LifeLens
 //
-//  Additional production-ready views
+//  Responsive and Progressive Profile View
 //
 
 import SwiftUI
 
-// Duplicate structs removed - they exist in other files
-
-// Modern Profile View
 struct ModernProfileView: View {
     @EnvironmentObject var authService: AuthenticationService
     @State private var showingSettings = false
     @State private var showingLogoutConfirmation = false
+    @State private var showingPersonalInfo = false
+    @State private var showingMedicalHistory = false
+    @State private var showingNotifications = false
+    @State private var showingPrivacySecurity = false
+    @State private var showingHelpSupport = false
+    @State private var isLoading = true
+    @State private var loadedSections = Set<String>()
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    @Environment(\.dynamicTypeSize) var dynamicTypeSize
+    
+    var isCompact: Bool {
+        horizontalSizeClass == .compact
+    }
     
     var body: some View {
         ZStack {
@@ -28,72 +38,131 @@ struct ModernProfileView: View {
             )
             .ignoresSafeArea(.all)
             
-            ScrollView {
-                VStack(spacing: 24) {
-                    // Profile Header
-                    ProfileHeaderCard()
-                        .padding(.horizontal)
-                        .padding(.top)
-                    
-                    // Health Stats
-                    HealthStatsGrid()
-                        .padding(.horizontal)
-                    
-                    // Menu Items
-                    VStack(spacing: 12) {
-                        ProfileMenuItem(
-                            icon: "person.fill",
-                            title: "Personal Information",
-                            color: .blue
-                        )
-                        
-                        ProfileMenuItem(
-                            icon: "heart.text.square.fill",
-                            title: "Medical History",
-                            color: .red
-                        )
-                        
-                        ProfileMenuItem(
-                            icon: "bell.fill",
-                            title: "Notifications",
-                            color: .orange
-                        )
-                        
-                        ProfileMenuItem(
-                            icon: "lock.fill",
-                            title: "Privacy & Security",
-                            color: .green
-                        )
-                        
-                        ProfileMenuItem(
-                            icon: "questionmark.circle.fill",
-                            title: "Help & Support",
-                            color: .purple
-                        )
-                    }
-                    .padding(.horizontal)
-                    
-                    // Sign Out Button
-                    Button(action: {
-                        showingLogoutConfirmation = true
-                    }) {
-                        HStack {
-                            Image(systemName: "arrow.right.square.fill")
-                            Text("Sign Out")
+            if isLoading {
+                ProgressView("Loading Profile...")
+                    .foregroundColor(.white)
+                    .onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            withAnimation(.easeInOut(duration: 0.3)) {
+                                isLoading = false
+                            }
                         }
-                        .font(.system(size: 16, weight: .medium))
-                        
-            .foregroundColor(.red)
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 16)
-                        .background(
-                            RoundedRectangle(cornerRadius: 16)
-                                .fill(Color.red.opacity(0.1))
-                        )
                     }
-                    .buttonStyle(PlainButtonStyle())
-                    .padding(.horizontal)
-                    .padding(.bottom, 40)
+            } else {
+                ScrollView(.vertical, showsIndicators: false) {
+                    VStack(spacing: isCompact ? 20 : 24) {
+                        // Logo at the top - centered
+                        HStack {
+                            Spacer()
+                            LifeLensLogo(size: isCompact ? .small : .medium, style: .withTitle)
+                            Spacer()
+                        }
+                        .padding(.top, isCompact ? 16 : 20)
+                        .opacity(loadedSections.contains("logo") ? 1 : 0)
+                        .onAppear {
+                            withAnimation(.easeInOut(duration: 0.3)) {
+                                _ = loadedSections.insert("logo")
+                            }
+                        }
+                        
+                        // Profile Header
+                        ProfileHeaderCard(isCompact: isCompact)
+                            .padding(.horizontal, isCompact ? 16 : 20)
+                            .opacity(loadedSections.contains("header") ? 1 : 0)
+                            .onAppear {
+                                withAnimation(.easeInOut(duration: 0.3).delay(0.1)) {
+                                    _ = loadedSections.insert("header")
+                                }
+                            }
+                        
+                        // Health Stats
+                        HealthStatsGrid(isCompact: isCompact)
+                            .padding(.horizontal, isCompact ? 16 : 20)
+                            .opacity(loadedSections.contains("stats") ? 1 : 0)
+                            .onAppear {
+                                withAnimation(.easeInOut(duration: 0.3).delay(0.2)) {
+                                    _ = loadedSections.insert("stats")
+                                }
+                            }
+                        
+                        // Menu Items
+                        VStack(spacing: isCompact ? 10 : 12) {
+                            ProfileMenuItem(
+                                icon: "person.fill",
+                                title: "Personal Information",
+                                color: .blue,
+                                isCompact: isCompact,
+                                action: { showingPersonalInfo = true }
+                            )
+                            
+                            ProfileMenuItem(
+                                icon: "heart.text.square.fill",
+                                title: "Medical History",
+                                color: .red,
+                                isCompact: isCompact,
+                                action: { showingMedicalHistory = true }
+                            )
+                            
+                            ProfileMenuItem(
+                                icon: "bell.fill",
+                                title: "Notifications",
+                                color: .orange,
+                                isCompact: isCompact,
+                                action: { showingNotifications = true }
+                            )
+                            
+                            ProfileMenuItem(
+                                icon: "lock.fill",
+                                title: "Privacy & Security",
+                                color: .green,
+                                isCompact: isCompact,
+                                action: { showingPrivacySecurity = true }
+                            )
+                            
+                            ProfileMenuItem(
+                                icon: "questionmark.circle.fill",
+                                title: "Help & Support",
+                                color: .purple,
+                                isCompact: isCompact,
+                                action: { showingHelpSupport = true }
+                            )
+                        }
+                        .padding(.horizontal, isCompact ? 16 : 20)
+                        .opacity(loadedSections.contains("menu") ? 1 : 0)
+                        .onAppear {
+                            withAnimation(.easeInOut(duration: 0.3).delay(0.3)) {
+                                _ = loadedSections.insert("menu")
+                            }
+                        }
+                        
+                        // Sign Out Button
+                        Button(action: {
+                            showingLogoutConfirmation = true
+                        }) {
+                            HStack {
+                                Image(systemName: "arrow.right.square.fill")
+                                    .font(.system(size: isCompact ? 18 : 20))
+                                Text("Sign Out")
+                                    .font(.system(size: isCompact ? 15 : 16, weight: .medium))
+                            }
+                            .foregroundColor(.red)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, isCompact ? 14 : 16)
+                            .background(
+                                RoundedRectangle(cornerRadius: isCompact ? 14 : 16)
+                                    .fill(Color.red.opacity(0.1))
+                            )
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                        .padding(.horizontal, isCompact ? 16 : 20)
+                        .padding(.bottom, isCompact ? 30 : 40)
+                        .opacity(loadedSections.contains("signout") ? 1 : 0)
+                        .onAppear {
+                            withAnimation(.easeInOut(duration: 0.3).delay(0.4)) {
+                                _ = loadedSections.insert("signout")
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -106,12 +175,40 @@ struct ModernProfileView: View {
         } message: {
             Text("Are you sure you want to sign out?")
         }
+        .sheet(isPresented: $showingPersonalInfo) {
+            NavigationView {
+                PersonalInformationView()
+            }
+        }
+        .sheet(isPresented: $showingMedicalHistory) {
+            NavigationView {
+                MedicalHistoryView()
+            }
+        }
+        .sheet(isPresented: $showingNotifications) {
+            NavigationView {
+                NotificationSettingsView()
+            }
+        }
+        .sheet(isPresented: $showingPrivacySecurity) {
+            NavigationView {
+                PrivacySecurityView()
+            }
+        }
+        .sheet(isPresented: $showingHelpSupport) {
+            NavigationView {
+                HelpSupportView()
+            }
+        }
     }
 }
 
 struct ProfileHeaderCard: View {
+    let isCompact: Bool
+    @State private var animateAvatar = false
+    
     var body: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: isCompact ? 12 : 16) {
             // Avatar
             ZStack {
                 Circle()
@@ -122,38 +219,37 @@ struct ProfileHeaderCard: View {
                             endPoint: .bottomTrailing
                         )
                     )
-                    .frame(width: 80, height: 80)
+                    .frame(width: isCompact ? 70 : 80, height: isCompact ? 70 : 80)
+                    .scaleEffect(animateAvatar ? 1.0 : 0.9)
+                    .animation(.spring(response: 0.5, dampingFraction: 0.6), value: animateAvatar)
                 
                 Text("JD")
-                    .font(.system(size: 28, weight: .bold))
-                    
-            .foregroundColor(.white)
+                    .font(.system(size: isCompact ? 24 : 28, weight: .bold))
+                    .foregroundColor(.white)
+            }
+            .onAppear {
+                animateAvatar = true
             }
             
             VStack(spacing: 4) {
                 Text("John Doe")
-                    .font(.system(size: 24, weight: .bold))
-                    
-            .foregroundColor(.white)
+                    .font(.system(size: isCompact ? 20 : 24, weight: .bold))
+                    .foregroundColor(.white)
+                    .fixedSize(horizontal: false, vertical: true)
                 
                 Text("john.doe@example.com")
-                    .font(.system(size: 14))
-                    
-            .foregroundColor(.gray)
-            }
-            
-            HStack(spacing: 8) {
-                StatusPill(text: "Premium", color: .yellow)
-                StatusPill(text: "Verified", color: .green)
+                    .font(.system(size: isCompact ? 13 : 14))
+                    .foregroundColor(.gray)
+                    .fixedSize(horizontal: false, vertical: true)
             }
         }
         .frame(maxWidth: .infinity)
-        .padding(24)
+        .padding(isCompact ? 20 : 24)
         .background(
-            RoundedRectangle(cornerRadius: 20)
+            RoundedRectangle(cornerRadius: isCompact ? 16 : 20)
                 .fill(Color.white.opacity(0.03))
                 .overlay(
-                    RoundedRectangle(cornerRadius: 20)
+                    RoundedRectangle(cornerRadius: isCompact ? 16 : 20)
                         .stroke(Color.white.opacity(0.05), lineWidth: 1)
                 )
         )
@@ -161,12 +257,17 @@ struct ProfileHeaderCard: View {
 }
 
 struct HealthStatsGrid: View {
+    let isCompact: Bool
+    
     var body: some View {
-        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
-            StatCard(value: "45", label: "Age", icon: "calendar", color: .blue)
-            StatCard(value: "O+", label: "Blood Type", icon: "drop.fill", color: .red)
-            StatCard(value: "175", label: "Height (cm)", icon: "ruler", color: .green)
-            StatCard(value: "75", label: "Weight (kg)", icon: "scalemass", color: .purple)
+        LazyVGrid(columns: [
+            GridItem(.flexible(), spacing: isCompact ? 10 : 12),
+            GridItem(.flexible(), spacing: isCompact ? 10 : 12)
+        ], spacing: isCompact ? 10 : 12) {
+            StatCard(value: "45", label: "Age", icon: "calendar", color: .blue, isCompact: isCompact)
+            StatCard(value: "O+", label: "Blood Type", icon: "drop.fill", color: .red, isCompact: isCompact)
+            StatCard(value: "175", label: "Height (cm)", icon: "ruler", color: .green, isCompact: isCompact)
+            StatCard(value: "75", label: "Weight (kg)", icon: "scalemass", color: .purple, isCompact: isCompact)
         }
     }
 }
@@ -176,34 +277,45 @@ struct StatCard: View {
     let label: String
     let icon: String
     let color: Color
+    let isCompact: Bool
+    @State private var isPressed = false
     
     var body: some View {
-        VStack(spacing: 8) {
+        VStack(spacing: isCompact ? 6 : 8) {
             Image(systemName: icon)
-                .font(.system(size: 20))
-                
-            .foregroundColor(color)
+                .font(.system(size: isCompact ? 18 : 20))
+                .foregroundColor(color)
             
             Text(value)
-                .font(.system(size: 20, weight: .bold))
-                
-            .foregroundColor(.white)
+                .font(.system(size: isCompact ? 18 : 20, weight: .bold))
+                .foregroundColor(.white)
+                .fixedSize()
             
             Text(label)
-                .font(.system(size: 12))
-                
-            .foregroundColor(.gray)
+                .font(.system(size: isCompact ? 11 : 12))
+                .foregroundColor(.gray)
+                .lineLimit(1)
+                .minimumScaleFactor(0.7)
         }
         .frame(maxWidth: .infinity)
-        .padding(.vertical, 16)
+        .padding(.vertical, isCompact ? 14 : 16)
         .background(
-            RoundedRectangle(cornerRadius: 16)
+            RoundedRectangle(cornerRadius: isCompact ? 14 : 16)
                 .fill(Color.white.opacity(0.03))
                 .overlay(
-                    RoundedRectangle(cornerRadius: 16)
+                    RoundedRectangle(cornerRadius: isCompact ? 14 : 16)
                         .stroke(Color.white.opacity(0.05), lineWidth: 1)
                 )
         )
+        .scaleEffect(isPressed ? 0.95 : 1.0)
+        .onTapGesture {
+            withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
+                isPressed = true
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    isPressed = false
+                }
+            }
+        }
     }
 }
 
@@ -211,41 +323,53 @@ struct ProfileMenuItem: View {
     let icon: String
     let title: String
     let color: Color
+    let isCompact: Bool
+    var action: (() -> Void)? = nil
+    @State private var isPressed = false
     
     var body: some View {
-        Button(action: {}) {
-            HStack(spacing: 16) {
+        Button(action: {
+            withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                isPressed = true
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    isPressed = false
+                }
+            }
+            if let action = action {
+                action()
+            }
+        }) {
+            HStack(spacing: isCompact ? 14 : 16) {
                 Image(systemName: icon)
-                    .font(.system(size: 20))
-                    
-            .foregroundColor(color)
-                    .frame(width: 40, height: 40)
+                    .font(.system(size: isCompact ? 18 : 20))
+                    .foregroundColor(color)
+                    .frame(width: isCompact ? 36 : 40, height: isCompact ? 36 : 40)
                     .background(color.opacity(0.1))
                     .clipShape(Circle())
                 
                 Text(title)
-                    .font(.system(size: 16, weight: .medium))
-                    
-            .foregroundColor(.white)
+                    .font(.system(size: isCompact ? 15 : 16, weight: .medium))
+                    .foregroundColor(.white)
+                    .fixedSize(horizontal: false, vertical: true)
                 
                 Spacer()
                 
                 Image(systemName: "chevron.right")
-                    .font(.system(size: 14))
-                    
-            .foregroundColor(.gray.opacity(0.5))
+                    .font(.system(size: isCompact ? 12 : 14))
+                    .foregroundColor(.gray.opacity(0.5))
             }
-            .padding(16)
+            .padding(isCompact ? 14 : 16)
             .background(
-                RoundedRectangle(cornerRadius: 16)
+                RoundedRectangle(cornerRadius: isCompact ? 14 : 16)
                     .fill(Color.white.opacity(0.03))
                     .overlay(
-                        RoundedRectangle(cornerRadius: 16)
+                        RoundedRectangle(cornerRadius: isCompact ? 14 : 16)
                             .stroke(Color.white.opacity(0.05), lineWidth: 1)
                     )
             )
         }
         .buttonStyle(PlainButtonStyle())
+        .scaleEffect(isPressed ? 0.97 : 1.0)
     }
 }
 

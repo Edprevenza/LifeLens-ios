@@ -60,6 +60,7 @@ struct ModernHealthDashboard: View {
                     Text("Welcome Back")
                         .font(.system(size: 14))
                         .foregroundColor(.gray)
+                        .padding(.top, 50)
                     
                     HStack {
                         Text("Health Dashboard")
@@ -389,56 +390,196 @@ struct ModernHealthDashboard: View {
 
 // MARK: - ECG Waveform View
 struct ECGWaveformView: View {
-    @State private var phase: CGFloat = 0
+    @State private var ecgData: [CGFloat] = []
+    @State private var sweepPosition: CGFloat = 0
+    @State private var heartRate: Int = 72
+    @State private var isPulsing = false
+    @State private var timer: Timer?
+    
+    let samplesPerSecond = 30  // Reduced from 120 for slower animation
+    let sweepSpeed: Double = 0.01  // Reduced from 0.025 for slower sweep
     
     var body: some View {
-        GeometryReader { geometry in
-            Path { path in
-                let width = geometry.size.width
-                let height = geometry.size.height
-                let midY = height / 2
-                
-                path.move(to: CGPoint(x: 0, y: midY))
-                
-                for x in stride(from: 0, to: width, by: 2) {
-                    let relativeX = x / width
-                    let offsetX = (relativeX + phase).truncatingRemainder(dividingBy: 1)
+        ZStack {
+            // Grid background
+            GeometryReader { geometry in
+                // Grid lines
+                Path { path in
+                    let gridSize: CGFloat = 20
+                    let width = geometry.size.width
+                    let height = geometry.size.height
                     
-                    // Create ECG-like waveform
-                    let y: CGFloat
-                    if offsetX < 0.1 {
-                        y = midY
-                    } else if offsetX < 0.15 {
-                        y = midY - height * 0.1
-                    } else if offsetX < 0.2 {
-                        y = midY - height * 0.4 // P wave
-                    } else if offsetX < 0.25 {
-                        y = midY
-                    } else if offsetX < 0.3 {
-                        y = midY + height * 0.1
-                    } else if offsetX < 0.35 {
-                        y = midY - height * 0.8 // R wave (spike)
-                    } else if offsetX < 0.4 {
-                        y = midY + height * 0.2 // S wave
-                    } else if offsetX < 0.5 {
-                        y = midY
-                    } else if offsetX < 0.6 {
-                        y = midY - height * 0.2 // T wave
-                    } else {
-                        y = midY
+                    // Vertical lines
+                    for x in stride(from: 0, to: width, by: gridSize) {
+                        path.move(to: CGPoint(x: x, y: 0))
+                        path.addLine(to: CGPoint(x: x, y: height))
                     }
                     
-                    path.addLine(to: CGPoint(x: x, y: y))
+                    // Horizontal lines
+                    for y in stride(from: 0, to: height, by: gridSize) {
+                        path.move(to: CGPoint(x: 0, y: y))
+                        path.addLine(to: CGPoint(x: width, y: y))
+                    }
                 }
+                .stroke(Color.green.opacity(0.1), lineWidth: 0.5)
+                
+                // ECG Waveform
+                Path { path in
+                    let width = geometry.size.width
+                    let height = geometry.size.height
+                    let midY = height / 2
+                    
+                    guard !ecgData.isEmpty else { return }
+                    
+                    let pointsPerPixel = CGFloat(ecgData.count) / width
+                    
+                    for x in 0..<Int(width) {
+                        let dataIndex = Int(CGFloat(x) * pointsPerPixel)
+                        guard dataIndex < ecgData.count else { break }
+                        
+                        let y = midY - (ecgData[dataIndex] * height * 0.3)
+                        
+                        if x == 0 {
+                            path.move(to: CGPoint(x: CGFloat(x), y: y))
+                        } else {
+                            path.addLine(to: CGPoint(x: CGFloat(x), y: y))
+                        }
+                    }
+                }
+                .stroke(
+                    LinearGradient(
+                        gradient: Gradient(colors: [Color.green, Color.green.opacity(0.8)]),
+                        startPoint: .leading,
+                        endPoint: .trailing
+                    ),
+                    lineWidth: 2
+                )
+                .shadow(color: Color.green.opacity(0.5), radius: 4)
+                
+                // Sweep line effect
+                Rectangle()
+                    .fill(
+                        LinearGradient(
+                            gradient: Gradient(colors: [
+                                Color.green.opacity(0.8),
+                                Color.green.opacity(0.4),
+                                Color.clear
+                            ]),
+                            startPoint: .trailing,
+                            endPoint: .leading
+                        )
+                    )
+                    .frame(width: 60)
+                    .offset(x: sweepPosition * geometry.size.width - 30)
+                    .opacity(0.6)
             }
-            .stroke(Color.green, lineWidth: 2)
-            .shadow(color: Color.green.opacity(0.5), radius: 4)
+            
+            // Heart rate display
+            VStack {
+                HStack {
+                    Image(systemName: "heart.fill")
+                        .font(.system(size: 16))
+                        .foregroundColor(.red)
+                        .scaleEffect(isPulsing ? 1.2 : 1.0)
+                        .animation(.easeInOut(duration: 0.1), value: isPulsing)
+                    
+                    Text("\(heartRate)")
+                        .font(.system(size: 24, weight: .bold, design: .monospaced))
+                        .foregroundColor(.green)
+                    
+                    Text("BPM")
+                        .font(.system(size: 12))
+                        .foregroundColor(.green.opacity(0.8))
+                }
+                .padding(.horizontal, 12)
+                .padding(.vertical, 6)
+                .background(Color.black.opacity(0.7))
+                .cornerRadius(8)
+                
+                Spacer()
+            }
+            .padding()
         }
         .onAppear {
-            withAnimation(.linear(duration: 2).repeatForever(autoreverses: false)) {
-                phase = 1
+            startECGAnimation()
+        }
+        .onDisappear {
+            timer?.invalidate()
+        }
+    }
+    
+    func startECGAnimation() {
+        // Initialize with baseline
+        ecgData = Array(repeating: 0, count: samplesPerSecond * 3)
+        
+        // Start data generation timer
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0 / Double(samplesPerSecond), repeats: true) { _ in
+            generateECGData()
+            
+            // Update sweep position
+            withAnimation(.linear(duration: 0.1)) {
+                sweepPosition = (sweepPosition + CGFloat(sweepSpeed)).truncatingRemainder(dividingBy: 1.0)
             }
         }
+        
+        // Heart rate variation timer
+        Timer.scheduledTimer(withTimeInterval: 2.0, repeats: true) { _ in
+            heartRate = Int.random(in: 68...76)
+        }
+        
+        // Pulse animation timer
+        Timer.scheduledTimer(withTimeInterval: 60.0 / Double(heartRate), repeats: true) { _ in
+            isPulsing = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                isPulsing = false
+            }
+        }
+    }
+    
+    func generateECGData() {
+        // Remove oldest data point and add new one
+        ecgData.removeFirst()
+        
+        let time = Double(ecgData.count) / Double(samplesPerSecond)
+        let cyclePosition = (time * Double(heartRate) / 60.0).truncatingRemainder(dividingBy: 1.0)
+        
+        var value: CGFloat = 0
+        
+        // Generate PQRST complex
+        if cyclePosition < 0.05 {
+            // Baseline
+            value = CGFloat.random(in: -0.02...0.02)
+        } else if cyclePosition < 0.1 {
+            // P wave
+            let t = (cyclePosition - 0.05) / 0.05
+            value = sin(t * .pi) * 0.2 + CGFloat.random(in: -0.01...0.01)
+        } else if cyclePosition < 0.15 {
+            // PR segment
+            value = CGFloat.random(in: -0.02...0.02)
+        } else if cyclePosition < 0.17 {
+            // Q wave
+            value = -0.1 + CGFloat.random(in: -0.01...0.01)
+        } else if cyclePosition < 0.2 {
+            // R wave (main spike)
+            let t = (cyclePosition - 0.17) / 0.03
+            value = sin(t * .pi) * 1.5 + CGFloat.random(in: -0.02...0.02)
+        } else if cyclePosition < 0.23 {
+            // S wave
+            let t = (cyclePosition - 0.2) / 0.03
+            value = -sin(t * .pi) * 0.3 + CGFloat.random(in: -0.01...0.01)
+        } else if cyclePosition < 0.3 {
+            // ST segment
+            value = CGFloat.random(in: -0.02...0.02)
+        } else if cyclePosition < 0.4 {
+            // T wave
+            let t = (cyclePosition - 0.3) / 0.1
+            value = sin(t * .pi) * 0.3 + CGFloat.random(in: -0.01...0.01)
+        } else {
+            // Baseline
+            value = CGFloat.random(in: -0.02...0.02)
+        }
+        
+        ecgData.append(value)
     }
 }
 

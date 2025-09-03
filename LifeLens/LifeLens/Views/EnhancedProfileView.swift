@@ -38,16 +38,20 @@ typealias EmergencyContactInfo = EmergencyContact
             
             ScrollView {
                 VStack(spacing: 24) {
-                    // Logo at the top
-                    LifeLensLogo(size: .medium, style: .withTitle)
-                        .padding(.top, 20)
+                    // Logo at the top - centered
+                    HStack {
+                        Spacer()
+                        LifeLensLogo(size: .medium, style: .withTitle)
+                        Spacer()
+                    }
+                    .padding(.top, 20)
                     
                     // Profile Header
                     EnhancedProfileHeaderCard()
                         .padding(.horizontal)
                     
                     // Health Stats
-                    HealthStatsGrid()
+                    HealthStatsGrid(isCompact: true)
                         .padding(.horizontal)
                     
                     // Emergency Contacts Section
@@ -126,19 +130,29 @@ typealias EmergencyContactInfo = EmergencyContact
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .sheet(isPresented: $showingEditProfile) {
-            PersonalInformationView()
+            NavigationView {
+                PersonalInformationView()
+            }
         }
         .sheet(isPresented: $showingMedicalHistory) {
-            MedicalHistoryView()
+            NavigationView {
+                MedicalHistoryView()
+            }
         }
         .sheet(isPresented: $showingNotifications) {
-            NotificationSettingsView()
+            NavigationView {
+                NotificationSettingsView()
+            }
         }
         .sheet(isPresented: $showingPrivacySecurity) {
-            PrivacySecurityView()
+            NavigationView {
+                PrivacySecurityView()
+            }
         }
         .sheet(isPresented: $showingHelpSupport) {
-            HelpSupportView()
+            NavigationView {
+                HelpSupportView()
+            }
         }
         .sheet(isPresented: $showingAddEmergencyContact) {
             EmergencyContactForm(contacts: $emergencyContacts)
